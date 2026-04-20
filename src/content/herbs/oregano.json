@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Origan", "en": "Oregano" },
+  "scientific": "Origanum vulgare",
+  "description": {
+    "fr": "Plus connu en cuisine, l'origan en tisane libère une chaleur sèche et balsamique qui réconforte la gorge irritée.",
+    "en": "Better known in the kitchen, oregano steeped releases a dry, balsamic warmth that soothes a scratchy throat."
+  },
+  "benefits": ["cold", "immunity", "digestion"],
+  "primaryBenefits": ["cold", "immunity"],
+  "flavor": {
+    "fr": ["aromatique", "balsamique", "épicé"],
+    "en": ["aromatic", "balsamic", "spicy"]
+  },
+  "part": "aerial",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Déconseillé pendant la grossesse à doses thérapeutiques.",
+    "en": "Avoid therapeutic doses during pregnancy."
+  },
+  "emoji": "🌿",
+  "popularity": 65
+}

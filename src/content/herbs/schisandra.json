@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Schisandra", "en": "Schisandra" },
+  "scientific": "Schisandra chinensis",
+  "description": {
+    "fr": "La baie aux cinq saveurs, disent les Chinois : sucré, acide, amer, piquant, salé. Une tisane tonique, étrange et réveillante.",
+    "en": "The five-flavor berry of Chinese tradition: sweet, sour, bitter, pungent, salty. A tonic, strange, and waking brew."
+  },
+  "benefits": ["energy", "focus", "immunity"],
+  "primaryBenefits": ["energy"],
+  "flavor": {
+    "fr": ["acidulé", "boisé", "complexe"],
+    "en": ["tart", "woody", "complex"]
+  },
+  "part": "fruit",
+  "brewing": { "temperatureC": 95, "timeMin": 10, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Déconseillé pendant la grossesse et en cas d'ulcère gastrique.",
+    "en": "Avoid during pregnancy or with peptic ulcers."
+  },
+  "emoji": "🫐",
+  "popularity": 50
+}

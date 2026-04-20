@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Rose de Damas", "en": "Damask rose" },
+  "scientific": "Rosa × damascena",
+  "description": {
+    "fr": "Une poignée de pétales et la tasse devient un jardin de juin. Douceur miellée, romantique, qui détend le cœur.",
+    "en": "A handful of petals turns the cup into a June garden. A romantic, honeyed softness that loosens the heart."
+  },
+  "benefits": ["stress", "mood", "sleep"],
+  "primaryBenefits": ["mood"],
+  "flavor": {
+    "fr": ["floral", "miellé", "fruité"],
+    "en": ["floral", "honeyed", "fruity"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 90, "timeMin": 6, "gramsPerCup": 2 },
+  "emoji": "🌹",
+  "popularity": 75
+}

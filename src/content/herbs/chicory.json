@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Chicorée", "en": "Chicory" },
+  "scientific": "Cichorium intybus",
+  "description": {
+    "fr": "La racine torréfiée des cafés du Nord. Une amertume franche, presque chocolatée, qui ouvre l'appétit et soutient le foie.",
+    "en": "The roasted root of northern cafés. A clean, almost chocolatey bitterness that opens the appetite and supports the liver."
+  },
+  "benefits": ["digestion", "detox"],
+  "primaryBenefits": ["digestion"],
+  "flavor": {
+    "fr": ["amer", "torréfié", "chocolaté"],
+    "en": ["bitter", "roasted", "chocolatey"]
+  },
+  "part": "roots",
+  "brewing": { "temperatureC": 100, "timeMin": 8, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Allergies possibles aux Astéracées.",
+    "en": "Possible Asteraceae allergies."
+  },
+  "emoji": "🌼",
+  "popularity": 60
+}

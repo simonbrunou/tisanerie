@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Mauve", "en": "Common mallow" },
+  "scientific": "Malva sylvestris",
+  "description": {
+    "fr": "Une fleur violette qui rend l'eau presque sirupeuse. Le mucilage tapisse la gorge irritée d'un voile doux.",
+    "en": "A violet flower that turns the water almost syrupy. Its mucilage drapes a soft veil over a scratchy throat."
+  },
+  "benefits": ["cold", "digestion"],
+  "primaryBenefits": ["cold"],
+  "flavor": {
+    "fr": ["floral doux", "soyeux", "neutre"],
+    "en": ["softly floral", "silky", "neutral"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 85, "timeMin": 8, "gramsPerCup": 2 },
+  "emoji": "💜",
+  "popularity": 55
+}

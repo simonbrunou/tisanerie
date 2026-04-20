@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Plantain lancéolé", "en": "Plantain" },
+  "scientific": "Plantago lanceolata",
+  "description": {
+    "fr": "L'herbe du bord du chemin. Discrète, mucilagineuse, elle apaise les bronches enrhumées comme on borde un enfant fiévreux.",
+    "en": "The roadside herb. Modest and mucilaginous, it soothes a cold-tightened chest the way you'd tuck in a feverish child."
+  },
+  "benefits": ["cold", "immunity"],
+  "primaryBenefits": ["cold"],
+  "flavor": {
+    "fr": ["végétal", "doux", "champignon"],
+    "en": ["leafy", "mild", "mushroomy"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 2 },
+  "emoji": "🌿",
+  "popularity": 50
+}

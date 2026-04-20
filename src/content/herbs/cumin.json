@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Cumin", "en": "Cumin" },
+  "scientific": "Cuminum cyminum",
+  "description": {
+    "fr": "Plus connu des tajines, le cumin infusé révèle un profil chaud et terreux qui apaise les digestions pesantes.",
+    "en": "Best known from tagines, infused cumin shows a warm, earthy profile that eases heavy digestion."
+  },
+  "benefits": ["digestion"],
+  "primaryBenefits": ["digestion"],
+  "flavor": {
+    "fr": ["terreux", "chaud", "épicé"],
+    "en": ["earthy", "warming", "spicy"]
+  },
+  "part": "seeds",
+  "brewing": { "temperatureC": 100, "timeMin": 8, "gramsPerCup": 1.5 },
+  "emoji": "🌾",
+  "popularity": 50
+}

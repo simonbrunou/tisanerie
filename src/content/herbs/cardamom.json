@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Cardamome verte", "en": "Green cardamom" },
+  "scientific": "Elettaria cardamomum",
+  "description": {
+    "fr": "La reine des épices indiennes. Une capsule écrasée et la tasse s'ouvre sur un parfum d'agrumes, d'eucalyptus et de fleur.",
+    "en": "The queen of Indian spices. One crushed pod and the cup blooms with citrus, eucalyptus and flower."
+  },
+  "benefits": ["digestion", "refresh"],
+  "primaryBenefits": ["digestion"],
+  "flavor": {
+    "fr": ["citron", "eucalyptus", "floral"],
+    "en": ["citrus", "eucalyptus", "floral"]
+  },
+  "part": "seeds",
+  "brewing": { "temperatureC": 100, "timeMin": 8, "gramsPerCup": 1.5 },
+  "emoji": "🫘",
+  "popularity": 65
+}

@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Souci (Calendula)", "en": "Calendula" },
+  "scientific": "Calendula officinalis",
+  "description": {
+    "fr": "Les pétales orange du souci colorent l'eau d'un soleil doux. Une tisane qui apaise les muqueuses et soutient l'immunité.",
+    "en": "Calendula's orange petals tint the water with a gentle sun. A brew that soothes the mucous membranes and supports immunity."
+  },
+  "benefits": ["digestion", "immunity", "cramps"],
+  "primaryBenefits": ["immunity"],
+  "flavor": {
+    "fr": ["légèrement amer", "résineux", "doux"],
+    "en": ["faintly bitter", "resinous", "mild"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 95, "timeMin": 7, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Allergies possibles chez les personnes sensibles aux Astéracées.",
+    "en": "Possible allergies in people sensitive to the Asteraceae family."
+  },
+  "emoji": "🌼",
+  "popularity": 65
+}

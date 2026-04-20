@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Clou de girofle", "en": "Clove" },
+  "scientific": "Syzygium aromaticum",
+  "description": {
+    "fr": "Un bouton de fleur séché qui parfume la tasse d'un chaud piquant. Quelques clous suffisent à transformer une infusion ordinaire.",
+    "en": "A dried flower bud that perfumes the cup with a warm, piquant depth. A few cloves are enough to transform a plain infusion."
+  },
+  "benefits": ["cold", "digestion"],
+  "primaryBenefits": ["cold"],
+  "flavor": {
+    "fr": ["épicé", "chaud", "boisé"],
+    "en": ["spicy", "warming", "woody"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 100, "timeMin": 8, "gramsPerCup": 1 },
+  "warnings": {
+    "fr": "Dosage modeste : l'eugénol peut irriter l'estomac à forte dose.",
+    "en": "Use a light hand: eugenol can irritate the stomach at higher doses."
+  },
+  "emoji": "🌰",
+  "popularity": 60
+}

@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Rhodiola", "en": "Rhodiola" },
+  "scientific": "Rhodiola rosea",
+  "description": {
+    "fr": "Une racine venue des montagnes de Sibérie, à l'arôme étonnant de rose. Tonique et adaptogène, elle aide à traverser les coups de fatigue.",
+    "en": "A root from the Siberian mountains with a surprising rose-like aroma. Tonic and adaptogenic, it helps push through bouts of fatigue."
+  },
+  "benefits": ["stress", "energy", "focus"],
+  "primaryBenefits": ["energy"],
+  "flavor": {
+    "fr": ["rose", "racine", "légèrement astringent"],
+    "en": ["rosy", "rooty", "faintly astringent"]
+  },
+  "part": "roots",
+  "brewing": { "temperatureC": 95, "timeMin": 10, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Stimulant : éviter le soir et pendant la grossesse.",
+    "en": "Stimulating: avoid in the evening and during pregnancy."
+  },
+  "emoji": "🌸",
+  "popularity": 60
+}

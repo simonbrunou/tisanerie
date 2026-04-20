@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Eucalyptus", "en": "Eucalyptus" },
+  "scientific": "Eucalyptus globulus",
+  "description": {
+    "fr": "Une bouffée de forêt australienne. Le menthol naturel dégage les voies respiratoires et nettoie la tasse comme un grand vent.",
+    "en": "A breath of Australian forest. The natural menthol opens the airways and sweeps the cup clean like a fresh breeze."
+  },
+  "benefits": ["cold", "refresh", "headache"],
+  "primaryBenefits": ["cold"],
+  "flavor": {
+    "fr": ["mentholé", "camphré", "résineux"],
+    "en": ["menthol", "camphorous", "resinous"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 95, "timeMin": 7, "gramsPerCup": 1.5 },
+  "warnings": {
+    "fr": "Déconseillé aux jeunes enfants et en cas d'asthme sévère.",
+    "en": "Avoid for young children and with severe asthma."
+  },
+  "emoji": "🌿",
+  "popularity": 70
+}

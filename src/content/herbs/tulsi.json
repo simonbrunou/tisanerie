@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Basilic sacré (Tulsi)", "en": "Holy basil (Tulsi)" },
+  "scientific": "Ocimum tenuiflorum",
+  "description": {
+    "fr": "La plante reine de l'Ayurveda. Une infusion poivrée et clouée de girofle qui ancre l'esprit sans l'endormir.",
+    "en": "The queen of Ayurvedic plants. A peppery, clove-tinged infusion that grounds the mind without dulling it."
+  },
+  "benefits": ["stress", "immunity", "focus", "mood"],
+  "primaryBenefits": ["stress", "immunity"],
+  "flavor": {
+    "fr": ["poivré", "clou de girofle", "herbacé"],
+    "en": ["peppery", "clove", "herbal"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 95, "timeMin": 6, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Déconseillé pendant la grossesse et avec les anticoagulants.",
+    "en": "Not recommended during pregnancy or with blood thinners."
+  },
+  "emoji": "🌿",
+  "popularity": 70
+}

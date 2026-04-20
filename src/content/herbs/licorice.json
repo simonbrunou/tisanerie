@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Réglisse", "en": "Licorice" },
+  "scientific": "Glycyrrhiza glabra",
+  "description": {
+    "fr": "Une racine douce comme un bonbon d'enfance. Elle adoucit la gorge et arrondit les mélanges les plus austères.",
+    "en": "A root as sweet as a childhood candy. It soothes the throat and rounds the edges of the most austere blends."
+  },
+  "benefits": ["digestion", "cold"],
+  "primaryBenefits": ["cold"],
+  "flavor": {
+    "fr": ["sucré", "anisé", "boisé"],
+    "en": ["sweet", "aniseed", "woody"]
+  },
+  "part": "roots",
+  "brewing": { "temperatureC": 100, "timeMin": 10, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Hypertension artérielle, grossesse et traitements diurétiques : à éviter ou usage très court.",
+    "en": "Avoid (or limit to short courses) with high blood pressure, pregnancy, or diuretics."
+  },
+  "emoji": "🪵",
+  "popularity": 70
+}

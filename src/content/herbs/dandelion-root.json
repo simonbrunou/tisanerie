@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Racine de pissenlit", "en": "Dandelion root" },
+  "scientific": "Taraxacum officinale",
+  "description": {
+    "fr": "Torréfiée, la racine de pissenlit imite le café sans la caféine. Une amertume franche qui réveille le foie après les fêtes.",
+    "en": "Roasted, dandelion root mimics coffee without the caffeine. A clean bitterness that wakes the liver after a heavy week."
+  },
+  "benefits": ["detox", "digestion"],
+  "primaryBenefits": ["detox"],
+  "flavor": {
+    "fr": ["amer", "torréfié", "terreux"],
+    "en": ["bitter", "roasted", "earthy"]
+  },
+  "part": "roots",
+  "brewing": { "temperatureC": 100, "timeMin": 10, "gramsPerCup": 3 },
+  "warnings": {
+    "fr": "Allergies possibles aux Astéracées ; prudence en cas de calculs biliaires.",
+    "en": "Possible Asteraceae allergies; caution with gallstones."
+  },
+  "emoji": "🌼",
+  "popularity": 60
+}

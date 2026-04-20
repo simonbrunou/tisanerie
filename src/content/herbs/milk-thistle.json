@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Chardon-Marie", "en": "Milk thistle" },
+  "scientific": "Silybum marianum",
+  "description": {
+    "fr": "Les graines hérissées du chardon-marie portent la silymarine, amie du foie. Une décoction discrète, idéale après les excès.",
+    "en": "Milk thistle's spiny seeds carry silymarin, a known ally of the liver. A discreet decoction for post-excess days."
+  },
+  "benefits": ["detox"],
+  "primaryBenefits": ["detox"],
+  "flavor": {
+    "fr": ["neutre", "légèrement amer", "noisette"],
+    "en": ["neutral", "faintly bitter", "nutty"]
+  },
+  "part": "seeds",
+  "brewing": { "temperatureC": 100, "timeMin": 12, "gramsPerCup": 3 },
+  "warnings": {
+    "fr": "Allergies possibles aux Astéracées.",
+    "en": "Possible Asteraceae allergies."
+  },
+  "emoji": "🌿",
+  "popularity": 55
+}

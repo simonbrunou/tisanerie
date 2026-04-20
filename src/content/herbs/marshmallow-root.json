@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Racine de guimauve", "en": "Marshmallow root" },
+  "scientific": "Althaea officinalis",
+  "description": {
+    "fr": "La racine la plus tendre du jardin médicinal. Sa décoction tiède tapisse la gorge enflammée d'un voile mucilagineux.",
+    "en": "The most tender root in the medicinal garden. Its lukewarm decoction drapes an inflamed throat in mucilaginous silk."
+  },
+  "benefits": ["cold", "digestion"],
+  "primaryBenefits": ["cold"],
+  "flavor": {
+    "fr": ["doux", "soyeux", "neutre"],
+    "en": ["mild", "silky", "neutral"]
+  },
+  "part": "roots",
+  "brewing": { "temperatureC": 80, "timeMin": 15, "gramsPerCup": 2 },
+  "emoji": "🌿",
+  "popularity": 55
+}
