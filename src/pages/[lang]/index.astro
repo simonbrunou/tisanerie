@@ -40,8 +40,7 @@ const spotlight = spotlightIds
   .map((id) => herbs.find((h) => h.id === id))
   .filter((h): h is NonNullable<typeof h> => Boolean(h));
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const searchHref = `${base}${localizedPath(lang, 'search')}`;
+const searchHref = localizedPath(lang, 'search');
 
 const needOptions = orderedNeeds.map((n) => ({
   id: n.id,
@@ -57,7 +56,7 @@ const searchItems = [
     title: h.data.name[lang],
     subtitle: h.data.scientific,
     emoji: h.data.emoji,
-    href: `${base}${localizedPath(lang, 'herbs', h.id)}`,
+    href: localizedPath(lang, 'herbs', h.id),
     haystack: [
       h.data.name.fr,
       h.data.name.en,
@@ -72,7 +71,7 @@ const searchItems = [
     title: n.data.name[lang],
     subtitle: n.data.short[lang],
     emoji: n.data.emoji,
-    href: `${base}${localizedPath(lang, 'needs', n.id)}`,
+    href: localizedPath(lang, 'needs', n.id),
     haystack: [n.data.name.fr, n.data.name.en, n.data.benefit, ...n.data.related].join(' '),
   })),
 ];
