@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Alchémille", "en": "Lady's mantle" },
+  "scientific": "Alchemilla vulgaris",
+  "description": {
+    "fr": "Les alchimistes recueillaient la rosée dans le creux de ses feuilles. Une infusion astringente, traditionnelle des cycles féminins.",
+    "en": "Alchemists once collected dew in the cup of its leaves. An astringent brew, long held as a women's cycle ally."
+  },
+  "benefits": ["cramps", "digestion"],
+  "primaryBenefits": ["cramps"],
+  "flavor": {
+    "fr": ["tannique", "végétal", "sec"],
+    "en": ["tannic", "leafy", "dry"]
+  },
+  "part": "aerial",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Déconseillé pendant la grossesse.",
+    "en": "Avoid during pregnancy."
+  },
+  "emoji": "🌿",
+  "popularity": 50
+}

@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Molène (Bouillon-blanc)", "en": "Mullein" },
+  "scientific": "Verbascum thapsus",
+  "description": {
+    "fr": "Les grandes fleurs jaunes de la molène se cueillent un matin d'été. Une infusion onctueuse, faite pour calmer les toux sèches.",
+    "en": "Mullein's tall yellow blooms are gathered on a summer morning. A silky infusion shaped for calming dry coughs."
+  },
+  "benefits": ["cold"],
+  "primaryBenefits": ["cold"],
+  "flavor": {
+    "fr": ["doux", "miellé", "discret"],
+    "en": ["mild", "honeyed", "subtle"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 90, "timeMin": 8, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Filtrer soigneusement : les poils des fleurs peuvent irriter la gorge.",
+    "en": "Strain carefully: the flower hairs can irritate the throat."
+  },
+  "emoji": "🌼",
+  "popularity": 50
+}

@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Bardane", "en": "Burdock" },
+  "scientific": "Arctium lappa",
+  "description": {
+    "fr": "Une racine longue et fibreuse, très utilisée en herboristerie pour soutenir le foie et nettoyer la peau de l'intérieur.",
+    "en": "A long, fibrous root long used by herbalists to support the liver and clear the skin from within."
+  },
+  "benefits": ["detox", "digestion"],
+  "primaryBenefits": ["detox"],
+  "flavor": {
+    "fr": ["terreux", "doux", "boisé"],
+    "en": ["earthy", "mild", "woody"]
+  },
+  "part": "roots",
+  "brewing": { "temperatureC": 100, "timeMin": 12, "gramsPerCup": 3 },
+  "warnings": {
+    "fr": "Allergies possibles aux Astéracées ; éviter pendant la grossesse.",
+    "en": "Possible Asteraceae allergies; avoid during pregnancy."
+  },
+  "emoji": "🌿",
+  "popularity": 50
+}

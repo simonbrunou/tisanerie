@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Ginkgo", "en": "Ginkgo" },
+  "scientific": "Ginkgo biloba",
+  "description": {
+    "fr": "Les feuilles en éventail d'un arbre vieux comme le monde. Une tisane discrète, légèrement amère, réputée pour la mémoire.",
+    "en": "Fan-shaped leaves from a tree as old as the world. A quiet, faintly bitter brew long associated with memory."
+  },
+  "benefits": ["focus", "energy"],
+  "primaryBenefits": ["focus"],
+  "flavor": {
+    "fr": ["végétal", "légèrement amer", "boisé"],
+    "en": ["leafy", "slightly bitter", "woody"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 95, "timeMin": 7, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Interactions possibles avec les anticoagulants ; éviter avant une chirurgie.",
+    "en": "Possible interactions with blood thinners; avoid before surgery."
+  },
+  "emoji": "🍂",
+  "popularity": 55
+}

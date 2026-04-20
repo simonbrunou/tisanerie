@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Reine-des-prés", "en": "Meadowsweet" },
+  "scientific": "Filipendula ulmaria",
+  "description": {
+    "fr": "Surnommée l'aspirine végétale. Un parfum d'amande et de miel pour adoucir la fièvre et calmer les articulations endolories.",
+    "en": "Sometimes called the plant-world aspirin. An almond-and-honey scent that softens fevers and quiets achy joints."
+  },
+  "benefits": ["headache", "cold", "cramps"],
+  "primaryBenefits": ["headache"],
+  "flavor": {
+    "fr": ["amande", "miellé", "floral"],
+    "en": ["almond", "honeyed", "floral"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 85, "timeMin": 8, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "À éviter en cas d'allergie aux salicylés (aspirine).",
+    "en": "Avoid if allergic to salicylates (aspirin)."
+  },
+  "emoji": "🤍",
+  "popularity": 55
+}

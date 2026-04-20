@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Jasmin", "en": "Jasmine" },
+  "scientific": "Jasminum officinale",
+  "description": {
+    "fr": "Les fleurs de jasmin embaument la nuit chaude. En infusion, un parfum suave, presque sucré, qui calme l'esprit avant le sommeil.",
+    "en": "Jasmine blooms perfume the warm night. Steeped, they release a suave, near-sweet aroma that quiets the mind before sleep."
+  },
+  "benefits": ["stress", "mood", "sleep"],
+  "primaryBenefits": ["stress"],
+  "flavor": {
+    "fr": ["floral", "suave", "miellé"],
+    "en": ["floral", "suave", "honeyed"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 85, "timeMin": 5, "gramsPerCup": 2 },
+  "emoji": "🤍",
+  "popularity": 75
+}

@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Cannelle de Ceylan", "en": "Ceylon cinnamon" },
+  "scientific": "Cinnamomum verum",
+  "description": {
+    "fr": "L'écorce qui sent Noël. Un bâton dans la tasse, et la chaleur des épices monte doucement comme un feu de cheminée.",
+    "en": "The bark that smells of Christmas. One stick in the cup and the warmth of spice rises gently, like a fireplace."
+  },
+  "benefits": ["cold", "digestion", "energy"],
+  "primaryBenefits": ["digestion"],
+  "flavor": {
+    "fr": ["chaleureux", "sucré", "boisé"],
+    "en": ["warming", "sweet", "woody"]
+  },
+  "part": "bark",
+  "brewing": { "temperatureC": 100, "timeMin": 10, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Préférer la cannelle de Ceylan : la variété cassia contient plus de coumarine.",
+    "en": "Prefer Ceylon cinnamon: the cassia variety contains more coumarin."
+  },
+  "emoji": "🪵",
+  "popularity": 80
+}

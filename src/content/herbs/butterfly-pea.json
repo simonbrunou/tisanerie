@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Pois bleu (Clitoria)", "en": "Butterfly pea" },
+  "scientific": "Clitoria ternatea",
+  "description": {
+    "fr": "Une fleur d'un bleu invraisemblable qui vire au violet d'une goutte de citron. Spectacle de couleurs et infusion légère, presque sans goût.",
+    "en": "A flower of impossibly deep blue that swings to violet at the touch of lemon. A spectacle of colour and a light, near-neutral brew."
+  },
+  "benefits": ["refresh", "focus"],
+  "primaryBenefits": ["refresh"],
+  "flavor": {
+    "fr": ["végétal", "très léger", "neutre"],
+    "en": ["leafy", "very light", "neutral"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 90, "timeMin": 5, "gramsPerCup": 1.5 },
+  "emoji": "💙",
+  "popularity": 50
+}

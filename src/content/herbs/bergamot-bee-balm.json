@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Monarde (Thé d'Oswego)", "en": "Bee balm" },
+  "scientific": "Monarda didyma",
+  "description": {
+    "fr": "Aux notes de bergamote et de thym, la monarde flotte entre l'agrume et la garrigue. Une tasse à boire au coin du feu.",
+    "en": "With notes of bergamot and thyme, bee balm hovers between citrus zest and Mediterranean scrub. A cup for the fireside."
+  },
+  "benefits": ["cold", "mood", "digestion"],
+  "primaryBenefits": ["cold"],
+  "flavor": {
+    "fr": ["bergamote", "thym", "miellé"],
+    "en": ["bergamot", "thyme", "honeyed"]
+  },
+  "part": "aerial",
+  "brewing": { "temperatureC": 95, "timeMin": 7, "gramsPerCup": 2 },
+  "emoji": "🌸",
+  "popularity": 55
+}

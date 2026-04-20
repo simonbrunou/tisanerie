@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Yerba maté", "en": "Yerba mate" },
+  "scientific": "Ilex paraguariensis",
+  "description": {
+    "fr": "La boisson d'éveil sud-américaine. Une amertume verte et tonique qui réveille l'attention sans la nervosité du café.",
+    "en": "South America's wake-up drink. A green, tonic bitterness that sharpens attention without coffee's jitter."
+  },
+  "benefits": ["energy", "focus", "mood"],
+  "primaryBenefits": ["energy", "focus"],
+  "flavor": {
+    "fr": ["herbacé", "amer", "fumé"],
+    "en": ["grassy", "bitter", "smoky"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 80, "timeMin": 5, "gramsPerCup": 3 },
+  "warnings": {
+    "fr": "Contient de la caféine : modération en fin de journée et en cas de troubles cardiaques.",
+    "en": "Contains caffeine: moderate use late in the day or with heart conditions."
+  },
+  "emoji": "🧉",
+  "popularity": 75
+}

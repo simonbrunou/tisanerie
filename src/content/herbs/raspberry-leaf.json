@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Feuille de framboisier", "en": "Raspberry leaf" },
+  "scientific": "Rubus idaeus",
+  "description": {
+    "fr": "Une infusion verte et tannique, presque comme un thé noir doux, traditionnellement réservée aux femmes pour ses vertus toniques utérines.",
+    "en": "A green, tannic brew — almost like a soft black tea — traditionally reserved for women as a uterine tonic."
+  },
+  "benefits": ["cramps", "detox"],
+  "primaryBenefits": ["cramps"],
+  "flavor": {
+    "fr": ["tannique", "végétal", "doux"],
+    "en": ["tannic", "leafy", "mild"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 3 },
+  "warnings": {
+    "fr": "À éviter en début de grossesse ; usage encadré recommandé.",
+    "en": "Avoid in early pregnancy; use only under guidance."
+  },
+  "emoji": "🍃",
+  "popularity": 65
+}

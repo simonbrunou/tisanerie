@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Ginseng", "en": "Ginseng" },
+  "scientific": "Panax ginseng",
+  "description": {
+    "fr": "La racine adaptogène par excellence. Une décoction terreuse, légèrement amère, qui soutient l'endurance dans les périodes d'effort.",
+    "en": "The adaptogenic root par excellence. An earthy, faintly bitter decoction that supports stamina through demanding stretches."
+  },
+  "benefits": ["energy", "focus", "immunity"],
+  "primaryBenefits": ["energy"],
+  "flavor": {
+    "fr": ["terreux", "légèrement amer", "racine"],
+    "en": ["earthy", "faintly bitter", "rooty"]
+  },
+  "part": "roots",
+  "brewing": { "temperatureC": 100, "timeMin": 12, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Stimulant : éviter le soir, en cas d'hypertension et pendant la grossesse.",
+    "en": "Stimulating: avoid in the evening, with hypertension, or during pregnancy."
+  },
+  "emoji": "🌿",
+  "popularity": 70
+}

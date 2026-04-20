@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Anis vert", "en": "Aniseed" },
+  "scientific": "Pimpinella anisum",
+  "description": {
+    "fr": "La petite graine des digestifs du dimanche. Une douceur anisée, ronde, qui dénoue les ballonnements après le déjeuner.",
+    "en": "The little seed of Sunday digestifs. A round, aniseed sweetness that unknots bloating after lunch."
+  },
+  "benefits": ["digestion", "cold"],
+  "primaryBenefits": ["digestion"],
+  "flavor": {
+    "fr": ["anisé", "sucré", "frais"],
+    "en": ["aniseed", "sweet", "fresh"]
+  },
+  "part": "seeds",
+  "brewing": { "temperatureC": 100, "timeMin": 8, "gramsPerCup": 2 },
+  "emoji": "🌿",
+  "popularity": 65
+}

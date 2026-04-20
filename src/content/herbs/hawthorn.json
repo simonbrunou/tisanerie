@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Aubépine", "en": "Hawthorn" },
+  "scientific": "Crataegus monogyna",
+  "description": {
+    "fr": "L'arbre des haies bocagères. Ses fleurs et baies rouges apaisent le cœur agité et accompagnent les soirs anxieux.",
+    "en": "The hedgerow tree. Its blossoms and red berries calm a restless heart and keep anxious evenings company."
+  },
+  "benefits": ["stress", "sleep"],
+  "primaryBenefits": ["stress"],
+  "flavor": {
+    "fr": ["floral", "fruité doux", "amande"],
+    "en": ["floral", "softly fruity", "almond"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Surveillance recommandée en cas de traitement cardiaque.",
+    "en": "Speak with a doctor if you take heart medication."
+  },
+  "emoji": "🌸",
+  "popularity": 65
+}
