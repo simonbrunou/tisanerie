@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Sauge officinale", "en": "Sage" },
+  "scientific": "Salvia officinalis",
+  "description": {
+    "fr": "Feuille argentée, voix claire : la sauge apaise les maux de gorge et accompagne les petits matins brumeux.",
+    "en": "Silver leaf, clear voice: sage soothes sore throats and sees foggy mornings through."
+  },
+  "benefits": ["cold", "focus", "cramps"],
+  "primaryBenefits": ["cold"],
+  "flavor": {
+    "fr": ["camphré", "amer", "herbacé"],
+    "en": ["camphorous", "bitter", "herbal"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 95, "timeMin": 7, "gramsPerCup": 1.5 },
+  "warnings": {
+    "fr": "Éviter pendant la grossesse et l'allaitement.",
+    "en": "Avoid during pregnancy and nursing."
+  },
+  "emoji": "🌿",
+  "popularity": 65
+}

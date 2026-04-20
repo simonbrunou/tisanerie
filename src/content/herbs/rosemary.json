@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Romarin", "en": "Rosemary" },
+  "scientific": "Salvia rosmarinus",
+  "description": {
+    "fr": "Un coup de fouet boisé qui ouvre l'esprit et tonifie les matins lents.",
+    "en": "A woody jolt that opens the mind and tones slow mornings."
+  },
+  "benefits": ["focus", "energy", "headache"],
+  "primaryBenefits": ["focus"],
+  "flavor": {
+    "fr": ["résineux", "boisé", "camphré"],
+    "en": ["resinous", "woody", "camphorous"]
+  },
+  "part": "aerial",
+  "brewing": { "temperatureC": 95, "timeMin": 7, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Éviter en cas d'hypertension non contrôlée.",
+    "en": "Avoid with uncontrolled high blood pressure."
+  },
+  "emoji": "🌲",
+  "popularity": 60
+}

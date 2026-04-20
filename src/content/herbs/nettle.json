@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Ortie", "en": "Nettle" },
+  "scientific": "Urtica dioica",
+  "description": {
+    "fr": "Une tisane verte, minérale, qui soutient les cures de printemps et remet les jambes en route.",
+    "en": "A green, mineral-rich infusion that supports spring resets and puts tired legs back in motion."
+  },
+  "benefits": ["detox", "immunity", "energy"],
+  "primaryBenefits": ["detox"],
+  "flavor": {
+    "fr": ["végétal", "minéral", "vert"],
+    "en": ["vegetal", "mineral", "green"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 2 },
+  "emoji": "🌿",
+  "popularity": 60
+}

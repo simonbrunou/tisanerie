@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Rooibos", "en": "Rooibos" },
+  "scientific": "Aspalathus linearis",
+  "description": {
+    "fr": "Un buisson rouge d'Afrique du Sud, sans caféine, aux notes de miel et de bois chaud : l'allié des tasses tardives.",
+    "en": "A red South-African bush, caffeine-free, with honey and warm-wood notes: the go-to for late cups."
+  },
+  "benefits": ["refresh", "energy"],
+  "primaryBenefits": ["refresh"],
+  "flavor": {
+    "fr": ["miel", "vanillé", "boisé"],
+    "en": ["honey", "vanilla", "woody"]
+  },
+  "part": "aerial",
+  "brewing": { "temperatureC": 95, "timeMin": 7, "gramsPerCup": 2 },
+  "emoji": "🍂",
+  "popularity": 70
+}

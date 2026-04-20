@@ -1,0 +1,25 @@
+---
+import type { Locale } from '~/i18n/routes';
+import { localizedPath } from '~/i18n/routes';
+import { t } from '~/i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+---
+<footer class="mt-24 border-t border-sage-100/70 bg-paper/60 py-10 text-sm text-ink-muted dark:border-sage-800/50 dark:bg-paper-dark/60">
+  <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 sm:px-6 md:flex-row md:items-center md:justify-between">
+    <div class="flex items-center gap-2">
+      <span aria-hidden="true">🌿</span>
+      <span>{t(lang, 'site.name')} · {t(lang, 'footer.madeWith')}</span>
+    </div>
+    <nav class="flex flex-wrap gap-x-6 gap-y-2">
+      <a class="link" href={localizedPath(lang, 'about')}>{t(lang, 'nav.about')}</a>
+      <a class="link" href={localizedPath(lang, 'discover')}>{t(lang, 'nav.discover')}</a>
+      <a class="link" href="https://github.com/simonbrunou/tisanerie" target="_blank" rel="noopener">
+        GitHub
+      </a>
+    </nav>
+  </div>
+</footer>

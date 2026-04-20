@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Hibiscus", "en": "Hibiscus" },
+  "scientific": "Hibiscus sabdariffa",
+  "description": {
+    "fr": "Une infusion rubis, acidulée comme une grenade, qui désaltère aussi bien chaude que glacée.",
+    "en": "A ruby infusion, tart as pomegranate, refreshing hot or iced."
+  },
+  "benefits": ["refresh", "detox"],
+  "primaryBenefits": ["refresh"],
+  "flavor": {
+    "fr": ["acidulé", "fruité", "tannique"],
+    "en": ["tart", "fruity", "tannic"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 95, "timeMin": 6, "gramsPerCup": 2 },
+  "emoji": "🌺",
+  "popularity": 65
+}

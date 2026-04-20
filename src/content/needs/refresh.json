@@ -1,0 +1,21 @@
+{
+  "name": { "fr": "Rafraîchissement", "en": "Refresh" },
+  "short": { "fr": "Chaude ou glacée", "en": "Hot or iced" },
+  "description": {
+    "fr": "Des tisanes vives qui désaltèrent l'été et réveillent l'hiver.",
+    "en": "Bright infusions that quench summer and wake up winter."
+  },
+  "benefit": "refresh",
+  "related": ["energy"],
+  "emoji": "🧊",
+  "blends": [
+    {
+      "name": { "fr": "Rubis glacé", "en": "Iced ruby" },
+      "herbs": ["hibiscus", "peppermint", "rosehip"],
+      "instructions": {
+        "fr": "Parts égales. 3 g par tasse, 95 °C, 6 min ; laisser refroidir et verser sur glaçons.",
+        "en": "Equal parts. 3 g per cup, 95 °C, 6 min; cool down and pour over ice."
+      }
+    }
+  ]
+}

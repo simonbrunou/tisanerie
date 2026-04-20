@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Verveine odorante", "en": "Lemon verbena" },
+  "scientific": "Aloysia citrodora",
+  "description": {
+    "fr": "La tisane du soir par excellence. Une tasse de verveine, les volets qui grincent, et la journée se range doucement.",
+    "en": "The evening infusion par excellence. A cup of verbena, the shutters creaking, and the day tidies itself away."
+  },
+  "benefits": ["digestion", "sleep", "stress"],
+  "primaryBenefits": ["digestion"],
+  "flavor": {
+    "fr": ["citron", "soyeux", "herbacé"],
+    "en": ["lemon", "silky", "grassy"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 90, "timeMin": 6, "gramsPerCup": 2 },
+  "emoji": "🍃",
+  "popularity": 85
+}

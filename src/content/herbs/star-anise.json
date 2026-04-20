@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Badiane", "en": "Star anise" },
+  "scientific": "Illicium verum",
+  "description": {
+    "fr": "Ses étoiles bois-brun parfument la tasse d'un anis velouté, idéal après le dîner.",
+    "en": "Its brown wooden stars perfume the cup with velvety anise, ideal after dinner."
+  },
+  "benefits": ["digestion", "cold"],
+  "primaryBenefits": ["digestion"],
+  "flavor": {
+    "fr": ["anis", "licorice", "doux"],
+    "en": ["anise", "licorice", "sweet"]
+  },
+  "part": "fruit",
+  "brewing": { "temperatureC": 100, "timeMin": 10, "gramsPerCup": 1.5 },
+  "emoji": "⭐",
+  "popularity": 50
+}

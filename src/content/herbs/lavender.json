@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Lavande", "en": "Lavender" },
+  "scientific": "Lavandula angustifolia",
+  "description": {
+    "fr": "Quelques brins suffisent pour envelopper la tasse d'un parfum provençal qui apaise sans endormir.",
+    "en": "A few sprigs are enough to wrap the cup in a Provençal perfume that calms without knocking you out."
+  },
+  "benefits": ["stress", "sleep", "headache"],
+  "primaryBenefits": ["stress"],
+  "flavor": {
+    "fr": ["floral", "camphré", "mielé"],
+    "en": ["floral", "camphorous", "honeyed"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 95, "timeMin": 5, "gramsPerCup": 1 },
+  "warnings": {
+    "fr": "Dose modeste : trop de lavande vire à l'amertume.",
+    "en": "Use a light hand: too much lavender turns bitter."
+  },
+  "emoji": "💜",
+  "popularity": 70
+}

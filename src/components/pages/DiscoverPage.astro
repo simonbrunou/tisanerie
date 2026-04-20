@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '~/layouts/Base.astro';
+import HerbCard from '~/components/HerbCard.astro';
+import { localizedPath, type Locale } from '~/i18n/routes';
+import { t } from '~/i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+
+const herbs = await getCollection('herbs');
+const needs = await getCollection('needs');
+
+const sorted = [...herbs].sort((a, b) => a.data.name[lang].localeCompare(b.data.name[lang], lang));
+const pathLocalized = {
+  fr: localizedPath('fr', 'discover'),
+  en: localizedPath('en', 'discover'),
+};
+---
+<Base
+  lang={lang}
+  title={t(lang, 'discover.title')}
+  description={t(lang, 'discover.subtitle', { count: herbs.length })}
+  pathLocalized={pathLocalized}
+>
+  <section class="mx-auto max-w-6xl px-4 pt-16 pb-8 sm:px-6">
+    <p class="text-sm uppercase tracking-wide text-ink-muted">{t(lang, 'nav.discover')}</p>
+    <h1 class="mt-1 font-display text-5xl">{t(lang, 'discover.title')}</h1>
+    <p class="prose-muted mt-3 max-w-2xl">{t(lang, 'discover.subtitle', { count: herbs.length })}</p>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
+    <ul class="flex flex-wrap gap-2">
+      <li>
+        <a
+          class="chip bg-sage-700 text-paper dark:bg-sage-500 dark:text-paper-dark"
+          href={`${localizedPath(lang, 'discover')}#all`}
+        >
+          {t(lang, 'discover.filter.all')} · {herbs.length}
+        </a>
+      </li>
+      {needs.map((n) => (
+        <li>
+          <a class="chip" href={localizedPath(lang, 'needs', n.id)}>
+            <span aria-hidden="true" class="mr-1">{n.data.emoji}</span>
+            {n.data.name[lang]}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <ul id="all" class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      {sorted.map((herb) => (
+        <li>
+          <HerbCard lang={lang} herb={herb} />
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

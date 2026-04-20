@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Achillée millefeuille", "en": "Yarrow" },
+  "scientific": "Achillea millefolium",
+  "description": {
+    "fr": "Amère et florale, elle soulage les crampes et calme les estomacs capricieux.",
+    "en": "Bitter and floral, it eases cramps and calms testy stomachs."
+  },
+  "benefits": ["cramps", "cold", "digestion"],
+  "primaryBenefits": ["cramps"],
+  "flavor": {
+    "fr": ["amer", "herbacé", "floral"],
+    "en": ["bitter", "herbal", "floral"]
+  },
+  "part": "aerial",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Éviter pendant la grossesse.",
+    "en": "Avoid during pregnancy."
+  },
+  "emoji": "🌼",
+  "popularity": 45
+}

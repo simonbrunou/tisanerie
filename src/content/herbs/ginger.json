@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Gingembre", "en": "Ginger" },
+  "scientific": "Zingiber officinale",
+  "description": {
+    "fr": "Une racine franche et piquante qui réveille la circulation et combat les premiers frissons de l'hiver.",
+    "en": "A sharp, piquant root that wakes circulation up and fends off the first chills of winter."
+  },
+  "benefits": ["cold", "digestion", "energy", "immunity"],
+  "primaryBenefits": ["cold", "digestion"],
+  "flavor": {
+    "fr": ["piquant", "épicé", "chaud"],
+    "en": ["pungent", "spicy", "warming"]
+  },
+  "part": "roots",
+  "brewing": { "temperatureC": 100, "timeMin": 10, "gramsPerCup": 3 },
+  "warnings": {
+    "fr": "Prudence avec les anticoagulants et en fin de grossesse.",
+    "en": "Use caution with blood thinners and late in pregnancy."
+  },
+  "emoji": "🫚",
+  "popularity": 85
+}

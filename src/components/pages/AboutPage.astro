@@ -1,0 +1,40 @@
+---
+import Base from '~/layouts/Base.astro';
+import SafetyNote from '~/components/SafetyNote.astro';
+import { localizedPath, type Locale } from '~/i18n/routes';
+import { t } from '~/i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const pathLocalized = {
+  fr: localizedPath('fr', 'about'),
+  en: localizedPath('en', 'about'),
+};
+---
+<Base lang={lang} title={t(lang, 'about.title')} pathLocalized={pathLocalized}>
+  <section class="mx-auto max-w-3xl px-4 pt-16 pb-20 sm:px-6">
+    <p class="text-sm uppercase tracking-wide text-ink-muted">{t(lang, 'nav.about')}</p>
+    <h1 class="mt-1 font-display text-5xl">{t(lang, 'site.name')}</h1>
+    <p class="prose-muted mt-4 text-lg">{t(lang, 'site.tagline')}</p>
+    <div class="mt-10">
+      <SafetyNote title={t(lang, 'about.disclaimer.title')}>
+        <p>{t(lang, 'about.disclaimer.body')}</p>
+      </SafetyNote>
+    </div>
+    <div class="prose-muted mt-10 space-y-3 text-base">
+      {lang === 'fr' ? (
+        <>
+          <p>Tisanerie est un petit outil ouvert, construit avec Astro et Tailwind. Le code et les fiches de plantes sont sous licence libre, contributions bienvenues.</p>
+          <p>Les informations s'appuient sur la littérature phytothérapique populaire (<em>Cahiers de l'herboristerie</em>, EMA, Passeport Santé, Wikipédia). Elles ne remplacent pas un avis médical.</p>
+        </>
+      ) : (
+        <>
+          <p>Tisanerie is a small, open tool built with Astro and Tailwind. The code and plant notes are open-source, contributions welcome.</p>
+          <p>Content draws on common herbal literature (EMA monographs, <em>Cahiers de l'herboristerie</em>, Wikipedia). It does not replace professional medical advice.</p>
+        </>
+      )}
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,54 @@
+---
+import '~/styles/globals.css';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+import type { Locale } from '~/i18n/routes';
+import { t } from '~/i18n/utils';
+
+interface Props {
+  lang: Locale;
+  title: string;
+  description?: string;
+  pathLocalized?: { fr: string; en: string };
+}
+
+const { lang, title, description, pathLocalized } = Astro.props;
+const fullTitle = title === t(lang, 'site.name') ? title : `${title} · ${t(lang, 'site.name')}`;
+const desc = description ?? t(lang, 'site.tagline');
+---
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content={desc} />
+    <title>{fullTitle}</title>
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <meta name="theme-color" content="#faf6ef" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1d19" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:type" content="website" />
+    <script is:inline>
+      (function () {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const dark = stored ? stored === 'dark' : prefersDark;
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:bg-sage-700 focus:px-4 focus:py-2 focus:text-paper">
+      {lang === 'fr' ? 'Aller au contenu' : 'Skip to content'}
+    </a>
+    <Header lang={lang} pathLocalized={pathLocalized} />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

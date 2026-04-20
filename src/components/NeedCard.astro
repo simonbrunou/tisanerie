@@ -1,0 +1,35 @@
+---
+import type { Locale } from '~/i18n/routes';
+import { localizedPath } from '~/i18n/routes';
+import type { NeedEntry } from '~/lib/types';
+
+interface Props {
+  lang: Locale;
+  need: NeedEntry;
+  featured?: boolean;
+}
+
+const { lang, need, featured } = Astro.props;
+const href = localizedPath(lang, 'needs', need.id);
+---
+<a
+  href={href}
+  class={`group card flex h-full flex-col gap-3 p-5 transition hover:-translate-y-0.5 hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 ${
+    featured ? 'md:col-span-2 md:row-span-2 md:p-7' : ''
+  }`}
+>
+  <div class="flex items-center gap-3">
+    <span class="grid h-11 w-11 place-items-center rounded-2xl bg-sage-100 text-2xl dark:bg-sage-800/60" aria-hidden="true">
+      {need.data.emoji}
+    </span>
+    <h3 class="font-display text-xl leading-tight">
+      {need.data.name[lang]}
+    </h3>
+  </div>
+  <p class="prose-muted text-sm">
+    {need.data.short[lang]}
+  </p>
+  <span class="mt-auto text-sm text-sage-700 opacity-0 transition group-hover:opacity-100 dark:text-sage-200">
+    →
+  </span>
+</a>

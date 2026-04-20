@@ -1,0 +1,21 @@
+{
+  "name": { "fr": "Maux de tête", "en": "Headache" },
+  "short": { "fr": "Pour dénouer les tempes", "en": "To release the temples" },
+  "description": {
+    "fr": "Un verre d'eau, une pièce sombre, et une tasse fraîche de menthe pour calmer la pression.",
+    "en": "A glass of water, a darkened room, and a cool cup of mint to ease the pressure."
+  },
+  "benefit": "headache",
+  "related": ["stress"],
+  "emoji": "💆",
+  "blends": [
+    {
+      "name": { "fr": "Tempes fraîches", "en": "Cool temples" },
+      "herbs": ["peppermint", "lavender", "rosemary"],
+      "instructions": {
+        "fr": "Parts égales. 2 g par tasse, 90 °C, 6 min.",
+        "en": "Equal parts. 2 g per cup, 90 °C, 6 min."
+      }
+    }
+  ]
+}

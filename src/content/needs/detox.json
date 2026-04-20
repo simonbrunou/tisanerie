@@ -1,0 +1,21 @@
+{
+  "name": { "fr": "Détox", "en": "Detox" },
+  "short": { "fr": "Pour un reset en douceur", "en": "For a gentle reset" },
+  "description": {
+    "fr": "Des plantes minérales et diurétiques pour relancer la machine après l'hiver ou un excès de table.",
+    "en": "Mineral and diuretic plants to restart the machine after winter or a generous meal."
+  },
+  "benefit": "detox",
+  "related": ["immunity", "refresh"],
+  "emoji": "🌊",
+  "blends": [
+    {
+      "name": { "fr": "Retour à soi", "en": "Back to yourself" },
+      "herbs": ["nettle", "hibiscus", "elderflower"],
+      "instructions": {
+        "fr": "Parts égales. 2 g par tasse, 95 °C, 8 min.",
+        "en": "Equal parts. 2 g per cup, 95 °C, 8 min."
+      }
+    }
+  ]
+}

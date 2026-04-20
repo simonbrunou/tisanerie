@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Échinacée", "en": "Echinacea" },
+  "scientific": "Echinacea purpurea",
+  "description": {
+    "fr": "Alliée de l'hiver, elle vient en renfort au premier éternuement pour soutenir les défenses naturelles.",
+    "en": "A winter ally that steps in at the first sneeze to support natural defences."
+  },
+  "benefits": ["immunity", "cold"],
+  "primaryBenefits": ["immunity"],
+  "flavor": {
+    "fr": ["terreux", "végétal", "astringent"],
+    "en": ["earthy", "green", "astringent"]
+  },
+  "part": "roots",
+  "brewing": { "temperatureC": 100, "timeMin": 10, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "À éviter en cas de maladie auto-immune.",
+    "en": "Avoid with auto-immune conditions."
+  },
+  "emoji": "🌺",
+  "popularity": 55
+}

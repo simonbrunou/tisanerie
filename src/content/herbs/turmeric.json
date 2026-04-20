@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Curcuma", "en": "Turmeric" },
+  "scientific": "Curcuma longa",
+  "description": {
+    "fr": "Racine soleil, chaude et un peu poivrée, à infuser avec un trait de poivre et de gras pour mieux la révéler.",
+    "en": "A sunlit root, warm and faintly peppery; brew with a pinch of pepper and a drop of fat to unlock it."
+  },
+  "benefits": ["immunity", "mood", "energy"],
+  "primaryBenefits": ["immunity"],
+  "flavor": {
+    "fr": ["terreux", "poivré", "chaud"],
+    "en": ["earthy", "peppery", "warm"]
+  },
+  "part": "roots",
+  "brewing": { "temperatureC": 100, "timeMin": 10, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Prudence avec les anticoagulants.",
+    "en": "Use caution with blood thinners."
+  },
+  "emoji": "🟡",
+  "popularity": 65
+}

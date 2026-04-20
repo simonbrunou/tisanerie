@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Valériane", "en": "Valerian" },
+  "scientific": "Valeriana officinalis",
+  "description": {
+    "fr": "Une racine au parfum de cave humide, mais d'une efficacité troublante pour trouver le sommeil.",
+    "en": "A root that smells of damp cellar, yet remarkably effective at coaxing you to sleep."
+  },
+  "benefits": ["sleep", "stress"],
+  "primaryBenefits": ["sleep"],
+  "flavor": {
+    "fr": ["terreux", "boisé", "puissant"],
+    "en": ["earthy", "woody", "strong"]
+  },
+  "part": "roots",
+  "brewing": { "temperatureC": 95, "timeMin": 10, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Évitez d'associer avec des somnifères ou de l'alcool.",
+    "en": "Do not combine with sleep medication or alcohol."
+  },
+  "emoji": "🌰",
+  "popularity": 50
+}

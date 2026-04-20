@@ -1,0 +1,21 @@
+{
+  "name": { "fr": "Énergie", "en": "Energy" },
+  "short": { "fr": "Pour relever le tonus", "en": "To lift your tone" },
+  "description": {
+    "fr": "Sans caféine mais pas sans entrain : des plantes qui réchauffent et remettent en mouvement.",
+    "en": "No caffeine, plenty of bounce: plants that warm you up and nudge you back into motion."
+  },
+  "benefit": "energy",
+  "related": ["focus", "mood"],
+  "emoji": "⚡",
+  "blends": [
+    {
+      "name": { "fr": "Second souffle", "en": "Second wind" },
+      "herbs": ["ginger", "rosemary", "rooibos"],
+      "instructions": {
+        "fr": "Parts égales. 2 g par tasse, 95 °C, 8 min.",
+        "en": "Equal parts. 2 g per cup, 95 °C, 8 min."
+      }
+    }
+  ]
+}

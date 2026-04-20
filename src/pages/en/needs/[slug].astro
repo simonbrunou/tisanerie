@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import NeedPage from '~/components/pages/NeedPage.astro';
+
+export async function getStaticPaths() {
+  const needs = await getCollection('needs');
+  return needs.map((need) => ({ params: { slug: need.id }, props: { need } }));
+}
+
+const { need } = Astro.props;
+---
+<NeedPage lang="en" need={need} />

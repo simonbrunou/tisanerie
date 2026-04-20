@@ -1,0 +1,21 @@
+{
+  "name": { "fr": "Stress & anxiété", "en": "Stress & anxiety" },
+  "short": { "fr": "Pour relâcher la pression", "en": "To let the pressure out" },
+  "description": {
+    "fr": "Respirer plus lentement, desserrer la mâchoire, et laisser une tasse tiède défaire le nœud entre les omoplates.",
+    "en": "Breathe a little slower, unclench the jaw, and let a warm cup loosen the knot between your shoulder blades."
+  },
+  "benefit": "stress",
+  "related": ["sleep", "mood"],
+  "emoji": "🧘",
+  "blends": [
+    {
+      "name": { "fr": "Bleu apaisant", "en": "Calming blue" },
+      "herbs": ["chamomile", "lemon-balm", "lavender"],
+      "instructions": {
+        "fr": "Mélangez à parts égales. 2 g par tasse, 95 °C, 7 min.",
+        "en": "Blend in equal parts. 2 g per cup, 95 °C, 7 min."
+      }
+    }
+  ]
+}
