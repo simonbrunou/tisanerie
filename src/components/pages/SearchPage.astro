@@ -11,7 +11,6 @@ interface Props {
 const { lang } = Astro.props;
 const herbs = await getCollection('herbs');
 const needs = await getCollection('needs');
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const herbItems = herbs.map((h) => ({
   id: h.id,
@@ -22,7 +21,7 @@ const herbItems = herbs.map((h) => ({
   benefits: h.data.benefits,
   primaryBenefits: h.data.primaryBenefits,
   popularity: h.data.popularity,
-  href: `${base}${localizedPath(lang, 'herbs', h.id)}`,
+  href: localizedPath(lang, 'herbs', h.id),
 }));
 
 const needItems = needs.map((n) => ({

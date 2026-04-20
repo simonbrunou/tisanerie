@@ -11,11 +11,10 @@ interface Props {
 
 const { lang, pathLocalized } = Astro.props;
 const otherLang: Locale = lang === 'fr' ? 'en' : 'fr';
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 // Build the "switch language" target by either using an explicit mapping or deriving one.
 const switchTarget = pathLocalized
   ? pathLocalized[otherLang]
-  : swapLocaleInPath(Astro.url.pathname.replace(base, '') || '/', otherLang);
+  : swapLocaleInPath(Astro.url.pathname, otherLang);
 ---
 <header class="sticky top-0 z-30 border-b border-sage-100/70 bg-paper/80 backdrop-blur-md dark:border-sage-800/50 dark:bg-paper-dark/80">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
@@ -28,7 +27,7 @@ const switchTarget = pathLocalized
       <a class="btn-ghost px-3 py-1.5 hidden sm:inline-flex" href={localizedPath(lang, 'about')}>{t(lang, 'nav.about')}</a>
       <a
         class="btn-ghost px-3 py-1.5"
-        href={`${base}${switchTarget}`}
+        href={switchTarget}
         aria-label={t(lang, 'language.label')}
         hreflang={otherLang}
       >
