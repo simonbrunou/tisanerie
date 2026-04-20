@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Thym", "en": "Thyme" },
+  "scientific": "Thymus vulgaris",
+  "description": {
+    "fr": "Un arôme garrigue, à la fois résineux et floral, qui dégage la gorge et réchauffe les bronches.",
+    "en": "A garrigue aroma, resinous and floral at once, that clears the throat and warms the chest."
+  },
+  "benefits": ["cold", "immunity"],
+  "primaryBenefits": ["cold"],
+  "flavor": {
+    "fr": ["herbacé", "chaud", "camphré"],
+    "en": ["herbal", "warm", "camphorous"]
+  },
+  "part": "aerial",
+  "brewing": { "temperatureC": 100, "timeMin": 8, "gramsPerCup": 2 },
+  "emoji": "🌱",
+  "popularity": 75
+}

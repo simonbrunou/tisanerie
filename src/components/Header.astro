@@ -1,0 +1,41 @@
+---
+import type { Locale } from '~/i18n/routes';
+import { localizedPath, swapLocaleInPath } from '~/i18n/routes';
+import { t } from '~/i18n/utils';
+import ThemeToggle from './ThemeToggle.tsx';
+
+interface Props {
+  lang: Locale;
+  pathLocalized?: { fr: string; en: string };
+}
+
+const { lang, pathLocalized } = Astro.props;
+const otherLang: Locale = lang === 'fr' ? 'en' : 'fr';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// Build the "switch language" target by either using an explicit mapping or deriving one.
+const switchTarget = pathLocalized
+  ? pathLocalized[otherLang]
+  : swapLocaleInPath(Astro.url.pathname.replace(base, '') || '/', otherLang);
+---
+<header class="sticky top-0 z-30 border-b border-sage-100/70 bg-paper/80 backdrop-blur-md dark:border-sage-800/50 dark:bg-paper-dark/80">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+    <a href={localizedPath(lang, 'home')} class="flex items-center gap-2 font-display text-xl tracking-tight">
+      <span aria-hidden="true" class="text-2xl">🌿</span>
+      <span>{t(lang, 'site.name')}</span>
+    </a>
+    <nav class="flex items-center gap-1 text-sm sm:gap-3">
+      <a class="btn-ghost px-3 py-1.5" href={localizedPath(lang, 'discover')}>{t(lang, 'nav.discover')}</a>
+      <a class="btn-ghost px-3 py-1.5 hidden sm:inline-flex" href={localizedPath(lang, 'about')}>{t(lang, 'nav.about')}</a>
+      <a
+        class="btn-ghost px-3 py-1.5"
+        href={`${base}${switchTarget}`}
+        aria-label={t(lang, 'language.label')}
+        hreflang={otherLang}
+      >
+        <span aria-hidden="true">🌐</span>
+        <span>{t(lang, 'language.switch')}</span>
+      </a>
+      <ThemeToggle client:load />
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '~/layouts/Base.astro';
+import SearchResults from '~/components/SearchResults.tsx';
+import { localizedPath, type Locale } from '~/i18n/routes';
+import { t } from '~/i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const herbs = await getCollection('herbs');
+const needs = await getCollection('needs');
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const herbItems = herbs.map((h) => ({
+  id: h.id,
+  name: h.data.name[lang],
+  scientific: h.data.scientific,
+  emoji: h.data.emoji,
+  flavor: h.data.flavor[lang],
+  benefits: h.data.benefits,
+  primaryBenefits: h.data.primaryBenefits,
+  popularity: h.data.popularity,
+  href: `${base}${localizedPath(lang, 'herbs', h.id)}`,
+}));
+
+const needItems = needs.map((n) => ({
+  id: n.id,
+  name: n.data.name[lang],
+  emoji: n.data.emoji,
+  benefit: n.data.benefit,
+}));
+
+const pathLocalized = {
+  fr: localizedPath('fr', 'search'),
+  en: localizedPath('en', 'search'),
+};
+---
+<Base
+  lang={lang}
+  title={t(lang, 'search.title')}
+  description={t(lang, 'search.subtitle', { needs: '' })}
+  pathLocalized={pathLocalized}
+>
+  <section class="mx-auto max-w-6xl px-4 pt-16 pb-20 sm:px-6">
+    <SearchResults
+      client:load
+      lang={lang}
+      herbs={herbItems}
+      needs={needItems}
+      labels={{
+        title: t(lang, 'search.title'),
+        subtitleTemplate: t(lang, 'search.subtitle', { needs: '{needs}' }),
+        empty: t(lang, 'search.empty'),
+        noResults: t(lang, 'search.noResults'),
+        score: t(lang, 'search.score'),
+      }}
+    />
+  </section>
+</Base>

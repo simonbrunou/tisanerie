@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Menthe poivrée", "en": "Peppermint" },
+  "scientific": "Mentha × piperita",
+  "description": {
+    "fr": "Une feuille vive, mentholée, qui redresse l'estomac et rafraîchit la tête après un repas copieux.",
+    "en": "A bright, menthol-forward leaf that settles the stomach and clears the head after a heavy meal."
+  },
+  "benefits": ["digestion", "headache", "refresh", "focus"],
+  "primaryBenefits": ["digestion", "headache"],
+  "flavor": {
+    "fr": ["mentholé", "frais", "vif"],
+    "en": ["minty", "cool", "sharp"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 90, "timeMin": 5, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "À éviter en cas de reflux sévère ou chez les jeunes enfants.",
+    "en": "Avoid with severe reflux or for very young children."
+  },
+  "emoji": "🌿",
+  "popularity": 90
+}

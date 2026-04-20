@@ -1,0 +1,21 @@
+{
+  "name": { "fr": "Humeur", "en": "Mood" },
+  "short": { "fr": "Pour les journées grises", "en": "For grey days" },
+  "description": {
+    "fr": "Quelques notes citronnées et solaires pour donner un coup de peigne à la tristesse douce.",
+    "en": "A few lemony, sunlit notes to comb through soft sadness."
+  },
+  "benefit": "mood",
+  "related": ["stress"],
+  "emoji": "🌈",
+  "blends": [
+    {
+      "name": { "fr": "Clair-obscur", "en": "Chiaroscuro" },
+      "herbs": ["lemon-balm", "st-johns-wort", "rosehip"],
+      "instructions": {
+        "fr": "Parts égales. 2 g par tasse, 95 °C, 8 min. Vérifiez d'abord les interactions du millepertuis.",
+        "en": "Equal parts. 2 g per cup, 95 °C, 8 min. Check St. John's wort interactions first."
+      }
+    }
+  ]
+}

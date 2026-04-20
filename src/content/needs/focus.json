@@ -1,0 +1,21 @@
+{
+  "name": { "fr": "Concentration", "en": "Focus" },
+  "short": { "fr": "Pour garder le cap", "en": "To hold the line" },
+  "description": {
+    "fr": "Une tasse claire et boisée, qui réveille l'attention sans agiter le cœur.",
+    "en": "A clear, woody cup that sharpens attention without rattling the heart."
+  },
+  "benefit": "focus",
+  "related": ["energy"],
+  "emoji": "🎯",
+  "blends": [
+    {
+      "name": { "fr": "Cap clair", "en": "Clear heading" },
+      "herbs": ["rosemary", "peppermint", "sage"],
+      "instructions": {
+        "fr": "Parts égales. 2 g par tasse, 95 °C, 7 min.",
+        "en": "Equal parts. 2 g per cup, 95 °C, 7 min."
+      }
+    }
+  ]
+}

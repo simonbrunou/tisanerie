@@ -1,0 +1,21 @@
+{
+  "name": { "fr": "Rhume & refroidissement", "en": "Cold & chills" },
+  "short": { "fr": "Aux premiers frissons", "en": "At the first chills" },
+  "description": {
+    "fr": "Un grog de plantes, une couverture lourde, et on laisse le corps faire son travail.",
+    "en": "A botanical grog, a heavy blanket, and we let the body get on with it."
+  },
+  "benefit": "cold",
+  "related": ["immunity"],
+  "emoji": "🤒",
+  "blends": [
+    {
+      "name": { "fr": "Grog du soir", "en": "Evening grog" },
+      "herbs": ["thyme", "ginger", "elderflower"],
+      "instructions": {
+        "fr": "2 parts de thym, 1 de gingembre, 1 de sureau. 3 g par tasse, 100 °C, 10 min. Miel et citron à volonté.",
+        "en": "2 parts thyme, 1 ginger, 1 elderflower. 3 g per cup, 100 °C, 10 min. Honey and lemon to taste."
+      }
+    }
+  ]
+}

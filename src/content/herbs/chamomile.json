@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Camomille", "en": "Chamomile" },
+  "scientific": "Matricaria chamomilla",
+  "description": {
+    "fr": "La plus douce des tisanes. Ses petites fleurs blanches et jaunes livrent un parfum de pomme mûre et enveloppent le soir d'un voile tranquille.",
+    "en": "The gentlest infusion. Its little white-and-yellow flowers release a ripe-apple aroma and drape the evening in a quiet hush."
+  },
+  "benefits": ["sleep", "stress", "digestion"],
+  "primaryBenefits": ["sleep", "stress"],
+  "flavor": {
+    "fr": ["floral", "pomme", "miel"],
+    "en": ["floral", "apple", "honey"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 95, "timeMin": 6, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Rares allergies chez les personnes sensibles aux Astéracées.",
+    "en": "Rare allergies in people sensitive to the Asteraceae family."
+  },
+  "emoji": "🌼",
+  "popularity": 95
+}

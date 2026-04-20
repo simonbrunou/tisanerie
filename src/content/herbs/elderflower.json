@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Fleur de sureau", "en": "Elderflower" },
+  "scientific": "Sambucus nigra",
+  "description": {
+    "fr": "Crème fleurie, muscatée, elle fait transpirer juste ce qu'il faut quand l'hiver cherche à entrer.",
+    "en": "Creamy, muscat-tinged blossoms that bring a gentle sweat when winter tries to settle in."
+  },
+  "benefits": ["cold", "immunity", "detox"],
+  "primaryBenefits": ["cold"],
+  "flavor": {
+    "fr": ["floral", "muscat", "doux"],
+    "en": ["floral", "muscat", "sweet"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 95, "timeMin": 10, "gramsPerCup": 2 },
+  "emoji": "🌼",
+  "popularity": 60
+}

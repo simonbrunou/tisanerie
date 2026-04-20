@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Millepertuis", "en": "St. John's wort" },
+  "scientific": "Hypericum perforatum",
+  "description": {
+    "fr": "Le soleil en tisane : traditionnellement utilisée pour traverser les journées mornes.",
+    "en": "Sunlight in a cup: traditionally used to see dull days through."
+  },
+  "benefits": ["mood", "sleep"],
+  "primaryBenefits": ["mood"],
+  "flavor": {
+    "fr": ["fleuri", "amer", "léger"],
+    "en": ["floral", "bitter", "light"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 1.5 },
+  "warnings": {
+    "fr": "Très nombreuses interactions médicamenteuses (pilule, antidépresseurs, anticoagulants…). Demandez l'avis d'un professionnel.",
+    "en": "Many drug interactions (birth control, antidepressants, blood thinners…). Check with a professional."
+  },
+  "emoji": "🌞",
+  "popularity": 40
+}

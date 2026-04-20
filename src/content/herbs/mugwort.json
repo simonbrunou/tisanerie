@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Armoise", "en": "Mugwort" },
+  "scientific": "Artemisia vulgaris",
+  "description": {
+    "fr": "Herbe amère et mystique qui apaise les tiraillements du ventre et accompagne les cycles.",
+    "en": "A bitter, mystical herb that soothes belly twinges and accompanies cycles."
+  },
+  "benefits": ["cramps", "digestion", "sleep"],
+  "primaryBenefits": ["cramps"],
+  "flavor": {
+    "fr": ["amer", "herbacé", "boisé"],
+    "en": ["bitter", "herbal", "woody"]
+  },
+  "part": "aerial",
+  "brewing": { "temperatureC": 95, "timeMin": 7, "gramsPerCup": 1.5 },
+  "warnings": {
+    "fr": "À éviter pendant la grossesse.",
+    "en": "Avoid during pregnancy."
+  },
+  "emoji": "🌾",
+  "popularity": 40
+}

@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Cynorrhodon", "en": "Rose hip" },
+  "scientific": "Rosa canina",
+  "description": {
+    "fr": "Petites baies écarlates gorgées de vitamine C, au goût acidulé de fruit rouge trop mûr.",
+    "en": "Scarlet berries packed with vitamin C, tart like an over-ripe red fruit."
+  },
+  "benefits": ["immunity", "refresh"],
+  "primaryBenefits": ["immunity"],
+  "flavor": {
+    "fr": ["acidulé", "fruité", "rond"],
+    "en": ["tart", "fruity", "rounded"]
+  },
+  "part": "fruit",
+  "brewing": { "temperatureC": 100, "timeMin": 12, "gramsPerCup": 3 },
+  "emoji": "🌹",
+  "popularity": 55
+}

@@ -1,0 +1,22 @@
+{
+  "name": { "fr": "Ashwagandha", "en": "Ashwagandha" },
+  "scientific": "Withania somnifera",
+  "description": {
+    "fr": "Racine adaptogène de la médecine ayurvédique, elle lisse le stress et soutient l'énergie sur la durée.",
+    "en": "An adaptogenic root from Ayurveda that smooths stress and supports long-range energy."
+  },
+  "benefits": ["stress", "energy", "mood"],
+  "primaryBenefits": ["stress"],
+  "flavor": {
+    "fr": ["terreux", "lait", "chaud"],
+    "en": ["earthy", "milky", "warm"]
+  },
+  "part": "roots",
+  "brewing": { "temperatureC": 100, "timeMin": 12, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Éviter en cas de maladie auto-immune, grossesse ou traitement thyroïdien.",
+    "en": "Avoid with auto-immune conditions, pregnancy, or thyroid medication."
+  },
+  "emoji": "🌰",
+  "popularity": 50
+}

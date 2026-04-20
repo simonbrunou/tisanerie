@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import HerbPage from '~/components/pages/HerbPage.astro';
+
+export async function getStaticPaths() {
+  const herbs = await getCollection('herbs');
+  return herbs.map((herb) => ({ params: { slug: herb.id }, props: { herb } }));
+}
+
+const { herb } = Astro.props;
+---
+<HerbPage lang="en" herb={herb} />

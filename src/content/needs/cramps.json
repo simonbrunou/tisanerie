@@ -1,0 +1,21 @@
+{
+  "name": { "fr": "Crampes & cycles", "en": "Cramps & cycles" },
+  "short": { "fr": "Pour les ventres noués", "en": "For knotted bellies" },
+  "description": {
+    "fr": "Bouillotte, plaid, tasse chaude : des plantes traditionnelles pour accompagner les jours difficiles.",
+    "en": "Hot water bottle, blanket, warm cup: traditional plants for the harder days."
+  },
+  "benefit": "cramps",
+  "related": ["digestion"],
+  "emoji": "🌀",
+  "blends": [
+    {
+      "name": { "fr": "Plaid chaud", "en": "Warm blanket" },
+      "herbs": ["yarrow", "mugwort", "fennel"],
+      "instructions": {
+        "fr": "Parts égales. 2 g par tasse, 95 °C, 8 min.",
+        "en": "Equal parts. 2 g per cup, 95 °C, 8 min."
+      }
+    }
+  ]
+}

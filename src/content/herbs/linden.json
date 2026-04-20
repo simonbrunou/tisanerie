@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Tilleul", "en": "Linden" },
+  "scientific": "Tilia cordata",
+  "description": {
+    "fr": "Un bouquet doré de bractées et de fleurs, miellé et légèrement mielleux, parfait avant de se glisser sous la couette.",
+    "en": "A golden bundle of bracts and blossoms, honeyed and faintly sweet, perfect just before slipping under the covers."
+  },
+  "benefits": ["sleep", "stress", "cold"],
+  "primaryBenefits": ["sleep", "stress"],
+  "flavor": {
+    "fr": ["miel", "floral", "boisé"],
+    "en": ["honey", "floral", "woody"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 2 },
+  "emoji": "🌸",
+  "popularity": 80
+}

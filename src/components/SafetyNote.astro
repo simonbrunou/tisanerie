@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  children?: any;
+}
+const { title } = Astro.props;
+---
+<aside class="card border-amber-200/70 bg-amber-50/70 p-5 dark:border-amber-700/40 dark:bg-amber-700/10">
+  <div class="flex items-start gap-3">
+    <span aria-hidden="true" class="mt-0.5 text-xl">⚠️</span>
+    <div>
+      <h3 class="font-display text-lg">{title}</h3>
+      <div class="prose-muted mt-1 text-sm">
+        <slot />
+      </div>
+    </div>
+  </div>
+</aside>

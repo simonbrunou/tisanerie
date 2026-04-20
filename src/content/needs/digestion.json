@@ -1,0 +1,21 @@
+{
+  "name": { "fr": "Digestion", "en": "Digestion" },
+  "short": { "fr": "Après un bon repas", "en": "After a hearty meal" },
+  "description": {
+    "fr": "Pour les ventres lourds, les ballonnements, et les fins de repas un peu trop généreuses.",
+    "en": "For heavy bellies, bloating, and meals that ran a little long."
+  },
+  "benefit": "digestion",
+  "related": ["cramps"],
+  "emoji": "🌱",
+  "blends": [
+    {
+      "name": { "fr": "Après-dîner", "en": "After-dinner" },
+      "herbs": ["peppermint", "fennel", "verbena"],
+      "instructions": {
+        "fr": "Parts égales. 2 g par tasse, 95 °C, 7 min.",
+        "en": "Equal parts. 2 g per cup, 95 °C, 7 min."
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": { "fr": "Sommeil", "en": "Sleep" },
+  "short": { "fr": "Pour glisser vers la nuit", "en": "To drift into the night" },
+  "description": {
+    "fr": "Une tasse une heure avant le coucher, les lumières basses, et les plantes font le reste.",
+    "en": "A cup an hour before bed, soft lights, and the plants do the rest."
+  },
+  "benefit": "sleep",
+  "related": ["stress"],
+  "emoji": "🌙",
+  "blends": [
+    {
+      "name": { "fr": "Couvre-feu", "en": "Curfew" },
+      "herbs": ["chamomile", "linden", "passionflower"],
+      "instructions": {
+        "fr": "Parts égales. 2 g par tasse, 95 °C, 8 min. À siroter 1 h avant de se coucher.",
+        "en": "Equal parts. 2 g per cup, 95 °C, 8 min. Sip 1 h before bed."
+      }
+    }
+  ]
+}

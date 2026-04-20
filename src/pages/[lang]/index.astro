@@ -1,0 +1,146 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '~/layouts/Base.astro';
+import NeedCard from '~/components/NeedCard.astro';
+import HerbCard from '~/components/HerbCard.astro';
+import NeedPicker from '~/components/NeedPicker.tsx';
+import SearchBox from '~/components/SearchBox.tsx';
+import { locales, localizedPath, type Locale } from '~/i18n/routes';
+import { t } from '~/i18n/utils';
+
+export async function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const needs = await getCollection('needs');
+const herbs = await getCollection('herbs');
+
+// Ordered list of needs for the UX — most life-relevant first.
+const orderedNeedIds = [
+  'stress',
+  'sleep',
+  'digestion',
+  'cold',
+  'focus',
+  'energy',
+  'mood',
+  'immunity',
+  'headache',
+  'cramps',
+  'detox',
+  'refresh',
+];
+const orderedNeeds = orderedNeedIds
+  .map((id) => needs.find((n) => n.id === id))
+  .filter((n): n is NonNullable<typeof n> => Boolean(n));
+
+const spotlightIds = ['chamomile', 'peppermint', 'lemon-balm', 'ginger', 'verbena', 'linden'];
+const spotlight = spotlightIds
+  .map((id) => herbs.find((h) => h.id === id))
+  .filter((h): h is NonNullable<typeof h> => Boolean(h));
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const searchHref = `${base}${localizedPath(lang, 'search')}`;
+
+const needOptions = orderedNeeds.map((n) => ({
+  id: n.id,
+  emoji: n.data.emoji,
+  name: n.data.name[lang],
+  short: n.data.short[lang],
+}));
+
+const searchItems = [
+  ...herbs.map((h) => ({
+    id: h.id,
+    type: 'herb' as const,
+    title: h.data.name[lang],
+    subtitle: h.data.scientific,
+    emoji: h.data.emoji,
+    href: `${base}${localizedPath(lang, 'herbs', h.id)}`,
+    haystack: [
+      h.data.name.fr,
+      h.data.name.en,
+      h.data.scientific,
+      ...h.data.flavor[lang],
+      ...h.data.benefits,
+    ].join(' '),
+  })),
+  ...needs.map((n) => ({
+    id: n.id,
+    type: 'need' as const,
+    title: n.data.name[lang],
+    subtitle: n.data.short[lang],
+    emoji: n.data.emoji,
+    href: `${base}${localizedPath(lang, 'needs', n.id)}`,
+    haystack: [n.data.name.fr, n.data.name.en, n.data.benefit, ...n.data.related].join(' '),
+  })),
+];
+---
+<Base lang={lang} title={t(lang, 'site.name')}>
+  <section class="mx-auto max-w-6xl px-4 pt-16 pb-10 sm:px-6 sm:pt-24">
+    <div class="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-center">
+      <div class="flex flex-col gap-5">
+        <span class="chip w-max">{t(lang, 'home.hero.eyebrow')}</span>
+        <h1 class="font-display text-5xl leading-[1.05] sm:text-6xl">
+          {t(lang, 'home.hero.title')}
+        </h1>
+        <p class="prose-muted max-w-xl text-lg">
+          {t(lang, 'home.hero.subtitle')}
+        </p>
+        <div class="max-w-md">
+          <SearchBox client:load items={searchItems} placeholder={t(lang, 'home.search.placeholder')} />
+        </div>
+        <div>
+          <a class="btn-ghost px-4 underline decoration-sage-300 underline-offset-4" href={localizedPath(lang, 'discover')}>
+            {t(lang, 'home.hero.cta')} →
+          </a>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="card aspect-square grid place-items-center p-8">
+          <div class="grid grid-cols-3 gap-3 text-5xl sm:text-6xl">
+            <span aria-hidden="true">🌼</span>
+            <span aria-hidden="true">🌿</span>
+            <span aria-hidden="true">🌸</span>
+            <span aria-hidden="true">🍋</span>
+            <span aria-hidden="true" class="rounded-2xl bg-sage-100 p-2 dark:bg-sage-800/60">🫖</span>
+            <span aria-hidden="true">🌺</span>
+            <span aria-hidden="true">🫚</span>
+            <span aria-hidden="true">🌾</span>
+            <span aria-hidden="true">🌲</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+    <div class="mb-6 flex flex-col gap-1">
+      <h2 class="font-display text-3xl sm:text-4xl">{t(lang, 'home.needs.title')}</h2>
+      <p class="prose-muted max-w-2xl">{t(lang, 'home.needs.subtitle')}</p>
+    </div>
+    <NeedPicker
+      client:load
+      lang={lang}
+      needs={needOptions}
+      searchHref={searchHref}
+      labelSubmit={t(lang, 'home.needs.submit')}
+      labelSubmitMany={t(lang, 'home.needs.submitMany')}
+    />
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+    <div class="mb-6 flex items-end justify-between gap-4">
+      <h2 class="font-display text-3xl sm:text-4xl">{t(lang, 'home.plants.title')}</h2>
+      <a class="link text-sm" href={localizedPath(lang, 'discover')}>{t(lang, 'home.plants.cta')} →</a>
+    </div>
+    <ul class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+      {spotlight.map((herb) => (
+        <li>
+          <HerbCard lang={lang} herb={herb} />
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

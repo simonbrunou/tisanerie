@@ -1,0 +1,37 @@
+---
+import type { Locale } from '~/i18n/routes';
+import { t } from '~/i18n/utils';
+import type { HerbEntry } from '~/lib/types';
+
+interface Props {
+  lang: Locale;
+  herb: HerbEntry;
+}
+
+const { lang, herb } = Astro.props;
+const partKey = `part.${herb.data.part}` as const;
+---
+<div class="card grid grid-cols-2 gap-4 p-6 sm:grid-cols-4">
+  <div>
+    <div class="text-xs uppercase tracking-wide text-ink-muted">{t(lang, 'herb.temperature')}</div>
+    <div class="mt-1 font-display text-2xl">
+      {herb.data.brewing.temperatureC}<span class="text-base">{t(lang, 'units.celsius')}</span>
+    </div>
+  </div>
+  <div>
+    <div class="text-xs uppercase tracking-wide text-ink-muted">{t(lang, 'herb.time')}</div>
+    <div class="mt-1 font-display text-2xl">
+      {herb.data.brewing.timeMin}<span class="text-base">{t(lang, 'units.minutes')}</span>
+    </div>
+  </div>
+  <div>
+    <div class="text-xs uppercase tracking-wide text-ink-muted">{t(lang, 'herb.dose')}</div>
+    <div class="mt-1 font-display text-2xl">
+      {herb.data.brewing.gramsPerCup}<span class="text-base">{t(lang, 'units.gramsPerCup')}</span>
+    </div>
+  </div>
+  <div>
+    <div class="text-xs uppercase tracking-wide text-ink-muted">{t(lang, 'herb.part')}</div>
+    <div class="mt-1 font-display text-xl capitalize">{t(lang, partKey)}</div>
+  </div>
+</div>

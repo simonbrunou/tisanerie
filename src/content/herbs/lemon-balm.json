@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Mélisse", "en": "Lemon balm" },
+  "scientific": "Melissa officinalis",
+  "description": {
+    "fr": "Citronnée et presque sucrée, la mélisse déplie les épaules tendues et éclaire l'humeur des jours gris.",
+    "en": "Lemony and almost sweet, lemon balm unknots tight shoulders and lifts the mood on grey days."
+  },
+  "benefits": ["stress", "sleep", "mood", "focus"],
+  "primaryBenefits": ["stress", "mood"],
+  "flavor": {
+    "fr": ["citron", "herbacé", "doux"],
+    "en": ["lemon", "green", "gentle"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 90, "timeMin": 7, "gramsPerCup": 2 },
+  "emoji": "🍋",
+  "popularity": 80
+}

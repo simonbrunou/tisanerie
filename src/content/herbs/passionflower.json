@@ -1,0 +1,18 @@
+{
+  "name": { "fr": "Passiflore", "en": "Passionflower" },
+  "scientific": "Passiflora incarnata",
+  "description": {
+    "fr": "Une liane étoilée aux effets doux qui relâche la crispation sans brouiller l'esprit.",
+    "en": "A star-flowered vine whose gentle effects loosen tension without fogging the mind."
+  },
+  "benefits": ["sleep", "stress"],
+  "primaryBenefits": ["sleep", "stress"],
+  "flavor": {
+    "fr": ["herbacé", "léger", "foin"],
+    "en": ["green", "light", "hay"]
+  },
+  "part": "aerial",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 2 },
+  "emoji": "🌸",
+  "popularity": 55
+}

@@ -1,0 +1,101 @@
+@import '@fontsource-variable/fraunces/index.css';
+@import '@fontsource-variable/inter/index.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  html {
+    background-color: theme('colors.paper.DEFAULT');
+    color: theme('colors.ink.DEFAULT');
+    font-family: theme('fontFamily.sans');
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  html.dark {
+    background-color: theme('colors.paper.dark');
+    color: theme('colors.ink.dark');
+  }
+  body {
+    background-image:
+      radial-gradient(at 15% 10%, rgba(184, 125, 24, 0.08) 0, transparent 45%),
+      radial-gradient(at 85% 90%, rgba(99, 133, 85, 0.1) 0, transparent 55%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  html.dark body {
+    background-image:
+      radial-gradient(at 15% 10%, rgba(184, 125, 24, 0.08) 0, transparent 45%),
+      radial-gradient(at 85% 90%, rgba(99, 133, 85, 0.14) 0, transparent 55%);
+  }
+  ::selection {
+    background-color: theme('colors.sage.200');
+    color: theme('colors.sage.900');
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: theme('fontFamily.display');
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  h1 {
+    font-variation-settings: 'opsz' 100, 'SOFT' 30;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-3xl bg-white/70 backdrop-blur-sm shadow-card border border-sage-100/70;
+  }
+  html.dark .card {
+    @apply bg-sage-900/40 border-sage-800/60;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition active:scale-[0.98];
+  }
+  .btn-primary {
+    @apply btn bg-sage-700 text-paper hover:bg-sage-800 shadow-soft;
+  }
+  html.dark .btn-primary {
+    @apply bg-sage-500 text-paper-dark hover:bg-sage-400;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-ink hover:bg-sage-100;
+  }
+  html.dark .btn-ghost {
+    @apply text-ink-dark hover:bg-sage-800/40;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-sage-200 bg-sage-50 px-2.5 py-0.5 text-xs text-sage-800;
+  }
+  html.dark .chip {
+    @apply bg-sage-900/40 border-sage-700 text-sage-100;
+  }
+  .chip-amber {
+    @apply inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-2.5 py-0.5 text-xs text-amber-700;
+  }
+  html.dark .chip-amber {
+    @apply bg-amber-700/30 border-amber-600/60 text-amber-100;
+  }
+  .prose-muted {
+    @apply text-ink-muted leading-relaxed;
+  }
+  html.dark .prose-muted {
+    @apply text-sage-200/70;
+  }
+  .link {
+    @apply text-sage-700 underline decoration-sage-300 underline-offset-4 hover:decoration-sage-500;
+  }
+  html.dark .link {
+    @apply text-sage-200 decoration-sage-500;
+  }
+}

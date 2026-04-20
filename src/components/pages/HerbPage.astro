@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '~/layouts/Base.astro';
+import BrewingCard from '~/components/BrewingCard.astro';
+import SafetyNote from '~/components/SafetyNote.astro';
+import BrewingTimer from '~/components/BrewingTimer.tsx';
+import { localizedPath, type Locale } from '~/i18n/routes';
+import { t } from '~/i18n/utils';
+import type { HerbEntry } from '~/lib/types';
+
+interface Props {
+  lang: Locale;
+  herb: HerbEntry;
+}
+
+const { lang, herb } = Astro.props;
+
+const allNeeds = await getCollection('needs');
+const linkedNeeds = allNeeds.filter((n) => herb.data.benefits.includes(n.data.benefit));
+
+const pathLocalized = {
+  fr: localizedPath('fr', 'herbs', herb.id),
+  en: localizedPath('en', 'herbs', herb.id),
+};
+
+const timerLabels = {
+  start: t(lang, 'herb.timer.start'),
+  pause: t(lang, 'herb.timer.pause'),
+  reset: t(lang, 'herb.timer.reset'),
+  done: t(lang, 'herb.timer.done'),
+};
+---
+<Base
+  lang={lang}
+  title={herb.data.name[lang]}
+  description={herb.data.description[lang]}
+  pathLocalized={pathLocalized}
+>
+  <section class="mx-auto max-w-5xl px-4 pt-16 pb-8 sm:px-6">
+    <a class="text-sm text-ink-muted hover:text-ink" href={localizedPath(lang, 'discover')}>
+      ← {t(lang, 'herb.back')}
+    </a>
+    <div class="mt-4 grid gap-8 md:grid-cols-[1.2fr_1fr]">
+      <div>
+        <p class="text-sm uppercase tracking-wide text-ink-muted">{t(lang, 'herb.scientific')}</p>
+        <p class="italic text-ink-muted">{herb.data.scientific}</p>
+        <h1 class="mt-2 font-display text-5xl">
+          <span class="mr-2 text-4xl" aria-hidden="true">{herb.data.emoji}</span>
+          {herb.data.name[lang]}
+        </h1>
+        <p class="prose-muted mt-4 text-lg">{herb.data.description[lang]}</p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="text-xs uppercase tracking-wide text-ink-muted">{t(lang, 'herb.flavor')}</span>
+          {herb.data.flavor[lang].map((f) => <span class="chip">{f}</span>)}
+        </div>
+      </div>
+      <div>
+        <BrewingTimer client:load minutes={herb.data.brewing.timeMin} labels={timerLabels} />
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-4 py-6 sm:px-6">
+    <h2 class="font-display text-2xl">{t(lang, 'herb.brewing')}</h2>
+    <div class="mt-4">
+      <BrewingCard lang={lang} herb={herb} />
+    </div>
+  </section>
+
+  {linkedNeeds.length > 0 && (
+    <section class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+      <h2 class="font-display text-2xl">{t(lang, 'herb.benefits')}</h2>
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {linkedNeeds.map((n) => (
+          <li>
+            <a class="chip" href={localizedPath(lang, 'needs', n.id)}>
+              <span aria-hidden="true" class="mr-1">{n.data.emoji}</span>
+              {n.data.name[lang]}
+              {herb.data.primaryBenefits.includes(n.data.benefit) && (
+                <span class="ml-1 text-amber-500" aria-label="Primary benefit">★</span>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {herb.data.warnings?.[lang] && (
+    <section class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+      <SafetyNote title={t(lang, 'herb.warnings')}>
+        <p>{herb.data.warnings[lang]}</p>
+      </SafetyNote>
+    </section>
+  )}
+</Base>
