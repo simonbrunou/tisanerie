@@ -7,6 +7,8 @@
   },
   "benefits": ["cold", "mood", "digestion"],
   "primaryBenefits": ["cold"],
+  "properties": ["antimicrobial", "carminative", "diaphoretic", "aromatic", "antispasmodic", "calmative", "digestive"],
+  "afflictions": ["cold", "flu", "sore-throat", "indigestion", "nervous-tension", "cough"],
   "flavor": {
     "fr": ["bergamote", "thym", "miellé"],
     "en": ["bergamot", "thyme", "honeyed"]

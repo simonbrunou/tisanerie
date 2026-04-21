@@ -1,6 +1,7 @@
 ---
 import type { Locale } from '~/i18n/routes';
 import { localizedPath } from '~/i18n/routes';
+import { t, type TKey } from '~/i18n/utils';
 import type { HerbEntry } from '~/lib/types';
 
 interface Props {
@@ -13,6 +14,7 @@ interface Props {
 const { lang, herb, reason, score } = Astro.props;
 const href = localizedPath(lang, 'herbs', herb.id);
 const flavor = herb.data.flavor[lang].slice(0, 2);
+const properties = (herb.data.properties ?? []).slice(0, 2);
 ---
 <a
   href={href}
@@ -35,5 +37,6 @@ const flavor = herb.data.flavor[lang].slice(0, 2);
   {reason && <p class="prose-muted text-sm">{reason}</p>}
   <div class="mt-auto flex flex-wrap gap-1.5">
     {flavor.map((f) => <span class="chip">{f}</span>)}
+    {properties.map((p) => <span class="chip-amber">{t(lang, `property.${p}` as TKey)}</span>)}
   </div>
 </a>

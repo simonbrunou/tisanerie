@@ -7,6 +7,8 @@
   },
   "benefits": ["digestion", "immunity", "cramps"],
   "primaryBenefits": ["immunity"],
+  "properties": ["vulnerary", "anti-inflammatory", "antimicrobial", "depurative", "immunomodulant", "demulcent", "astringent"],
+  "afflictions": ["minor-wounds", "eczema", "rashes", "gastritis", "mouth-ulcers", "menstrual-cramps", "low-immunity", "stomach-cramps"],
   "flavor": {
     "fr": ["légèrement amer", "résineux", "doux"],
     "en": ["faintly bitter", "resinous", "mild"]

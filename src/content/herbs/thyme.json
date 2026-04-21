@@ -7,6 +7,8 @@
   },
   "benefits": ["cold", "immunity"],
   "primaryBenefits": ["cold"],
+  "properties": ["antimicrobial", "antiviral", "expectorant", "antitussive", "antispasmodic", "diaphoretic", "aromatic", "carminative"],
+  "afflictions": ["cough", "bronchitis", "sore-throat", "cold", "flu", "sinus-congestion", "asthma", "indigestion", "bad-breath", "low-immunity"],
   "flavor": {
     "fr": ["herbacé", "chaud", "camphré"],
     "en": ["herbal", "warm", "camphorous"]

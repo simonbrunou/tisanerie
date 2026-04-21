@@ -22,6 +22,138 @@ const benefitKey = z.enum([
 
 export type BenefitKey = z.infer<typeof benefitKey>;
 
+const propertyKey = z.enum([
+  'adaptogen',
+  'analgesic',
+  'anti-inflammatory',
+  'antimicrobial',
+  'antioxidant',
+  'antispasmodic',
+  'antitussive',
+  'antiviral',
+  'anxiolytic',
+  'aromatic',
+  'astringent',
+  'bitter',
+  'calmative',
+  'cardiotonic',
+  'carminative',
+  'cholagogue',
+  'demulcent',
+  'depurative',
+  'diaphoretic',
+  'digestive',
+  'diuretic',
+  'emmenagogue',
+  'expectorant',
+  'febrifuge',
+  'galactagogue',
+  'hepatoprotective',
+  'hypotensive',
+  'immunomodulant',
+  'laxative',
+  'nervine',
+  'refrigerant',
+  'sedative',
+  'stimulant',
+  'stomachic',
+  'tonic',
+  'uterine-tonic',
+  'vulnerary',
+  'warming',
+]);
+
+export type PropertyKey = z.infer<typeof propertyKey>;
+
+const afflictionKey = z.enum([
+  // mind & nervous system
+  'anxiety',
+  'insomnia',
+  'stress',
+  'nervous-tension',
+  'mild-depression',
+  'fatigue',
+  'mental-exhaustion',
+  'poor-focus',
+  'memory-loss',
+  'irritability',
+  'restlessness',
+  // head
+  'headache',
+  'migraine',
+  'dizziness',
+  // respiratory
+  'cold',
+  'flu',
+  'fever',
+  'cough',
+  'sore-throat',
+  'bronchitis',
+  'sinus-congestion',
+  'hoarseness',
+  'asthma',
+  'seasonal-allergies',
+  // digestive
+  'indigestion',
+  'bloating',
+  'flatulence',
+  'nausea',
+  'heartburn',
+  'diarrhea',
+  'constipation',
+  'ibs',
+  'stomach-cramps',
+  'loss-of-appetite',
+  'motion-sickness',
+  'hangover',
+  'gastritis',
+  // women's health
+  'menstrual-cramps',
+  'heavy-periods',
+  'pms',
+  'menopausal-symptoms',
+  'irregular-periods',
+  'lactation-support',
+  'morning-sickness',
+  // urinary & kidneys
+  'uti',
+  'water-retention',
+  'kidney-sluggishness',
+  // circulatory & heart
+  'high-blood-pressure',
+  'palpitations',
+  'poor-circulation',
+  // musculoskeletal
+  'muscle-cramps',
+  'muscle-tension',
+  'joint-pain',
+  'arthritis',
+  'rheumatism',
+  'back-pain',
+  // skin
+  'eczema',
+  'acne',
+  'rashes',
+  'minor-wounds',
+  'burns',
+  'insect-bites',
+  'bruises',
+  'oily-skin',
+  'dry-skin',
+  // liver & metabolism
+  'liver-sluggishness',
+  'detox-needs',
+  'high-cholesterol',
+  // mouth & breath
+  'bad-breath',
+  'mouth-ulcers',
+  // immunity
+  'low-immunity',
+  'recurrent-infections',
+]);
+
+export type AfflictionKey = z.infer<typeof afflictionKey>;
+
 const herbs = defineCollection({
   type: 'data',
   schema: z.object({
@@ -30,6 +162,8 @@ const herbs = defineCollection({
     description: bilingual,
     benefits: z.array(benefitKey).min(1),
     primaryBenefits: z.array(benefitKey).default([]),
+    properties: z.array(propertyKey).default([]),
+    afflictions: z.array(afflictionKey).default([]),
     flavor: bilingualArray,
     part: plantPart,
     brewing: z.object({

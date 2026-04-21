@@ -7,6 +7,8 @@
   },
   "benefits": ["cramps", "detox"],
   "primaryBenefits": ["cramps"],
+  "properties": ["uterine-tonic", "astringent", "tonic", "antispasmodic", "vulnerary"],
+  "afflictions": ["menstrual-cramps", "heavy-periods", "pms", "irregular-periods", "diarrhea", "morning-sickness"],
   "flavor": {
     "fr": ["tannique", "végétal", "doux"],
     "en": ["tannic", "leafy", "mild"]

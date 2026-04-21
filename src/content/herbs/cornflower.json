@@ -7,6 +7,8 @@
   },
   "benefits": ["refresh", "digestion"],
   "primaryBenefits": ["refresh"],
+  "properties": ["astringent", "anti-inflammatory", "diuretic", "calmative", "vulnerary"],
+  "afflictions": ["indigestion", "minor-wounds", "rashes", "water-retention"],
   "flavor": {
     "fr": ["floral discret", "végétal", "léger"],
     "en": ["faintly floral", "leafy", "light"]

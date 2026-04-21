@@ -7,6 +7,8 @@
   },
   "benefits": ["cold"],
   "primaryBenefits": ["cold"],
+  "properties": ["expectorant", "antitussive", "demulcent", "anti-inflammatory", "vulnerary", "antiviral"],
+  "afflictions": ["cough", "bronchitis", "sore-throat", "hoarseness", "asthma", "cold"],
   "flavor": {
     "fr": ["doux", "miellé", "discret"],
     "en": ["mild", "honeyed", "subtle"]

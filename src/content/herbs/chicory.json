@@ -7,6 +7,8 @@
   },
   "benefits": ["digestion", "detox"],
   "primaryBenefits": ["digestion"],
+  "properties": ["bitter", "hepatoprotective", "cholagogue", "digestive", "depurative", "laxative", "diuretic"],
+  "afflictions": ["indigestion", "loss-of-appetite", "constipation", "liver-sluggishness", "detox-needs", "high-cholesterol"],
   "flavor": {
     "fr": ["amer", "torréfié", "chocolaté"],
     "en": ["bitter", "roasted", "chocolatey"]

@@ -7,6 +7,8 @@
   },
   "benefits": ["focus", "energy", "headache"],
   "primaryBenefits": ["focus"],
+  "properties": ["stimulant", "tonic", "antioxidant", "cholagogue", "antimicrobial", "carminative", "aromatic", "emmenagogue"],
+  "afflictions": ["mental-exhaustion", "poor-focus", "memory-loss", "headache", "fatigue", "indigestion", "joint-pain", "muscle-tension"],
   "flavor": {
     "fr": ["résineux", "boisé", "camphré"],
     "en": ["resinous", "woody", "camphorous"]

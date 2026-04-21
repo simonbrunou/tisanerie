@@ -7,6 +7,8 @@
   },
   "benefits": ["digestion", "refresh"],
   "primaryBenefits": ["digestion"],
+  "properties": ["carminative", "digestive", "aromatic", "expectorant", "antispasmodic", "stomachic", "warming"],
+  "afflictions": ["indigestion", "bloating", "flatulence", "nausea", "bad-breath", "cold", "sinus-congestion"],
   "flavor": {
     "fr": ["citron", "eucalyptus", "floral"],
     "en": ["citrus", "eucalyptus", "floral"]

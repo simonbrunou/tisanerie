@@ -7,6 +7,8 @@
   },
   "benefits": ["cold", "digestion"],
   "primaryBenefits": ["cold"],
+  "properties": ["antimicrobial", "analgesic", "carminative", "warming", "aromatic", "antiviral", "stimulant"],
+  "afflictions": ["cold", "flu", "sore-throat", "indigestion", "bloating", "flatulence", "bad-breath", "mouth-ulcers"],
   "flavor": {
     "fr": ["épicé", "chaud", "boisé"],
     "en": ["spicy", "warming", "woody"]

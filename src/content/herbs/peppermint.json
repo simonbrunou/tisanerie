@@ -7,6 +7,8 @@
   },
   "benefits": ["digestion", "headache", "refresh", "focus"],
   "primaryBenefits": ["digestion", "headache"],
+  "properties": ["antispasmodic", "carminative", "digestive", "refrigerant", "analgesic", "antimicrobial", "aromatic", "stomachic"],
+  "afflictions": ["indigestion", "bloating", "flatulence", "nausea", "stomach-cramps", "ibs", "headache", "motion-sickness", "sinus-congestion", "bad-breath"],
   "flavor": {
     "fr": ["mentholé", "frais", "vif"],
     "en": ["minty", "cool", "sharp"]

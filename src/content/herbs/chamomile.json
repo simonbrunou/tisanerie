@@ -7,6 +7,8 @@
   },
   "benefits": ["sleep", "stress", "digestion"],
   "primaryBenefits": ["sleep", "stress"],
+  "properties": ["anti-inflammatory", "antispasmodic", "sedative", "calmative", "nervine", "carminative", "vulnerary", "digestive", "aromatic"],
+  "afflictions": ["insomnia", "anxiety", "nervous-tension", "stress", "indigestion", "bloating", "stomach-cramps", "ibs", "irritability", "menstrual-cramps", "eczema", "rashes", "mouth-ulcers", "restlessness"],
   "flavor": {
     "fr": ["floral", "pomme", "miel"],
     "en": ["floral", "apple", "honey"]

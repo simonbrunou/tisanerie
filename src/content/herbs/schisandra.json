@@ -7,6 +7,8 @@
   },
   "benefits": ["energy", "focus", "immunity"],
   "primaryBenefits": ["energy"],
+  "properties": ["adaptogen", "hepatoprotective", "tonic", "antioxidant", "astringent", "stimulant"],
+  "afflictions": ["fatigue", "mental-exhaustion", "stress", "liver-sluggishness", "poor-focus", "memory-loss", "low-immunity"],
   "flavor": {
     "fr": ["acidulé", "boisé", "complexe"],
     "en": ["tart", "woody", "complex"]

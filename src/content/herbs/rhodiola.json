@@ -7,6 +7,8 @@
   },
   "benefits": ["stress", "energy", "focus"],
   "primaryBenefits": ["energy"],
+  "properties": ["adaptogen", "tonic", "stimulant", "antioxidant", "nervine"],
+  "afflictions": ["fatigue", "mental-exhaustion", "mild-depression", "stress", "poor-focus", "memory-loss", "anxiety"],
   "flavor": {
     "fr": ["rose", "racine", "légèrement astringent"],
     "en": ["rosy", "rooty", "faintly astringent"]

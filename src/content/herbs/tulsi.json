@@ -7,6 +7,8 @@
   },
   "benefits": ["stress", "immunity", "focus", "mood"],
   "primaryBenefits": ["stress", "immunity"],
+  "properties": ["adaptogen", "immunomodulant", "anti-inflammatory", "antimicrobial", "antiviral", "expectorant", "nervine", "antioxidant"],
+  "afflictions": ["stress", "anxiety", "fatigue", "low-immunity", "cold", "flu", "cough", "bronchitis", "mental-exhaustion", "poor-focus"],
   "flavor": {
     "fr": ["poivré", "clou de girofle", "herbacé"],
     "en": ["peppery", "clove", "herbal"]

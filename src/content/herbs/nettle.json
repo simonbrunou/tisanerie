@@ -7,6 +7,8 @@
   },
   "benefits": ["detox", "immunity", "energy"],
   "primaryBenefits": ["detox"],
+  "properties": ["diuretic", "depurative", "anti-inflammatory", "tonic", "astringent", "hypotensive"],
+  "afflictions": ["seasonal-allergies", "joint-pain", "arthritis", "rheumatism", "eczema", "acne", "fatigue", "water-retention", "detox-needs", "uti", "low-immunity"],
   "flavor": {
     "fr": ["végétal", "minéral", "vert"],
     "en": ["vegetal", "mineral", "green"]

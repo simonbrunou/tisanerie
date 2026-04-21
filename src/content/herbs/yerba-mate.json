@@ -7,6 +7,8 @@
   },
   "benefits": ["energy", "focus", "mood"],
   "primaryBenefits": ["energy", "focus"],
+  "properties": ["stimulant", "tonic", "antioxidant", "diuretic", "digestive"],
+  "afflictions": ["fatigue", "mental-exhaustion", "poor-focus", "mild-depression", "indigestion", "loss-of-appetite"],
   "flavor": {
     "fr": ["herbacé", "amer", "fumé"],
     "en": ["grassy", "bitter", "smoky"]

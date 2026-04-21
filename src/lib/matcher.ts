@@ -13,6 +13,8 @@ export function toHerbLite(entry: HerbEntry): HerbLite {
     emoji: entry.data.emoji,
     benefits: entry.data.benefits,
     primaryBenefits: entry.data.primaryBenefits,
+    properties: entry.data.properties ?? [],
+    afflictions: entry.data.afflictions ?? [],
     popularity: entry.data.popularity,
     flavor: entry.data.flavor,
   };

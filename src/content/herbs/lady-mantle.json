@@ -7,6 +7,8 @@
   },
   "benefits": ["cramps", "digestion"],
   "primaryBenefits": ["cramps"],
+  "properties": ["astringent", "uterine-tonic", "emmenagogue", "anti-inflammatory", "vulnerary", "tonic"],
+  "afflictions": ["heavy-periods", "menstrual-cramps", "irregular-periods", "menopausal-symptoms", "diarrhea", "minor-wounds", "pms"],
   "flavor": {
     "fr": ["tannique", "végétal", "sec"],
     "en": ["tannic", "leafy", "dry"]

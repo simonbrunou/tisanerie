@@ -7,6 +7,8 @@
   },
   "benefits": ["stress", "mood", "sleep"],
   "primaryBenefits": ["stress"],
+  "properties": ["calmative", "nervine", "anxiolytic", "antioxidant", "aromatic", "sedative"],
+  "afflictions": ["anxiety", "stress", "insomnia", "mild-depression", "nervous-tension", "irritability"],
   "flavor": {
     "fr": ["floral", "suave", "miellé"],
     "en": ["floral", "suave", "honeyed"]

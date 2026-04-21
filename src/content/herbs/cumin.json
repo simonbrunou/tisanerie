@@ -7,6 +7,8 @@
   },
   "benefits": ["digestion"],
   "primaryBenefits": ["digestion"],
+  "properties": ["carminative", "digestive", "stomachic", "warming", "antispasmodic", "galactagogue", "aromatic"],
+  "afflictions": ["indigestion", "bloating", "flatulence", "stomach-cramps", "loss-of-appetite", "lactation-support"],
   "flavor": {
     "fr": ["terreux", "chaud", "épicé"],
     "en": ["earthy", "warming", "spicy"]

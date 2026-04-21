@@ -7,6 +7,8 @@
   },
   "benefits": ["immunity", "cold"],
   "primaryBenefits": ["immunity"],
+  "properties": ["immunomodulant", "anti-inflammatory", "antimicrobial", "antiviral", "depurative", "vulnerary"],
+  "afflictions": ["cold", "flu", "sore-throat", "low-immunity", "recurrent-infections", "minor-wounds", "uti"],
   "flavor": {
     "fr": ["terreux", "végétal", "astringent"],
     "en": ["earthy", "green", "astringent"]

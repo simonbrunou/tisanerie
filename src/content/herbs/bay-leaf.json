@@ -7,6 +7,8 @@
   },
   "benefits": ["digestion", "cold"],
   "primaryBenefits": ["digestion"],
+  "properties": ["digestive", "carminative", "antimicrobial", "aromatic", "stomachic", "diaphoretic"],
+  "afflictions": ["indigestion", "bloating", "flatulence", "loss-of-appetite", "cold", "joint-pain"],
   "flavor": {
     "fr": ["boisé", "camphré", "résineux"],
     "en": ["woody", "camphorous", "resinous"]

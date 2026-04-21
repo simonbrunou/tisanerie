@@ -7,6 +7,8 @@
   },
   "benefits": ["cold", "focus", "cramps"],
   "primaryBenefits": ["cold"],
+  "properties": ["antimicrobial", "astringent", "antiviral", "carminative", "antispasmodic", "emmenagogue", "tonic", "aromatic"],
+  "afflictions": ["sore-throat", "hoarseness", "cough", "indigestion", "menopausal-symptoms", "irregular-periods", "memory-loss", "mouth-ulcers", "bad-breath"],
   "flavor": {
     "fr": ["camphré", "amer", "herbacé"],
     "en": ["camphorous", "bitter", "herbal"]

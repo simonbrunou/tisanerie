@@ -9,6 +9,8 @@ export type HerbLite = {
   emoji: string;
   benefits: readonly string[];
   primaryBenefits: readonly string[];
+  properties: readonly string[];
+  afflictions: readonly string[];
   popularity: number;
   flavor: { fr: string[]; en: string[] };
 };

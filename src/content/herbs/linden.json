@@ -7,6 +7,8 @@
   },
   "benefits": ["sleep", "stress", "cold"],
   "primaryBenefits": ["sleep", "stress"],
+  "properties": ["calmative", "sedative", "diaphoretic", "antispasmodic", "nervine", "hypotensive", "anxiolytic"],
+  "afflictions": ["insomnia", "anxiety", "nervous-tension", "stress", "irritability", "cold", "fever", "headache", "high-blood-pressure", "palpitations", "restlessness"],
   "flavor": {
     "fr": ["miel", "floral", "boisé"],
     "en": ["honey", "floral", "woody"]

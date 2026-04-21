@@ -7,6 +7,8 @@
   },
   "benefits": ["stress", "sleep", "headache"],
   "primaryBenefits": ["stress"],
+  "properties": ["calmative", "nervine", "antispasmodic", "anxiolytic", "sedative", "antimicrobial", "aromatic", "carminative"],
+  "afflictions": ["anxiety", "insomnia", "nervous-tension", "headache", "migraine", "stress", "irritability", "indigestion", "restlessness"],
   "flavor": {
     "fr": ["floral", "camphré", "mielé"],
     "en": ["floral", "camphorous", "honeyed"]

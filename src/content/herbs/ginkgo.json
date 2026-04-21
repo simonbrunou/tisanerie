@@ -7,6 +7,8 @@
   },
   "benefits": ["focus", "energy"],
   "primaryBenefits": ["focus"],
+  "properties": ["antioxidant", "tonic", "anti-inflammatory", "stimulant"],
+  "afflictions": ["memory-loss", "poor-focus", "mental-exhaustion", "poor-circulation", "dizziness", "fatigue"],
   "flavor": {
     "fr": ["végétal", "légèrement amer", "boisé"],
     "en": ["leafy", "slightly bitter", "woody"]

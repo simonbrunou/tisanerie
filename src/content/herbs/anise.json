@@ -7,6 +7,8 @@
   },
   "benefits": ["digestion", "cold"],
   "primaryBenefits": ["digestion"],
+  "properties": ["carminative", "digestive", "expectorant", "antispasmodic", "galactagogue", "aromatic", "stomachic"],
+  "afflictions": ["bloating", "flatulence", "indigestion", "stomach-cramps", "cough", "bronchitis", "lactation-support", "loss-of-appetite"],
   "flavor": {
     "fr": ["anisé", "sucré", "frais"],
     "en": ["aniseed", "sweet", "fresh"]
