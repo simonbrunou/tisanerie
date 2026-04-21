@@ -7,6 +7,8 @@
   },
   "benefits": ["sleep", "stress"],
   "primaryBenefits": ["sleep"],
+  "properties": ["sedative", "anxiolytic", "antispasmodic", "nervine", "calmative", "hypotensive"],
+  "afflictions": ["insomnia", "anxiety", "nervous-tension", "stress", "restlessness", "muscle-tension", "menstrual-cramps"],
   "flavor": {
     "fr": ["terreux", "boisé", "puissant"],
     "en": ["earthy", "woody", "strong"]

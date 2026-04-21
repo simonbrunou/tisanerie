@@ -7,6 +7,8 @@
   },
   "benefits": ["refresh", "detox"],
   "primaryBenefits": ["refresh"],
+  "properties": ["refrigerant", "antioxidant", "diuretic", "hypotensive", "astringent", "depurative"],
+  "afflictions": ["high-blood-pressure", "high-cholesterol", "water-retention", "detox-needs", "fever"],
   "flavor": {
     "fr": ["acidulé", "fruité", "tannique"],
     "en": ["tart", "fruity", "tannic"]

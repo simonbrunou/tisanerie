@@ -7,6 +7,8 @@
   },
   "benefits": ["digestion", "cold"],
   "primaryBenefits": ["cold"],
+  "properties": ["demulcent", "expectorant", "antitussive", "anti-inflammatory", "antiviral", "laxative", "hepatoprotective", "tonic"],
+  "afflictions": ["sore-throat", "cough", "bronchitis", "hoarseness", "heartburn", "gastritis", "indigestion", "constipation", "fatigue"],
   "flavor": {
     "fr": ["sucré", "anisé", "boisé"],
     "en": ["sweet", "aniseed", "woody"]

@@ -7,6 +7,8 @@
   },
   "benefits": ["cold", "immunity", "digestion"],
   "primaryBenefits": ["cold", "immunity"],
+  "properties": ["antimicrobial", "antiviral", "expectorant", "carminative", "antispasmodic", "aromatic", "digestive"],
+  "afflictions": ["cold", "flu", "sore-throat", "cough", "bronchitis", "indigestion", "bloating", "low-immunity"],
   "flavor": {
     "fr": ["aromatique", "balsamique", "épicé"],
     "en": ["aromatic", "balsamic", "spicy"]

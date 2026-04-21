@@ -7,6 +7,8 @@
   },
   "benefits": ["stress", "sleep", "mood", "focus"],
   "primaryBenefits": ["stress", "mood"],
+  "properties": ["calmative", "nervine", "antispasmodic", "anxiolytic", "antiviral", "carminative", "digestive", "aromatic"],
+  "afflictions": ["anxiety", "insomnia", "stress", "nervous-tension", "mild-depression", "indigestion", "bloating", "irritability", "palpitations", "headache"],
   "flavor": {
     "fr": ["citron", "herbacé", "doux"],
     "en": ["lemon", "green", "gentle"]

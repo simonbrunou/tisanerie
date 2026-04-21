@@ -7,6 +7,8 @@
   },
   "benefits": ["stress", "energy", "mood"],
   "primaryBenefits": ["stress"],
+  "properties": ["adaptogen", "tonic", "sedative", "anxiolytic", "anti-inflammatory", "immunomodulant", "nervine"],
+  "afflictions": ["stress", "anxiety", "insomnia", "fatigue", "mental-exhaustion", "low-immunity", "nervous-tension", "mild-depression"],
   "flavor": {
     "fr": ["terreux", "lait", "chaud"],
     "en": ["earthy", "milky", "warm"]

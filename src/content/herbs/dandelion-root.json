@@ -7,6 +7,8 @@
   },
   "benefits": ["detox", "digestion"],
   "primaryBenefits": ["detox"],
+  "properties": ["bitter", "hepatoprotective", "cholagogue", "diuretic", "laxative", "depurative", "digestive"],
+  "afflictions": ["liver-sluggishness", "indigestion", "loss-of-appetite", "constipation", "water-retention", "detox-needs", "high-cholesterol", "acne", "eczema"],
   "flavor": {
     "fr": ["amer", "torréfié", "terreux"],
     "en": ["bitter", "roasted", "earthy"]

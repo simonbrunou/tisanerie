@@ -7,6 +7,8 @@
   },
   "benefits": ["cold", "refresh", "headache"],
   "primaryBenefits": ["cold"],
+  "properties": ["expectorant", "antimicrobial", "antiviral", "anti-inflammatory", "aromatic", "febrifuge", "antitussive"],
+  "afflictions": ["cold", "flu", "cough", "bronchitis", "sinus-congestion", "sore-throat", "headache", "asthma", "fever"],
   "flavor": {
     "fr": ["mentholé", "camphré", "résineux"],
     "en": ["menthol", "camphorous", "resinous"]

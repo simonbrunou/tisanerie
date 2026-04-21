@@ -7,6 +7,8 @@
   },
   "benefits": ["cold", "digestion"],
   "primaryBenefits": ["cold"],
+  "properties": ["demulcent", "anti-inflammatory", "antitussive", "vulnerary", "expectorant", "laxative"],
+  "afflictions": ["sore-throat", "cough", "hoarseness", "bronchitis", "gastritis", "heartburn", "ibs", "uti", "dry-skin"],
   "flavor": {
     "fr": ["doux", "soyeux", "neutre"],
     "en": ["mild", "silky", "neutral"]

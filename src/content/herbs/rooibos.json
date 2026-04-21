@@ -7,6 +7,8 @@
   },
   "benefits": ["refresh", "energy"],
   "primaryBenefits": ["refresh"],
+  "properties": ["antioxidant", "anti-inflammatory", "antispasmodic", "calmative"],
+  "afflictions": ["indigestion", "stomach-cramps", "eczema", "rashes", "insomnia", "stress"],
   "flavor": {
     "fr": ["miel", "vanillé", "boisé"],
     "en": ["honey", "vanilla", "woody"]

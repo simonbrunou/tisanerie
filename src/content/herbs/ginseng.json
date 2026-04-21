@@ -7,6 +7,8 @@
   },
   "benefits": ["energy", "focus", "immunity"],
   "primaryBenefits": ["energy"],
+  "properties": ["adaptogen", "stimulant", "tonic", "immunomodulant", "antioxidant"],
+  "afflictions": ["fatigue", "mental-exhaustion", "poor-focus", "low-immunity", "memory-loss"],
   "flavor": {
     "fr": ["terreux", "légèrement amer", "racine"],
     "en": ["earthy", "faintly bitter", "rooty"]

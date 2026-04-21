@@ -7,6 +7,8 @@
   },
   "benefits": ["immunity", "refresh"],
   "primaryBenefits": ["immunity"],
+  "properties": ["antioxidant", "anti-inflammatory", "tonic", "diuretic", "astringent"],
+  "afflictions": ["cold", "flu", "low-immunity", "fatigue", "joint-pain", "arthritis"],
   "flavor": {
     "fr": ["acidulé", "fruité", "rond"],
     "en": ["tart", "fruity", "rounded"]

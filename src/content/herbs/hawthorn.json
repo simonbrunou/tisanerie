@@ -7,6 +7,8 @@
   },
   "benefits": ["stress", "sleep"],
   "primaryBenefits": ["stress"],
+  "properties": ["cardiotonic", "hypotensive", "antioxidant", "calmative", "nervine", "antispasmodic"],
+  "afflictions": ["palpitations", "high-blood-pressure", "anxiety", "insomnia", "nervous-tension", "poor-circulation"],
   "flavor": {
     "fr": ["floral", "fruité doux", "amande"],
     "en": ["floral", "softly fruity", "almond"]

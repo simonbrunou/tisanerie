@@ -7,6 +7,8 @@
   },
   "benefits": ["cold", "digestion"],
   "primaryBenefits": ["cold"],
+  "properties": ["demulcent", "anti-inflammatory", "antitussive", "expectorant", "laxative", "vulnerary"],
+  "afflictions": ["sore-throat", "cough", "hoarseness", "constipation", "gastritis", "rashes", "dry-skin"],
   "flavor": {
     "fr": ["floral doux", "soyeux", "neutre"],
     "en": ["softly floral", "silky", "neutral"]

@@ -6,7 +6,7 @@ import HerbCard from '~/components/HerbCard.astro';
 import NeedPicker from '~/components/NeedPicker.tsx';
 import SearchBox from '~/components/SearchBox.tsx';
 import { locales, localizedPath, type Locale } from '~/i18n/routes';
-import { t } from '~/i18n/utils';
+import { t, type TKey } from '~/i18n/utils';
 
 export async function getStaticPaths() {
   return locales.map((lang) => ({ params: { lang } }));
@@ -61,8 +61,17 @@ const searchItems = [
       h.data.name.fr,
       h.data.name.en,
       h.data.scientific,
-      ...h.data.flavor[lang],
+      ...h.data.flavor.fr,
+      ...h.data.flavor.en,
       ...h.data.benefits,
+      ...(h.data.properties ?? []).flatMap((k) => [
+        t('fr', `property.${k}` as TKey),
+        t('en', `property.${k}` as TKey),
+      ]),
+      ...(h.data.afflictions ?? []).flatMap((k) => [
+        t('fr', `affliction.${k}` as TKey),
+        t('en', `affliction.${k}` as TKey),
+      ]),
     ].join(' '),
   })),
   ...needs.map((n) => ({

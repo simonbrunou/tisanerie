@@ -7,6 +7,8 @@
   },
   "benefits": ["detox"],
   "primaryBenefits": ["detox"],
+  "properties": ["hepatoprotective", "antioxidant", "cholagogue", "depurative", "anti-inflammatory", "tonic"],
+  "afflictions": ["liver-sluggishness", "hangover", "detox-needs", "indigestion", "high-cholesterol"],
   "flavor": {
     "fr": ["neutre", "légèrement amer", "noisette"],
     "en": ["neutral", "faintly bitter", "nutty"]

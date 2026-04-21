@@ -7,6 +7,8 @@
   },
   "benefits": ["digestion", "refresh", "stress"],
   "primaryBenefits": ["refresh"],
+  "properties": ["carminative", "antispasmodic", "diuretic", "diaphoretic", "antimicrobial", "calmative", "aromatic"],
+  "afflictions": ["indigestion", "bloating", "stomach-cramps", "stress", "nervous-tension", "fever", "water-retention"],
   "flavor": {
     "fr": ["citron", "vif", "vert"],
     "en": ["lemony", "bright", "green"]

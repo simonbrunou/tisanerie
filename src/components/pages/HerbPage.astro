@@ -5,7 +5,7 @@ import BrewingCard from '~/components/BrewingCard.astro';
 import SafetyNote from '~/components/SafetyNote.astro';
 import BrewingTimer from '~/components/BrewingTimer.tsx';
 import { localizedPath, type Locale } from '~/i18n/routes';
-import { t } from '~/i18n/utils';
+import { t, type TKey } from '~/i18n/utils';
 import type { HerbEntry } from '~/lib/types';
 
 interface Props {
@@ -29,6 +29,11 @@ const timerLabels = {
   reset: t(lang, 'herb.timer.reset'),
   done: t(lang, 'herb.timer.done'),
 };
+
+const properties = herb.data.properties ?? [];
+const afflictions = herb.data.afflictions ?? [];
+const aboutHref = localizedPath(lang, 'about');
+const traditionalNote = t(lang, 'herb.traditional.note', { aboutHref });
 ---
 <Base
   lang={lang}
@@ -81,6 +86,30 @@ const timerLabels = {
               )}
             </a>
           </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {properties.length > 0 && (
+    <section class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+      <h2 class="font-display text-2xl">{t(lang, 'herb.properties')}</h2>
+      <p class="prose-muted mt-2 text-sm italic" set:html={traditionalNote} />
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {properties.map((key) => (
+          <li><span class="chip">{t(lang, `property.${key}` as TKey)}</span></li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {afflictions.length > 0 && (
+    <section class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+      <h2 class="font-display text-2xl">{t(lang, 'herb.afflictions')}</h2>
+      <p class="prose-muted mt-2 text-sm italic" set:html={traditionalNote} />
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {afflictions.map((key) => (
+          <li><span class="chip">{t(lang, `affliction.${key}` as TKey)}</span></li>
         ))}
       </ul>
     </section>

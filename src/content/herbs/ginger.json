@@ -7,6 +7,8 @@
   },
   "benefits": ["cold", "digestion", "energy", "immunity"],
   "primaryBenefits": ["cold", "digestion"],
+  "properties": ["warming", "carminative", "anti-inflammatory", "antispasmodic", "diaphoretic", "stimulant", "digestive", "antimicrobial", "expectorant"],
+  "afflictions": ["nausea", "motion-sickness", "morning-sickness", "indigestion", "bloating", "flatulence", "cold", "flu", "sore-throat", "menstrual-cramps", "joint-pain", "poor-circulation", "fatigue"],
   "flavor": {
     "fr": ["piquant", "épicé", "chaud"],
     "en": ["pungent", "spicy", "warming"]

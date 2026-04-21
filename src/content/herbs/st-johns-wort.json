@@ -7,6 +7,8 @@
   },
   "benefits": ["mood", "sleep"],
   "primaryBenefits": ["mood"],
+  "properties": ["nervine", "calmative", "anti-inflammatory", "antiviral", "vulnerary", "sedative"],
+  "afflictions": ["mild-depression", "anxiety", "nervous-tension", "insomnia", "menopausal-symptoms", "minor-wounds", "burns"],
   "flavor": {
     "fr": ["fleuri", "amer", "léger"],
     "en": ["floral", "bitter", "light"]

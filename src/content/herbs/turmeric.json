@@ -7,6 +7,8 @@
   },
   "benefits": ["immunity", "mood", "energy"],
   "primaryBenefits": ["immunity"],
+  "properties": ["anti-inflammatory", "antioxidant", "hepatoprotective", "cholagogue", "digestive", "antimicrobial", "warming"],
+  "afflictions": ["joint-pain", "arthritis", "rheumatism", "indigestion", "bloating", "liver-sluggishness", "detox-needs", "high-cholesterol", "low-immunity"],
   "flavor": {
     "fr": ["terreux", "poivré", "chaud"],
     "en": ["earthy", "peppery", "warm"]

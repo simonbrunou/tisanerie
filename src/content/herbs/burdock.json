@@ -7,6 +7,8 @@
   },
   "benefits": ["detox", "digestion"],
   "primaryBenefits": ["detox"],
+  "properties": ["depurative", "diuretic", "hepatoprotective", "anti-inflammatory", "bitter", "cholagogue", "vulnerary"],
+  "afflictions": ["eczema", "acne", "rashes", "liver-sluggishness", "detox-needs", "oily-skin", "joint-pain", "rheumatism"],
   "flavor": {
     "fr": ["terreux", "doux", "boisé"],
     "en": ["earthy", "mild", "woody"]

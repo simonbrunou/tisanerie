@@ -7,6 +7,8 @@
   },
   "benefits": ["digestion", "refresh", "headache"],
   "primaryBenefits": ["digestion"],
+  "properties": ["carminative", "antispasmodic", "digestive", "refrigerant", "calmative", "aromatic", "stomachic"],
+  "afflictions": ["indigestion", "bloating", "flatulence", "nausea", "stomach-cramps", "headache", "bad-breath"],
   "flavor": {
     "fr": ["mentholé doux", "sucré", "herbacé"],
     "en": ["sweet mint", "candy-like", "grassy"]

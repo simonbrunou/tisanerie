@@ -7,6 +7,8 @@
   },
   "benefits": ["digestion", "cold"],
   "primaryBenefits": ["digestion"],
+  "properties": ["carminative", "antimicrobial", "antiviral", "expectorant", "antispasmodic", "aromatic", "stomachic"],
+  "afflictions": ["indigestion", "bloating", "flatulence", "stomach-cramps", "cough", "cold", "flu", "bad-breath"],
   "flavor": {
     "fr": ["anis", "licorice", "doux"],
     "en": ["anise", "licorice", "sweet"]

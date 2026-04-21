@@ -7,6 +7,8 @@
   },
   "benefits": ["refresh", "focus"],
   "primaryBenefits": ["refresh"],
+  "properties": ["antioxidant", "refrigerant", "calmative", "nervine", "anxiolytic"],
+  "afflictions": ["stress", "anxiety", "restlessness", "mental-exhaustion", "poor-focus"],
   "flavor": {
     "fr": ["végétal", "très léger", "neutre"],
     "en": ["leafy", "very light", "neutral"]

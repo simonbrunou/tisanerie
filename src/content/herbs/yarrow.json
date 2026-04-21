@@ -7,6 +7,8 @@
   },
   "benefits": ["cramps", "cold", "digestion"],
   "primaryBenefits": ["cramps"],
+  "properties": ["diaphoretic", "febrifuge", "astringent", "vulnerary", "anti-inflammatory", "emmenagogue", "bitter", "hypotensive"],
+  "afflictions": ["cold", "flu", "fever", "menstrual-cramps", "heavy-periods", "indigestion", "minor-wounds", "bruises", "high-blood-pressure"],
   "flavor": {
     "fr": ["amer", "herbacé", "floral"],
     "en": ["bitter", "herbal", "floral"]

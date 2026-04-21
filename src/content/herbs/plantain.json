@@ -7,6 +7,8 @@
   },
   "benefits": ["cold", "immunity"],
   "primaryBenefits": ["cold"],
+  "properties": ["demulcent", "expectorant", "anti-inflammatory", "vulnerary", "astringent", "antimicrobial"],
+  "afflictions": ["cough", "bronchitis", "sore-throat", "minor-wounds", "insect-bites", "rashes", "diarrhea", "seasonal-allergies"],
   "flavor": {
     "fr": ["végétal", "doux", "champignon"],
     "en": ["leafy", "mild", "mushroomy"]

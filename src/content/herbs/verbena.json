@@ -7,6 +7,8 @@
   },
   "benefits": ["digestion", "sleep", "stress"],
   "primaryBenefits": ["digestion"],
+  "properties": ["digestive", "carminative", "antispasmodic", "calmative", "nervine", "sedative", "aromatic"],
+  "afflictions": ["indigestion", "bloating", "stomach-cramps", "insomnia", "nervous-tension", "anxiety", "stress", "irritability"],
   "flavor": {
     "fr": ["citron", "soyeux", "herbacé"],
     "en": ["lemon", "silky", "grassy"]

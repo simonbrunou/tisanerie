@@ -7,6 +7,8 @@
   },
   "benefits": ["digestion", "cramps"],
   "primaryBenefits": ["digestion"],
+  "properties": ["carminative", "antispasmodic", "digestive", "galactagogue", "expectorant", "aromatic", "stomachic", "emmenagogue"],
+  "afflictions": ["bloating", "flatulence", "indigestion", "stomach-cramps", "ibs", "menstrual-cramps", "lactation-support", "cough", "loss-of-appetite", "bad-breath"],
   "flavor": {
     "fr": ["anis", "doux", "chaud"],
     "en": ["anise", "sweet", "warm"]

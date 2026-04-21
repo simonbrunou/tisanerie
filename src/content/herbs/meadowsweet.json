@@ -7,6 +7,8 @@
   },
   "benefits": ["headache", "cold", "cramps"],
   "primaryBenefits": ["headache"],
+  "properties": ["analgesic", "anti-inflammatory", "diaphoretic", "febrifuge", "astringent", "antispasmodic", "diuretic"],
+  "afflictions": ["headache", "fever", "joint-pain", "arthritis", "rheumatism", "heartburn", "indigestion", "muscle-tension"],
   "flavor": {
     "fr": ["amande", "miellé", "floral"],
     "en": ["almond", "honeyed", "floral"]

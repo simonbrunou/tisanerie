@@ -7,6 +7,8 @@
   },
   "benefits": ["cramps", "digestion", "sleep"],
   "primaryBenefits": ["cramps"],
+  "properties": ["emmenagogue", "uterine-tonic", "bitter", "digestive", "antispasmodic", "nervine"],
+  "afflictions": ["irregular-periods", "menstrual-cramps", "pms", "indigestion", "loss-of-appetite", "insomnia", "stomach-cramps"],
   "flavor": {
     "fr": ["amer", "herbacé", "boisé"],
     "en": ["bitter", "herbal", "woody"]
