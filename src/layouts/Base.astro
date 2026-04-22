@@ -2,7 +2,7 @@
 import '~/styles/globals.css';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
-import type { Locale } from '~/i18n/routes';
+import { swapLocaleInPath, type Locale } from '~/i18n/routes';
 import { t } from '~/i18n/utils';
 
 interface Props {
@@ -10,11 +10,40 @@ interface Props {
   title: string;
   description?: string;
   pathLocalized?: { fr: string; en: string };
+  isHome?: boolean;
 }
 
-const { lang, title, description, pathLocalized } = Astro.props;
+const { lang, title, description, pathLocalized, isHome = false } = Astro.props;
 const fullTitle = title === t(lang, 'site.name') ? title : `${title} · ${t(lang, 'site.name')}`;
 const desc = description ?? t(lang, 'site.tagline');
+
+const base = import.meta.env.BASE_URL;
+const currentPath = Astro.url.pathname;
+const alternates = pathLocalized ?? {
+  fr: swapLocaleInPath(currentPath, 'fr'),
+  en: swapLocaleInPath(currentPath, 'en'),
+};
+const canonical = new URL(currentPath, Astro.site).toString();
+const alternateFr = new URL(alternates.fr, Astro.site).toString();
+const alternateEn = new URL(alternates.en, Astro.site).toString();
+const ogImage = new URL(`${base}og-image.png`, Astro.site).toString();
+const ogLocale = lang === 'fr' ? 'fr_FR' : 'en_US';
+const ogLocaleAlt = lang === 'fr' ? 'en_US' : 'fr_FR';
+const siteName = t(lang, 'site.name');
+
+const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
+const analyticsEnabled = import.meta.env.PROD && typeof cfAnalyticsToken === 'string' && cfAnalyticsToken.length > 0;
+
+const websiteJsonLd = isHome
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: siteName,
+      url: canonical,
+      description: desc,
+      inLanguage: lang === 'fr' ? 'fr-FR' : 'en-US',
+    }
+  : null;
 ---
 <!doctype html>
 <html lang={lang} class="scroll-smooth">
@@ -24,22 +53,40 @@ const desc = description ?? t(lang, 'site.tagline');
     <meta name="color-scheme" content="light dark" />
     <meta name="description" content={desc} />
     <title>{fullTitle}</title>
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
+    <link rel="manifest" href={`${base}manifest.webmanifest`} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="fr" href={alternateFr} />
+    <link rel="alternate" hreflang="en" href={alternateEn} />
+    <link rel="alternate" hreflang="x-default" href={alternateFr} />
     <meta name="theme-color" content="#faf6ef" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1a1d19" media="(prefers-color-scheme: dark)" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={desc} />
     <meta property="og:type" content="website" />
-    <script is:inline>
-      (function () {
-        try {
-          const stored = localStorage.getItem('theme');
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          const dark = stored ? stored === 'dark' : prefersDark;
-          if (dark) document.documentElement.classList.add('dark');
-        } catch (e) {}
-      })();
-    </script>
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlt} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={desc} />
+    <meta name="twitter:image" content={ogImage} />
+    {websiteJsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
+    )}
+    <script is:inline src={`${base}theme-init.js`}></script>
+    {analyticsEnabled && (
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: cfAnalyticsToken })}
+      ></script>
+    )}
   </head>
   <body class="min-h-screen flex flex-col">
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:bg-sage-700 focus:px-4 focus:py-2 focus:text-paper">

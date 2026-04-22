@@ -2,8 +2,9 @@
 
 A small, beautiful web app that recommends herbal infusions (tisanes) based on
 what you need — stress, sleep, digestion, cold, focus, and more. Bilingual
-(French / English), mobile-friendly, and deployable on a free plan of either
-GitHub Pages or Cloudflare Pages.
+(French / English), mobile-friendly, and hosted on Cloudflare Pages.
+
+Live at **https://tisanerie.app**.
 
 ## Stack
 
@@ -12,8 +13,9 @@ GitHub Pages or Cloudflare Pages.
   brewing timer, theme toggle)
 - Tailwind CSS for styling with a sage / cream / amber palette
 - Content collections (Zod-validated) drive the herb and need datasets
-- Self-hosted `@fontsource-variable/fraunces` + `inter` — no third-party
-  requests at runtime
+- Self-hosted `@fontsource-variable/fraunces` + `inter` — the only runtime
+  third-party request is the optional Cloudflare Web Analytics beacon,
+  enabled only when `PUBLIC_CF_ANALYTICS_TOKEN` is set at build time
 
 ## Local development
 
@@ -26,27 +28,21 @@ npm run preview
 
 ## Deploying
 
-### GitHub Pages (automated)
+### Cloudflare Pages
 
-The repository ships with `.github/workflows/deploy.yml`. On every push to
-`main`, it runs `npm ci && GITHUB_PAGES=true npm run build` and publishes
-`dist/` to Pages.
+The production site is deployed via Cloudflare Pages, connected to the
+GitHub repository; every push to `main` triggers a build.
 
-The `GITHUB_PAGES` flag makes `astro.config.mjs` emit with `base: '/tisanerie'`
-so the site works under `https://<user>.github.io/tisanerie/`.
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Node version: pinned via `.nvmrc`
+- Environment variables:
+  - `PUBLIC_CF_ANALYTICS_TOKEN` — Cloudflare Web Analytics beacon token
+    (optional; if unset the beacon is omitted).
 
-One-time setup: in the repo settings, open **Pages** and set the source to
-**GitHub Actions**.
-
-### Cloudflare Pages (manual, optional)
-
-1. In the Cloudflare dashboard → Workers & Pages → Create → Pages → connect
-   this repository.
-2. Build command: `npm run build`.
-3. Build output directory: `dist`.
-4. Leave environment variables empty (so `base` stays at `/`).
-
-`public/_redirects` handles the language fallback: `/` → `/fr/`.
+`public/_redirects` handles the language fallback (`/` → `/fr/`) and
+`public/_headers` sets long-lived caching for hashed assets plus baseline
+security headers.
 
 ## Project layout
 
