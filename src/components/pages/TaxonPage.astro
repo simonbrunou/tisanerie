@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '~/layouts/Base.astro';
+import HerbCard from '~/components/HerbCard.astro';
+import { localizedPath, type Locale } from '~/i18n/routes';
+import { t, type TKey } from '~/i18n/utils';
+import { herbsWithAffliction, herbsWithProperty } from '~/lib/taxons';
+
+interface Props {
+  lang: Locale;
+  kind: 'property' | 'affliction';
+  taxonKey: string;
+}
+
+const { lang, kind, taxonKey } = Astro.props;
+
+const herbsAll = await getCollection('herbs');
+const matching =
+  kind === 'property'
+    ? herbsWithProperty(herbsAll, taxonKey, lang)
+    : herbsWithAffliction(herbsAll, taxonKey, lang);
+
+const route = kind === 'property' ? 'properties' : 'afflictions';
+const emoji = kind === 'property' ? '🌿' : '🩹';
+const eyebrowKey: TKey = kind === 'property' ? 'herb.properties' : 'herb.afflictions';
+const introKey: TKey = kind === 'property' ? 'taxon.intro.property' : 'taxon.intro.affliction';
+const labelKey = `${kind}.${taxonKey}` as TKey;
+
+const title = t(lang, labelKey);
+const pathLocalized = {
+  fr: localizedPath('fr', route, taxonKey),
+  en: localizedPath('en', route, taxonKey),
+};
+
+const aboutHref = localizedPath(lang, 'about');
+const traditionalNote = t(lang, 'herb.traditional.note', { aboutHref });
+---
+<Base lang={lang} title={title} pathLocalized={pathLocalized}>
+  <section class="mx-auto max-w-6xl px-4 pt-16 pb-10 sm:px-6">
+    <a class="text-sm text-ink-muted hover:text-ink" href={localizedPath(lang, 'discover')}>
+      ← {t(lang, 'herb.back')}
+    </a>
+    <div class="mt-4 flex items-center gap-4">
+      <span class="grid h-16 w-16 place-items-center rounded-3xl bg-sage-100 text-4xl dark:bg-sage-800/60" aria-hidden="true">
+        {emoji}
+      </span>
+      <div>
+        <p class="text-sm uppercase tracking-wide text-ink-muted">{t(lang, eyebrowKey)}</p>
+        <h1 class="font-display text-4xl sm:text-5xl">{title}</h1>
+      </div>
+    </div>
+    <p class="prose-muted mt-6 max-w-2xl text-lg">
+      {t(lang, introKey, { count: matching.length })}
+    </p>
+    <p class="prose-muted mt-3 max-w-2xl text-sm italic" set:html={traditionalNote} />
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pb-14 sm:px-6">
+    {matching.length > 0 ? (
+      <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {matching.map((h) => (
+          <li>
+            <HerbCard lang={lang} herb={h} />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="prose-muted">{t(lang, 'discover.empty')}</p>
+    )}
+  </section>
+</Base>

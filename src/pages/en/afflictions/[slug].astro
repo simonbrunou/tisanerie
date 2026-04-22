@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import TaxonPage from '~/components/pages/TaxonPage.astro';
+import { usedAfflictionKeys } from '~/lib/taxons';
+
+export async function getStaticPaths() {
+  const herbs = await getCollection('herbs');
+  return usedAfflictionKeys(herbs).map((key) => ({
+    params: { slug: key },
+    props: { taxonKey: key },
+  }));
+}
+
+const { taxonKey } = Astro.props;
+---
+<TaxonPage lang="en" kind="affliction" taxonKey={taxonKey} />
