@@ -2,7 +2,15 @@ export const locales = ['fr', 'en'] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = 'fr';
 
-export type RouteKey = 'home' | 'needs' | 'herbs' | 'discover' | 'search' | 'about';
+export type RouteKey =
+  | 'home'
+  | 'needs'
+  | 'herbs'
+  | 'discover'
+  | 'search'
+  | 'about'
+  | 'properties'
+  | 'afflictions';
 
 export const routeSegments: Record<RouteKey, Record<Locale, string>> = {
   home: { fr: '', en: '' },
@@ -11,6 +19,8 @@ export const routeSegments: Record<RouteKey, Record<Locale, string>> = {
   discover: { fr: 'decouvrir', en: 'discover' },
   search: { fr: 'recherche', en: 'search' },
   about: { fr: 'a-propos', en: 'about' },
+  properties: { fr: 'proprietes', en: 'properties' },
+  afflictions: { fr: 'afflictions', en: 'afflictions' },
 };
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');

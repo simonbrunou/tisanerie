@@ -97,7 +97,11 @@ const traditionalNote = t(lang, 'herb.traditional.note', { aboutHref });
       <p class="prose-muted mt-2 text-sm italic" set:html={traditionalNote} />
       <ul class="mt-4 flex flex-wrap gap-2">
         {properties.map((key) => (
-          <li><span class="chip">{t(lang, `property.${key}` as TKey)}</span></li>
+          <li>
+            <a class="chip" href={localizedPath(lang, 'properties', key)}>
+              {t(lang, `property.${key}` as TKey)}
+            </a>
+          </li>
         ))}
       </ul>
     </section>
@@ -109,7 +113,11 @@ const traditionalNote = t(lang, 'herb.traditional.note', { aboutHref });
       <p class="prose-muted mt-2 text-sm italic" set:html={traditionalNote} />
       <ul class="mt-4 flex flex-wrap gap-2">
         {afflictions.map((key) => (
-          <li><span class="chip">{t(lang, `affliction.${key}` as TKey)}</span></li>
+          <li>
+            <a class="chip" href={localizedPath(lang, 'afflictions', key)}>
+              {t(lang, `affliction.${key}` as TKey)}
+            </a>
+          </li>
         ))}
       </ul>
     </section>

@@ -1,15 +1,6 @@
 import Fuse from 'fuse.js';
 import { useEffect, useMemo, useRef, useState } from 'react';
-
-type SearchItem = {
-  id: string;
-  type: 'herb' | 'need';
-  title: string;
-  subtitle: string;
-  emoji: string;
-  href: string;
-  haystack: string;
-};
+import type { SearchItem } from '~/lib/searchItems';
 
 interface Props {
   items: SearchItem[];
