@@ -124,7 +124,7 @@ export default function SearchBox({ items, placeholder }: Props) {
         <ul
           id={listboxId}
           role="listbox"
-          className="absolute left-0 right-0 z-20 mt-2 max-h-80 overflow-auto rounded-2xl border border-sage-100 bg-paper/95 p-1 shadow-soft backdrop-blur dark:border-sage-800/60 dark:bg-paper-dark/95"
+          className="absolute left-0 right-0 z-20 mt-2 max-h-80 overflow-auto rounded-2xl border border-sage-100 bg-paper p-1 shadow-soft dark:border-sage-800/60 dark:bg-paper-dark"
         >
           {results.map((item, index) => {
             const active = index === activeIndex;

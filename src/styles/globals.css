@@ -54,7 +54,7 @@
 
 @layer components {
   .card {
-    @apply rounded-3xl bg-white/70 backdrop-blur-sm shadow-card border border-sage-100/70;
+    @apply rounded-3xl bg-white/70 shadow-card border border-sage-100/70;
   }
   html.dark .card {
     @apply bg-sage-900/40 border-sage-800/60;
