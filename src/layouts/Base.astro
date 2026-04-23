@@ -88,6 +88,7 @@ const websiteJsonLd = isHome
     ))}
     {/* data-astro-rerun re-runs the theme init after view transitions so dark mode sticks. */}
     <script is:inline src={`${base}theme-init.js`} data-astro-rerun></script>
+    <script src={`${base}sw-register.js`} data-base={base}></script>
     {/* Fonts are loaded via @fontsource-variable in globals.css; the emitted woff2 filenames
        are hashed by Vite, so manual <link rel="preload"> is brittle. Follow-up: Astro's
        experimental font helper (astro:assets / experimental.fonts). */}
