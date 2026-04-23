@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import type { Locale } from '~/i18n/routes';
 
 type HerbItem = {
   id: string;
@@ -21,7 +20,6 @@ type NeedItem = {
 };
 
 interface Props {
-  lang: Locale;
   herbs: HerbItem[];
   needs: NeedItem[];
   labels: {
@@ -42,12 +40,19 @@ function scoreHerb(herb: HerbItem, keys: string[]): { score: number } {
   return { score };
 }
 
+function readNeedsFromUrl(): string[] {
+  const params = new URLSearchParams(window.location.search);
+  return params.getAll('need');
+}
+
 export default function SearchResults({ herbs, needs, labels }: Props) {
   const [needIds, setNeedIds] = useState<string[]>([]);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setNeedIds(params.getAll('need'));
+    const syncFromLocation = () => setNeedIds(readNeedsFromUrl());
+    syncFromLocation();
+    window.addEventListener('popstate', syncFromLocation);
+    return () => window.removeEventListener('popstate', syncFromLocation);
   }, []);
 
   const selectedNeeds = useMemo(

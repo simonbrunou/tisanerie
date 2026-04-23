@@ -48,7 +48,13 @@ const isAbout = currentPath.startsWith(aboutHref);
         <span aria-hidden="true">🌐</span>
         <span>{t(lang, 'language.switch')}</span>
       </a>
-      <ThemeToggle client:load />
+      <ThemeToggle
+        client:load
+        labels={{
+          light: t(lang, 'theme.light'),
+          dark: t(lang, 'theme.dark'),
+        }}
+      />
     </nav>
   </div>
 </header>
