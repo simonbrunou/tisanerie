@@ -1,0 +1,33 @@
+{
+  "name": "Tisanerie",
+  "short_name": "Tisanerie",
+  "description": "Votre apothicaire de poche pour des tisanes bien choisies.",
+  "lang": "fr",
+  "start_url": "/fr/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#faf6ef",
+  "background_color": "#faf6ef",
+  "categories": ["health", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

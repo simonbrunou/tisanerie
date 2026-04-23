@@ -6,6 +6,10 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   site: 'https://tisanerie.app',
   trailingSlash: 'always',
+  prefetch: {
+    defaultStrategy: 'viewport',
+    prefetchAll: false,
+  },
   integrations: [
     react(),
     tailwind({ applyBaseStyles: false }),

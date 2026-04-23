@@ -2,9 +2,11 @@
 import { getCollection } from 'astro:content';
 import Base from '~/layouts/Base.astro';
 import HerbCard from '~/components/HerbCard.astro';
+import Breadcrumbs from '~/components/Breadcrumbs.astro';
 import { localizedPath, type Locale } from '~/i18n/routes';
 import { t, type TKey } from '~/i18n/utils';
 import { herbsWithAffliction, herbsWithProperty } from '~/lib/taxons';
+import { breadcrumbList, buildTaxonCrumbs } from '~/lib/jsonld';
 
 interface Props {
   lang: Locale;
@@ -34,12 +36,13 @@ const pathLocalized = {
 
 const aboutHref = localizedPath(lang, 'about');
 const traditionalNote = t(lang, 'herb.traditional.note', { aboutHref });
+
+const crumbs = buildTaxonCrumbs(lang, kind, taxonKey);
+const jsonLd = breadcrumbList(crumbs, Astro.site!);
 ---
-<Base lang={lang} title={title} pathLocalized={pathLocalized}>
+<Base lang={lang} title={title} pathLocalized={pathLocalized} jsonLd={jsonLd}>
   <section class="mx-auto max-w-6xl px-4 pt-16 pb-10 sm:px-6">
-    <a class="text-sm text-ink-muted hover:text-ink" href={localizedPath(lang, 'discover')}>
-      ← {t(lang, 'herb.back')}
-    </a>
+    <Breadcrumbs lang={lang} items={crumbs} />
     <div class="mt-4 flex items-center gap-4">
       <span class="grid h-16 w-16 place-items-center rounded-3xl bg-sage-100 text-4xl dark:bg-sage-800/60" aria-hidden="true">
         {emoji}

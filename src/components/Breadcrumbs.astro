@@ -1,0 +1,29 @@
+---
+import type { Locale } from '~/i18n/routes';
+import { t } from '~/i18n/utils';
+import type { Breadcrumb } from '~/lib/jsonld';
+
+interface Props {
+  lang: Locale;
+  items: Breadcrumb[];
+}
+
+const { lang, items } = Astro.props;
+---
+<nav aria-label={t(lang, 'nav.breadcrumb')} class="text-sm text-ink-muted">
+  <ol class="flex flex-wrap items-center gap-1.5">
+    {items.map((it, i) => {
+      const isLast = i === items.length - 1;
+      return (
+        <li class="flex items-center gap-1.5">
+          {i > 0 && <span aria-hidden="true" class="text-ink-muted/60">/</span>}
+          {isLast ? (
+            <span aria-current="page" class="text-ink">{it.name}</span>
+          ) : (
+            <a href={it.url} class="hover:text-ink hover:underline underline-offset-4">{it.name}</a>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>

@@ -1,5 +1,6 @@
 ---
 import '~/styles/globals.css';
+import { ClientRouter } from 'astro:transitions';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 import { swapLocaleInPath, type Locale } from '~/i18n/routes';
@@ -11,9 +12,11 @@ interface Props {
   description?: string;
   pathLocalized?: { fr: string; en: string };
   isHome?: boolean;
+  jsonLd?: object | object[];
 }
 
-const { lang, title, description, pathLocalized, isHome = false } = Astro.props;
+const { lang, title, description, pathLocalized, isHome = false, jsonLd } = Astro.props;
+const extraJsonLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 const fullTitle = title === t(lang, 'site.name') ? title : `${title} · ${t(lang, 'site.name')}`;
 const desc = description ?? t(lang, 'site.tagline');
 
@@ -55,7 +58,8 @@ const websiteJsonLd = isHome
     <title>{fullTitle}</title>
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
-    <link rel="manifest" href={`${base}manifest.webmanifest`} />
+    <link rel="manifest" href={`${base}manifest-${lang}.webmanifest`} />
+    <ClientRouter />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="fr" href={alternateFr} />
     <link rel="alternate" hreflang="en" href={alternateEn} />
@@ -79,13 +83,23 @@ const websiteJsonLd = isHome
     {websiteJsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
     )}
-    <script is:inline src={`${base}theme-init.js`}></script>
+    {extraJsonLd.map((obj) => (
+      <script type="application/ld+json" set:html={JSON.stringify(obj)} />
+    ))}
+    {/* data-astro-rerun re-runs the theme init after view transitions so dark mode sticks. */}
+    <script is:inline src={`${base}theme-init.js`} data-astro-rerun></script>
+    {/* Fonts are loaded via @fontsource-variable in globals.css; the emitted woff2 filenames
+       are hashed by Vite, so manual <link rel="preload"> is brittle. Follow-up: Astro's
+       experimental font helper (astro:assets / experimental.fonts). */}
     {analyticsEnabled && (
-      <script
-        defer
-        src="https://static.cloudflareinsights.com/beacon.min.js"
-        data-cf-beacon={JSON.stringify({ token: cfAnalyticsToken })}
-      ></script>
+      <>
+        <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin />
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: cfAnalyticsToken })}
+        ></script>
+      </>
     )}
   </head>
   <body class="min-h-screen flex flex-col">
