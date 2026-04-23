@@ -26,6 +26,9 @@ export default defineConfig({
     locales: ['fr', 'en'],
     routing: {
       prefixDefaultLocale: true,
+      // Keep our own src/pages/index.astro (with OG tags) at `/` so crawlers
+      // that don't follow redirects still get a rich link preview.
+      redirectToDefaultLocale: false,
     },
   },
   build: {
