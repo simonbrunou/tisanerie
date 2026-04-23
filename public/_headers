@@ -2,6 +2,13 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: interest-cohort=(), geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Frame-Options: DENY
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-site
+  # CSP note: `style-src 'unsafe-inline'` stays because Astro emits build-time scoped
+  # <style> tags and CF Pages can't inject a per-request nonce. Hash-based allowlisting
+  # would need a brittle build plugin. Revisit when Astro exposes a static-hash hook.
   Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; font-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
 
 /_astro/*
@@ -21,3 +28,9 @@
 
 /theme-init.js
   Cache-Control: public, max-age=86400
+
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/offline.html
+  Cache-Control: public, max-age=3600

@@ -15,6 +15,12 @@ const otherLang: Locale = lang === 'fr' ? 'en' : 'fr';
 const switchTarget = pathLocalized
   ? pathLocalized[otherLang]
   : swapLocaleInPath(Astro.url.pathname, otherLang);
+
+const currentPath = Astro.url.pathname;
+const discoverHref = localizedPath(lang, 'discover');
+const aboutHref = localizedPath(lang, 'about');
+const isDiscover = currentPath.startsWith(discoverHref);
+const isAbout = currentPath.startsWith(aboutHref);
 ---
 <header class="sticky top-0 z-30 border-b border-sage-100/70 bg-paper/80 backdrop-blur-md dark:border-sage-800/50 dark:bg-paper-dark/80">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
@@ -23,8 +29,16 @@ const switchTarget = pathLocalized
       <span>{t(lang, 'site.name')}</span>
     </a>
     <nav class="flex items-center gap-1 text-sm sm:gap-3">
-      <a class="btn-ghost px-3 py-1.5" href={localizedPath(lang, 'discover')}>{t(lang, 'nav.discover')}</a>
-      <a class="btn-ghost px-3 py-1.5 hidden sm:inline-flex" href={localizedPath(lang, 'about')}>{t(lang, 'nav.about')}</a>
+      <a
+        class:list={['btn-ghost px-3 py-1.5', isDiscover && 'underline underline-offset-4']}
+        href={discoverHref}
+        aria-current={isDiscover ? 'page' : undefined}
+      >{t(lang, 'nav.discover')}</a>
+      <a
+        class:list={['btn-ghost px-3 py-1.5 hidden sm:inline-flex', isAbout && 'underline underline-offset-4']}
+        href={aboutHref}
+        aria-current={isAbout ? 'page' : undefined}
+      >{t(lang, 'nav.about')}</a>
       <a
         class="btn-ghost px-3 py-1.5"
         href={switchTarget}

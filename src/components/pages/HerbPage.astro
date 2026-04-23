@@ -4,9 +4,11 @@ import Base from '~/layouts/Base.astro';
 import BrewingCard from '~/components/BrewingCard.astro';
 import SafetyNote from '~/components/SafetyNote.astro';
 import BrewingTimer from '~/components/BrewingTimer.tsx';
+import Breadcrumbs from '~/components/Breadcrumbs.astro';
 import { localizedPath, type Locale } from '~/i18n/routes';
 import { t, type TKey } from '~/i18n/utils';
 import type { HerbEntry } from '~/lib/types';
+import { breadcrumbList, buildHerbCrumbs, herbThing } from '~/lib/jsonld';
 
 interface Props {
   lang: Locale;
@@ -34,17 +36,20 @@ const properties = herb.data.properties ?? [];
 const afflictions = herb.data.afflictions ?? [];
 const aboutHref = localizedPath(lang, 'about');
 const traditionalNote = t(lang, 'herb.traditional.note', { aboutHref });
+
+const crumbs = buildHerbCrumbs(lang, herb);
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const jsonLd = [breadcrumbList(crumbs, Astro.site!), herbThing(herb, lang, canonical)];
 ---
 <Base
   lang={lang}
   title={herb.data.name[lang]}
   description={herb.data.description[lang]}
   pathLocalized={pathLocalized}
+  jsonLd={jsonLd}
 >
   <section class="mx-auto max-w-5xl px-4 pt-16 pb-8 sm:px-6">
-    <a class="text-sm text-ink-muted hover:text-ink" href={localizedPath(lang, 'discover')}>
-      ← {t(lang, 'herb.back')}
-    </a>
+    <Breadcrumbs lang={lang} items={crumbs} />
     <div class="mt-4 grid gap-8 md:grid-cols-[1.2fr_1fr]">
       <div>
         <p class="text-sm uppercase tracking-wide text-ink-muted">{t(lang, 'herb.scientific')}</p>
@@ -60,7 +65,7 @@ const traditionalNote = t(lang, 'herb.traditional.note', { aboutHref });
         </div>
       </div>
       <div>
-        <BrewingTimer client:load minutes={herb.data.brewing.timeMin} labels={timerLabels} />
+        <BrewingTimer client:load transition:persist="timer" minutes={herb.data.brewing.timeMin} labels={timerLabels} />
       </div>
     </div>
   </section>
