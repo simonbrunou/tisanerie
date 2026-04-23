@@ -1,5 +1,5 @@
 // Bump CACHE on each release to invalidate old entries.
-const CACHE = 'tisanerie-v1';
+const CACHE = 'tisanerie-v2';
 const PRECACHE = ['/offline.html', '/fr/', '/en/', '/favicon.svg', '/icon-192.png'];
 
 self.addEventListener('install', (event) => {
