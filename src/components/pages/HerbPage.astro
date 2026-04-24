@@ -30,7 +30,6 @@ const timerLabels = {
   pause: t(lang, 'herb.timer.pause'),
   reset: t(lang, 'herb.timer.reset'),
   done: t(lang, 'herb.timer.done'),
-  ariaLabel: t(lang, 'herb.timer.ariaLabel'),
 };
 
 const properties = herb.data.properties ?? [];
@@ -66,7 +65,7 @@ const jsonLd = [breadcrumbList(crumbs, Astro.site!), herbThing(herb, lang, canon
         </div>
       </div>
       <div>
-        <BrewingTimer client:load transition:persist="timer" minutes={herb.data.brewing.timeMin} labels={timerLabels} />
+        <BrewingTimer client:load minutes={herb.data.brewing.timeMin} labels={timerLabels} />
       </div>
     </div>
   </section>

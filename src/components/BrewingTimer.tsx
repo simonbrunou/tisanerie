@@ -7,7 +7,6 @@ interface Props {
     pause: string;
     reset: string;
     done: string;
-    ariaLabel: string;
   };
 }
 
@@ -79,7 +78,7 @@ export default function BrewingTimer({ minutes, labels }: Props) {
   return (
     <div className="card flex flex-col items-center gap-4 p-6">
       <div className="relative">
-        <svg width="180" height="180" viewBox="0 0 180 180" role="img" aria-label={labels.ariaLabel}>
+        <svg width="180" height="180" viewBox="0 0 180 180" role="img" aria-label="Brewing timer">
           <circle
             cx="90"
             cy="90"
@@ -107,9 +106,6 @@ export default function BrewingTimer({ minutes, labels }: Props) {
           <span className="font-display text-4xl tabular-nums">{format(remaining)}</span>
         </div>
       </div>
-      <p className="sr-only" aria-live="polite">
-        {done ? labels.done : ''}
-      </p>
       {done ? (
         <p className="font-display text-lg text-sage-700 dark:text-sage-200">{labels.done}</p>
       ) : null}
