@@ -14,12 +14,12 @@
     "typecheck": "astro check"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.0",
+    "@astrojs/react": "^5.0.5",
     "@astrojs/sitemap": "^3.7.2",
-    "@astrojs/tailwind": "^6.0.0",
+    "@astrojs/tailwind": "^6.0.2",
     "@fontsource-variable/fraunces": "^5.1.0",
     "@fontsource-variable/inter": "^5.1.0",
-    "astro": "^5.1.0",
+    "astro": "^6.3.3",
     "fuse.js": "^7.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -27,7 +27,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.4",
+    "@astrojs/check": "^0.9.9",
     "@types/node": "^20.17.12",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

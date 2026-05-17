@@ -1,4 +1,6 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 const bilingual = z.object({ fr: z.string(), en: z.string() });
 const bilingualArray = z.object({ fr: z.array(z.string()), en: z.array(z.string()) });
@@ -152,7 +154,7 @@ const afflictionKey = z.enum([
 export type AfflictionKey = z.infer<typeof afflictionKey>;
 
 const herbs = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '*.json', base: './src/content/herbs' }),
   schema: z.object({
     name: bilingual,
     scientific: z.string(),
@@ -176,7 +178,7 @@ const herbs = defineCollection({
 });
 
 const needs = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '*.json', base: './src/content/needs' }),
   schema: z.object({
     name: bilingual,
     short: bilingual,
