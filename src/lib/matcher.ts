@@ -20,12 +20,17 @@ export function toHerbLite(entry: HerbEntry): HerbLite {
   };
 }
 
-export function scoreHerb(herb: HerbLite, needKeys: readonly string[]): number {
+type ScoreableHerb = {
+  benefits: readonly string[];
+  primaryBenefits: readonly string[];
+};
+
+export function scoreHerb(herb: ScoreableHerb, needKeys: readonly string[]): number {
   let score = 0;
   for (const key of needKeys) {
-    if (herb.primaryBenefits.includes(key as HerbLite['primaryBenefits'][number])) {
+    if (herb.primaryBenefits.includes(key)) {
       score += 2;
-    } else if (herb.benefits.includes(key as HerbLite['benefits'][number])) {
+    } else if (herb.benefits.includes(key)) {
       score += 1;
     }
   }

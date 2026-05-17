@@ -85,7 +85,7 @@ const websiteJsonLd = isHome
       <script type="application/ld+json" set:html={JSON.stringify(obj)} />
     ))}
     <script is:inline src={`${base}theme-init.js`}></script>
-    <script src={`${base}sw-register.js`} data-base={base}></script>
+    <script is:inline defer src={`${base}sw-register.js`} data-base={base}></script>
     {/* Fonts are loaded via @fontsource-variable in globals.css; the emitted woff2 filenames
        are hashed by Vite, so manual <link rel="preload"> is brittle. Follow-up: Astro's
        experimental font helper (astro:assets / experimental.fonts). */}

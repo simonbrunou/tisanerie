@@ -118,18 +118,15 @@ const afflictionKey = z.enum([
   // urinary & kidneys
   'uti',
   'water-retention',
-  'kidney-sluggishness',
   // circulatory & heart
   'high-blood-pressure',
   'palpitations',
   'poor-circulation',
   // musculoskeletal
-  'muscle-cramps',
   'muscle-tension',
   'joint-pain',
   'arthritis',
   'rheumatism',
-  'back-pain',
   // skin
   'eczema',
   'acne',

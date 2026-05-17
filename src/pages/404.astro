@@ -1,16 +1,20 @@
 ---
 import Base from '~/layouts/Base.astro';
 ---
-<Base lang="fr" title="Page introuvable · 404">
+<Base lang="fr" title="Page introuvable · Not found · 404">
+  <script is:inline>
+    if (location.pathname.startsWith('/en/')) {
+      document.documentElement.lang = 'en';
+    }
+  </script>
   <section class="mx-auto max-w-3xl px-4 pt-24 pb-20 text-center sm:px-6">
     <p class="font-display text-8xl">🫖</p>
     <h1 class="mt-4 font-display text-5xl">404</h1>
-    <p class="prose-muted mt-4">
-      Cette tisane est introuvable. / This infusion is nowhere to be found.
-    </p>
-    <div class="mt-8 flex justify-center gap-3">
-      <a class="btn-primary" href="/fr/">Accueil</a>
-      <a class="btn-ghost border border-sage-200" href="/en/">Home</a>
+    <p class="prose-muted mt-6" lang="fr">Cette tisane est introuvable.</p>
+    <p class="prose-muted mt-2" lang="en">This infusion is nowhere to be found.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a class="btn-primary" href="/fr/" hreflang="fr">Accueil</a>
+      <a class="btn-ghost border border-sage-200" href="/en/" hreflang="en">Home</a>
     </div>
   </section>
 </Base>

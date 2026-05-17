@@ -80,17 +80,17 @@ export default function NeedPicker({
           {selected.length}
           {selected.length > 0 && ' ✓'}
         </span>
-        <a
-          href={target ?? '#'}
-          aria-disabled={!target}
-          onClick={(e) => {
-            if (!target) e.preventDefault();
-          }}
-          className={`btn-primary ${!target ? 'pointer-events-none opacity-40' : ''}`}
-        >
-          {label}
-          <span aria-hidden="true">→</span>
-        </a>
+        {target ? (
+          <a href={target} className="btn-primary">
+            {label}
+            <span aria-hidden="true">→</span>
+          </a>
+        ) : (
+          <button type="button" disabled className="btn-primary opacity-40">
+            {label}
+            <span aria-hidden="true">→</span>
+          </button>
+        )}
       </div>
     </div>
   );

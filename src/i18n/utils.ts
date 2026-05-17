@@ -15,7 +15,3 @@ export function t(lang: Locale, key: TKey, params?: Record<string, string | numb
   if (!params) return raw;
   return raw.replace(/\{(\w+)\}/g, (_, k) => String(params[k] ?? ''));
 }
-
-export function interpolate(template: string, params: Record<string, string | number>): string {
-  return template.replace(/\{(\w+)\}/g, (_, k) => String(params[k] ?? ''));
-}
