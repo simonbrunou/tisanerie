@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { scoreHerb } from '~/lib/matcher';
 
 type HerbItem = {
   id: string;
@@ -31,15 +32,6 @@ interface Props {
   };
 }
 
-function scoreHerb(herb: HerbItem, keys: string[]): { score: number } {
-  let score = 0;
-  for (const k of keys) {
-    if (herb.primaryBenefits.includes(k)) score += 2;
-    else if (herb.benefits.includes(k)) score += 1;
-  }
-  return { score };
-}
-
 function readNeedsFromUrl(): string[] {
   const params = new URLSearchParams(window.location.search);
   return params.getAll('need');
@@ -68,7 +60,7 @@ export default function SearchResults({ herbs, needs, labels }: Props) {
   const ranked = useMemo(() => {
     if (selectedKeys.length === 0) return [];
     return herbs
-      .map((h) => ({ herb: h, ...scoreHerb(h, selectedKeys) }))
+      .map((herb) => ({ herb, score: scoreHerb(herb, selectedKeys) }))
       .filter((x) => x.score > 0)
       .sort((a, b) => b.score - a.score || b.herb.popularity - a.herb.popularity)
       .slice(0, 12);

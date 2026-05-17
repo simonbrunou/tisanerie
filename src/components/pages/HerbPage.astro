@@ -5,6 +5,7 @@ import BrewingCard from '~/components/BrewingCard.astro';
 import SafetyNote from '~/components/SafetyNote.astro';
 import BrewingTimer from '~/components/BrewingTimer.tsx';
 import Breadcrumbs from '~/components/Breadcrumbs.astro';
+import TraditionalNote from '~/components/TraditionalNote.astro';
 import { localizedPath, type Locale } from '~/i18n/routes';
 import { t, type TKey } from '~/i18n/utils';
 import type { HerbEntry } from '~/lib/types';
@@ -35,8 +36,6 @@ const timerLabels = {
 
 const properties = herb.data.properties ?? [];
 const afflictions = herb.data.afflictions ?? [];
-const aboutHref = localizedPath(lang, 'about');
-const traditionalNote = t(lang, 'herb.traditional.note', { aboutHref });
 
 const crumbs = buildHerbCrumbs(lang, herb);
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
@@ -100,7 +99,7 @@ const jsonLd = [breadcrumbList(crumbs, Astro.site!), herbThing(herb, lang, canon
   {properties.length > 0 && (
     <section class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
       <h2 class="font-display text-2xl">{t(lang, 'herb.properties')}</h2>
-      <p class="prose-muted mt-2 text-sm italic" set:html={traditionalNote} />
+      <TraditionalNote lang={lang} />
       <ul class="mt-4 flex flex-wrap gap-2">
         {properties.map((key) => (
           <li>
@@ -116,7 +115,7 @@ const jsonLd = [breadcrumbList(crumbs, Astro.site!), herbThing(herb, lang, canon
   {afflictions.length > 0 && (
     <section class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
       <h2 class="font-display text-2xl">{t(lang, 'herb.afflictions')}</h2>
-      <p class="prose-muted mt-2 text-sm italic" set:html={traditionalNote} />
+      <TraditionalNote lang={lang} />
       <ul class="mt-4 flex flex-wrap gap-2">
         {afflictions.map((key) => (
           <li>

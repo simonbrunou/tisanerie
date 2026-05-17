@@ -95,17 +95,17 @@ export default function SearchBox({ items, placeholder }: Props) {
       <label className="sr-only" htmlFor={inputId}>
         {placeholder}
       </label>
-      <div
-        className="flex items-center gap-2 rounded-full border border-sage-200 bg-white/80 px-4 py-2.5 shadow-card transition focus-within:border-sage-500 dark:border-sage-800/60 dark:bg-sage-900/40"
-        role="combobox"
-        aria-haspopup="listbox"
-        aria-expanded={expanded}
-        aria-owns={listboxId}
-      >
+      <div className="flex items-center gap-2 rounded-full border border-sage-200 bg-white/80 px-4 py-2.5 shadow-card transition focus-within:border-sage-500 dark:border-sage-800/60 dark:bg-sage-900/40">
         <span aria-hidden="true" className="text-ink-muted">🔍</span>
         <input
           id={inputId}
           type="search"
+          role="combobox"
+          aria-haspopup="listbox"
+          aria-expanded={expanded}
+          aria-controls={listboxId}
+          aria-autocomplete="list"
+          aria-activedescendant={activeDescendant}
           value={query}
           onFocus={() => setOpen(true)}
           onKeyDown={handleKeyDown}
@@ -117,8 +117,6 @@ export default function SearchBox({ items, placeholder }: Props) {
           placeholder={placeholder}
           className="w-full bg-transparent text-sm focus:outline-none"
           autoComplete="off"
-          aria-autocomplete="list"
-          aria-activedescendant={activeDescendant}
         />
       </div>
       {expanded && (

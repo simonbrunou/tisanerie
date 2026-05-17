@@ -1,0 +1,16 @@
+---
+import { localizedPath, type Locale } from '~/i18n/routes';
+import { t } from '~/i18n/utils';
+
+interface Props {
+  lang: Locale;
+  class?: string;
+}
+
+const { lang, class: className = 'prose-muted mt-2 text-sm italic' } = Astro.props;
+const note = t(lang, 'herb.traditional.note');
+const [before, after = ''] = note.split('{link}');
+---
+<p class={className}>
+  {before}<a href={localizedPath(lang, 'about')} class="link">{t(lang, 'herb.traditional.linkText')}</a>{after}
+</p>

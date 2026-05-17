@@ -49,7 +49,7 @@ const isAbout = currentPath.startsWith(aboutHref);
         <span>{t(lang, 'language.switch')}</span>
       </a>
       <ThemeToggle
-        client:load
+        client:idle
         labels={{
           light: t(lang, 'theme.light'),
           dark: t(lang, 'theme.dark'),

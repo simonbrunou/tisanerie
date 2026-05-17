@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '~/layouts/Base.astro';
-import NeedCard from '~/components/NeedCard.astro';
 import HerbCard from '~/components/HerbCard.astro';
 import NeedPicker from '~/components/NeedPicker.tsx';
 import SearchBox from '~/components/SearchBox.tsx';
@@ -64,7 +63,7 @@ const searchItems = buildSearchItems(lang, herbs, needs);
           {t(lang, 'home.hero.subtitle')}
         </p>
         <div class="max-w-md">
-          <SearchBox client:load items={searchItems} placeholder={t(lang, 'home.search.placeholder')} />
+          <SearchBox client:idle items={searchItems} placeholder={t(lang, 'home.search.placeholder')} />
         </div>
         <div>
           <a class="btn-ghost px-4 underline decoration-sage-300 underline-offset-4" href={localizedPath(lang, 'discover')}>
@@ -96,7 +95,7 @@ const searchItems = buildSearchItems(lang, herbs, needs);
       <p class="prose-muted max-w-2xl">{t(lang, 'home.needs.subtitle')}</p>
     </div>
     <NeedPicker
-      client:load
+      client:visible
       lang={lang}
       needs={needOptions}
       searchHref={searchHref}

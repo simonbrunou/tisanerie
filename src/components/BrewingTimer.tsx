@@ -61,7 +61,10 @@ export default function BrewingTimer({ minutes, labels }: Props) {
       });
     }, 1000);
     return () => {
-      if (intervalRef.current) window.clearInterval(intervalRef.current);
+      if (intervalRef.current !== null) {
+        window.clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
     };
   }, [running]);
 
@@ -80,6 +83,7 @@ export default function BrewingTimer({ minutes, labels }: Props) {
     <div className="card flex flex-col items-center gap-4 p-6">
       <div className="relative">
         <svg width="180" height="180" viewBox="0 0 180 180" role="img" aria-label={labels.ariaLabel}>
+          <title>{labels.ariaLabel}</title>
           <circle
             cx="90"
             cy="90"
