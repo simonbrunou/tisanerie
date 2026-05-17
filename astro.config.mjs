@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://tisanerie.app',
@@ -10,9 +10,11 @@ export default defineConfig({
     defaultStrategy: 'viewport',
     prefetchAll: false,
   },
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [
     react(),
-    tailwind({ applyBaseStyles: false }),
     sitemap({
       i18n: {
         defaultLocale: 'fr',
