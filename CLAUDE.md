@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-Node version is pinned in `.nvmrc` (20).
+Node version is pinned in `.nvmrc` (22). Astro 6 requires Node ≥ 22.12.
 
 - `npm install` — install dependencies
 - `npm run dev` — Astro dev server at `http://localhost:4321/fr/`
