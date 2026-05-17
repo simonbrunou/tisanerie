@@ -16,7 +16,7 @@ Node version is pinned in `.nvmrc` (24, current LTS). Astro 6 requires Node ≥ 
 - Run a single test file: `npx vitest run src/lib/matcher.test.ts`
 - Run tests by name: `npx vitest run -t "scoreHerb"`
 
-CI (`.github/workflows/ci.yml`) runs `npm ci` → typecheck → test → build on every push / PR. Production deploys happen via Cloudflare Pages' GitHub integration on push to `main`; there is no local deploy command.
+CI (`.github/workflows/ci.yml`) runs `npm ci` → typecheck → test → build on every push / PR. Production deploys happen on Coolify (self-hosted) via its GitHub integration on push to `main`; Coolify rebuilds the multi-stage `Dockerfile` (Node 24 → Caddy 2) and serves the static output through Caddy using `Caddyfile`. Public traffic reaches the container through a Cloudflare Tunnel (`cloudflared`) pointed at the service on the Docker network — TLS terminates at Cloudflare's edge, the origin speaks plain HTTP on port 80, and no public port is exposed on the host. There is no local deploy command — `docker build -t tisanerie .` reproduces the production image locally.
 
 ## Architecture
 
@@ -32,7 +32,7 @@ Pages are `.astro`; interactive components (`NeedPicker.tsx`, `SearchBox.tsx` / 
 - `trailingSlash: 'always'` and `build.format: 'directory'` are set; keep internal links ending in `/`.
 
 ### Page-pair pattern
-Each user-facing page exists as two thin route files (`src/pages/fr/<segment>/[slug].astro` and `src/pages/en/<segment>/[slug].astro`) that both delegate to a shared body component in `src/components/pages/*Page.astro` (`HerbPage`, `NeedPage`, `TaxonPage`, `DiscoverPage`, `SearchPage`, `AboutPage`). The route files typically contain nothing more than `getStaticPaths` and `<SharedPage lang="fr|en" … />`. `src/pages/index.astro` is a root redirect that picks FR/EN from `navigator.language`; `public/_redirects` provides the server-side fallback (`/` → `/fr/`).
+Each user-facing page exists as two thin route files (`src/pages/fr/<segment>/[slug].astro` and `src/pages/en/<segment>/[slug].astro`) that both delegate to a shared body component in `src/components/pages/*Page.astro` (`HerbPage`, `NeedPage`, `TaxonPage`, `DiscoverPage`, `SearchPage`, `AboutPage`). The route files typically contain nothing more than `getStaticPaths` and `<SharedPage lang="fr|en" … />`. `src/pages/index.astro` is a meta-refresh + `navigator.language` redirect that picks FR/EN; it carries its own OG/Twitter tags so crawlers that don't follow the redirect still get a rich preview.
 
 ### Content collections are the data model
 `src/content/config.ts` defines two Zod-validated collections:
@@ -61,7 +61,7 @@ Adding a herb or need is just dropping a JSON file; the build regenerates all pa
 - `src/layouts/Base.astro` handles canonical URLs, `hreflang` alternates (via `swapLocaleInPath`), OG/Twitter tags, and the optional Cloudflare Web Analytics beacon (gated on `PUBLIC_CF_ANALYTICS_TOKEN` + `PROD`).
 - `src/lib/jsonld.ts` builds breadcrumb + entity schema.org objects; pass them to `Base.astro` via the `jsonLd` prop.
 - Dark mode: Tailwind `darkMode: 'class'`. `public/theme-init.js` sets the class pre-paint and is re-run across Astro view transitions via the `data-astro-rerun` attribute in `Base.astro` — don't remove that attribute.
-- Service worker: `public/sw.js` + `public/sw-register.js` provide offline fallback to `public/offline.html`. `public/_headers` serves the SW with `Cache-Control: max-age=0` and hashed `/_astro/*` assets as immutable for a year.
+- Service worker: `public/sw.js` + `public/sw-register.js` provide offline fallback to `public/offline.html`. `Caddyfile` serves the SW with `Cache-Control: max-age=0, must-revalidate`, hashed `/_astro/*` assets as immutable for a year, and emits the security headers (CSP, HSTS, COOP/CORP, etc.) at the edge.
 
 ### Path alias & tests
 - `~/` resolves to `src/` in both Astro (`tsconfig.json` `paths`) and Vitest (`vitest.config.ts`). Prefer `~/lib/…` over relative imports.

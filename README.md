@@ -2,7 +2,7 @@
 
 A small, beautiful web app that recommends herbal infusions (tisanes) based on
 what you need — stress, sleep, digestion, cold, focus, and more. Bilingual
-(French / English), mobile-friendly, and hosted on Cloudflare Pages.
+(French / English), mobile-friendly, and self-hosted on Coolify.
 
 Live at **https://tisanerie.app**.
 
@@ -28,21 +28,43 @@ npm run preview
 
 ## Deploying
 
-### Cloudflare Pages
+### Coolify (self-hosted)
 
-The production site is deployed via Cloudflare Pages, connected to the
-GitHub repository; every push to `main` triggers a build.
+The repository ships a multi-stage `Dockerfile` (Node 24 builder → Caddy 2
+runner) and a `Caddyfile` that encodes the locale-prefix redirects, security
+headers, and long-cache rules for hashed assets.
 
-- Build command: `npm run build`
-- Build output directory: `dist`
-- Node version: pinned via `.nvmrc`
-- Environment variables:
-  - `PUBLIC_CF_ANALYTICS_TOKEN` — Cloudflare Web Analytics beacon token
-    (optional; if unset the beacon is omitted).
+In Coolify, create a new application from the GitHub repository:
 
-`public/_redirects` handles the language fallback (`/` → `/fr/`) and
-`public/_headers` sets long-lived caching for hashed assets plus baseline
-security headers.
+- Build pack: **Dockerfile**
+- Port: **80**
+- Health-check path: `/fr/`
+- Environment variables (optional):
+  - `PUBLIC_CF_ANALYTICS_TOKEN` — Cloudflare Web Analytics beacon token.
+    Leave unset to omit the beacon entirely. The CSP in `Caddyfile` already
+    whitelists `static.cloudflareinsights.com`, so toggling the token does
+    not require a config change.
+
+Public traffic reaches the container via a **Cloudflare Tunnel**, not a
+publicly exposed port. `cloudflared` runs on the host (or as a sibling
+container) and connects outbound to Cloudflare's edge; the tunnel's public
+hostname is pointed at `http://<coolify-service-host>:80`. TLS therefore
+terminates at Cloudflare's edge, the origin speaks plain HTTP, and the
+container's port 80 only needs to be reachable from `cloudflared` on the
+Docker network — it does **not** need to be exposed on the public internet.
+
+Caddy still emits `Strict-Transport-Security`; Cloudflare passes it through
+unchanged. If you want client IPs in Caddy's access log to reflect the real
+visitor (via `CF-Connecting-IP`) rather than the `cloudflared` peer, add a
+`servers { trusted_proxies static <cloudflared-ip>/32 }` block to the
+`Caddyfile`.
+
+To build the image locally:
+
+```bash
+docker build -t tisanerie .
+docker run --rm -p 8080:80 tisanerie  # http://localhost:8080/fr/
+```
 
 ## Project layout
 
