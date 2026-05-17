@@ -1,9 +1,122 @@
-@import '@fontsource-variable/fraunces/index.css';
-@import '@fontsource-variable/inter/index.css';
+@import '@fontsource-variable/fraunces/index.css' layer(base);
+@import '@fontsource-variable/inter/index.css' layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-paper: #faf6ef;
+  --color-paper-dark: #1a1d19;
+
+  --color-ink: #232a24;
+  --color-ink-muted: #5a6659;
+  --color-ink-dark: #e7ebe4;
+
+  --color-sage-50: #f3f6f1;
+  --color-sage-100: #e3ebdf;
+  --color-sage-200: #c7d7bf;
+  --color-sage-300: #a5bd98;
+  --color-sage-400: #81a070;
+  --color-sage-500: #638555;
+  --color-sage-600: #4d6b42;
+  --color-sage-700: #3e5636;
+  --color-sage-800: #34462d;
+  --color-sage-900: #2c3a27;
+
+  --color-amber-50: #fdf6e6;
+  --color-amber-100: #fae7bf;
+  --color-amber-200: #f5cf80;
+  --color-amber-300: #edb449;
+  --color-amber-400: #d79a25;
+  --color-amber-500: #b87d18;
+  --color-amber-600: #966115;
+  --color-amber-700: #764b16;
+
+  --font-display: 'Fraunces Variable', Fraunces, Georgia, serif;
+  --font-sans: 'Inter Variable', Inter, system-ui, sans-serif;
+
+  --shadow-soft:
+    0 10px 30px -12px rgba(44, 58, 39, 0.18),
+    0 2px 6px -2px rgba(44, 58, 39, 0.08);
+  --shadow-card: 0 2px 12px -4px rgba(44, 58, 39, 0.12);
+
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.75rem;
+
+  --background-image-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.13 0 0 0 0 0.17 0 0 0 0 0.14 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility card {
+  @apply rounded-3xl bg-white/70 backdrop-blur-xs shadow-card border border-sage-100/70;
+  html.dark & {
+    @apply bg-sage-900/40 border-sage-800/60;
+  }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition active:scale-[0.98];
+}
+
+@utility btn-primary {
+  @apply btn bg-sage-700 text-paper hover:bg-sage-800 shadow-soft;
+  html.dark & {
+    @apply bg-sage-500 text-paper-dark hover:bg-sage-400;
+  }
+}
+
+@utility btn-ghost {
+  @apply btn bg-transparent text-ink hover:bg-sage-100;
+  html.dark & {
+    @apply text-ink-dark hover:bg-sage-800/40;
+  }
+}
+
+@utility chip {
+  @apply inline-flex items-center rounded-full border border-sage-200 bg-sage-50 px-2.5 py-0.5 text-xs text-sage-800;
+  html.dark & {
+    @apply bg-sage-900/40 border-sage-700 text-sage-100;
+  }
+}
+
+@utility chip-amber {
+  @apply inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-2.5 py-0.5 text-xs text-amber-700;
+  html.dark & {
+    @apply bg-amber-700/30 border-amber-600/60 text-amber-100;
+  }
+}
+
+@utility prose-muted {
+  @apply text-ink-muted leading-relaxed;
+  html.dark & {
+    @apply text-sage-200/70;
+  }
+}
+
+@utility link {
+  @apply text-sage-700 underline decoration-sage-300 underline-offset-4 hover:decoration-sage-500;
+  html.dark & {
+    @apply text-sage-200 decoration-sage-500;
+  }
+}
 
 @layer base {
   :root {
@@ -13,15 +126,15 @@
     color-scheme: dark;
   }
   html {
-    background-color: theme('colors.paper.DEFAULT');
-    color: theme('colors.ink.DEFAULT');
-    font-family: theme('fontFamily.sans');
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
   html.dark {
-    background-color: theme('colors.paper.dark');
-    color: theme('colors.ink.dark');
+    background-color: var(--color-paper-dark);
+    color: var(--color-ink-dark);
   }
   body {
     background-image:
@@ -36,66 +149,18 @@
       radial-gradient(at 85% 90%, rgba(99, 133, 85, 0.14) 0, transparent 55%);
   }
   ::selection {
-    background-color: theme('colors.sage.200');
-    color: theme('colors.sage.900');
+    background-color: var(--color-sage-200);
+    color: var(--color-sage-900);
   }
   h1,
   h2,
   h3,
   h4 {
-    font-family: theme('fontFamily.display');
+    font-family: var(--font-display);
     font-weight: 500;
     letter-spacing: -0.01em;
   }
   h1 {
     font-variation-settings: 'opsz' 100, 'SOFT' 30;
-  }
-}
-
-@layer components {
-  .card {
-    @apply rounded-3xl bg-white/70 backdrop-blur-sm shadow-card border border-sage-100/70;
-  }
-  html.dark .card {
-    @apply bg-sage-900/40 border-sage-800/60;
-  }
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition active:scale-[0.98];
-  }
-  .btn-primary {
-    @apply btn bg-sage-700 text-paper hover:bg-sage-800 shadow-soft;
-  }
-  html.dark .btn-primary {
-    @apply bg-sage-500 text-paper-dark hover:bg-sage-400;
-  }
-  .btn-ghost {
-    @apply btn bg-transparent text-ink hover:bg-sage-100;
-  }
-  html.dark .btn-ghost {
-    @apply text-ink-dark hover:bg-sage-800/40;
-  }
-  .chip {
-    @apply inline-flex items-center rounded-full border border-sage-200 bg-sage-50 px-2.5 py-0.5 text-xs text-sage-800;
-  }
-  html.dark .chip {
-    @apply bg-sage-900/40 border-sage-700 text-sage-100;
-  }
-  .chip-amber {
-    @apply inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-2.5 py-0.5 text-xs text-amber-700;
-  }
-  html.dark .chip-amber {
-    @apply bg-amber-700/30 border-amber-600/60 text-amber-100;
-  }
-  .prose-muted {
-    @apply text-ink-muted leading-relaxed;
-  }
-  html.dark .prose-muted {
-    @apply text-sage-200/70;
-  }
-  .link {
-    @apply text-sage-700 underline decoration-sage-300 underline-offset-4 hover:decoration-sage-500;
-  }
-  html.dark .link {
-    @apply text-sage-200 decoration-sage-500;
   }
 }
