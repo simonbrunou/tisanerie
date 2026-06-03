@@ -1,0 +1,24 @@
+{
+  "name": { "fr": "Angélique", "en": "Angelica" },
+  "scientific": "Angelica archangelica",
+  "description": {
+    "fr": "Racine chaude et balsamique des jardins de monastère, elle relance une digestion paresseuse et réchauffe les extrémités froides.",
+    "en": "A warm, balsamic root from monastery gardens that restarts a sluggish digestion and warms cold extremities."
+  },
+  "benefits": ["digestion", "cold"],
+  "primaryBenefits": ["digestion"],
+  "properties": ["carminative", "diaphoretic", "expectorant", "bitter", "stomachic", "warming", "antispasmodic"],
+  "afflictions": ["indigestion", "flatulence", "bloating", "cold", "cough", "poor-circulation", "loss-of-appetite"],
+  "flavor": {
+    "fr": ["balsamique", "céleri", "doux-amer"],
+    "en": ["balsamic", "celery", "bittersweet"]
+  },
+  "part": "roots",
+  "brewing": { "temperatureC": 100, "timeMin": 10, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Éviter pendant la grossesse ; peut accroître la photosensibilité.",
+    "en": "Avoid during pregnancy; may increase photosensitivity."
+  },
+  "emoji": "🌿",
+  "popularity": 30
+}

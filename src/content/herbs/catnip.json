@@ -1,0 +1,24 @@
+{
+  "name": { "fr": "Cataire", "en": "Catnip" },
+  "scientific": "Nepeta cataria",
+  "description": {
+    "fr": "Cousine discrète de la menthe, elle berce les enfants agités et dénoue l'estomac noué d'une soirée trop pleine.",
+    "en": "A quiet cousin of mint that lulls restless children and unties the stomach knotted by an overfull evening."
+  },
+  "benefits": ["sleep", "digestion", "stress"],
+  "primaryBenefits": ["sleep"],
+  "properties": ["nervine", "carminative", "antispasmodic", "diaphoretic", "sedative", "calmative", "aromatic"],
+  "afflictions": ["insomnia", "restlessness", "irritability", "indigestion", "flatulence", "stomach-cramps", "fever", "headache"],
+  "flavor": {
+    "fr": ["mentholé", "herbacé", "doux"],
+    "en": ["minty", "grassy", "mild"]
+  },
+  "part": "aerial",
+  "brewing": { "temperatureC": 90, "timeMin": 7, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Éviter pendant la grossesse.",
+    "en": "Avoid during pregnancy."
+  },
+  "emoji": "🌿",
+  "popularity": 45
+}

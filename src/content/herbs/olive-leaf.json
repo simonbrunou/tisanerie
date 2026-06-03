@@ -1,0 +1,24 @@
+{
+  "name": { "fr": "Feuille d'olivier", "en": "Olive leaf" },
+  "scientific": "Olea europaea",
+  "description": {
+    "fr": "Feuille argentée du sud, elle assouplit la tension et arme les défenses au creux de l'hiver.",
+    "en": "A silvery southern leaf that eases tension and arms the defences in the depths of winter."
+  },
+  "benefits": ["immunity", "detox"],
+  "primaryBenefits": ["immunity"],
+  "properties": ["hypotensive", "antioxidant", "antimicrobial", "antiviral", "anti-inflammatory"],
+  "afflictions": ["high-blood-pressure", "low-immunity", "high-cholesterol", "recurrent-infections", "flu"],
+  "flavor": {
+    "fr": ["amer", "herbacé", "sec"],
+    "en": ["bitter", "herbal", "dry"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Peut abaisser la tension ; prudence avec les antihypertenseurs.",
+    "en": "May lower blood pressure; use caution with hypotensive medication."
+  },
+  "emoji": "🫒",
+  "popularity": 45
+}

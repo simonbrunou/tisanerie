@@ -1,0 +1,24 @@
+{
+  "name": { "fr": "Houblon", "en": "Hops" },
+  "scientific": "Humulus lupulus",
+  "description": {
+    "fr": "Les cônes résineux qui parfument la bière savent aussi alourdir les paupières et calmer un esprit qui tourne en rond.",
+    "en": "The resinous cones that flavour beer also know how to weigh down the eyelids and quiet a circling mind."
+  },
+  "benefits": ["sleep", "stress"],
+  "primaryBenefits": ["sleep"],
+  "properties": ["sedative", "bitter", "nervine", "anxiolytic", "digestive", "antispasmodic"],
+  "afflictions": ["insomnia", "restlessness", "anxiety", "nervous-tension", "indigestion", "loss-of-appetite"],
+  "flavor": {
+    "fr": ["amer", "résineux", "herbacé"],
+    "en": ["bitter", "resinous", "herbal"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 95, "timeMin": 6, "gramsPerCup": 1.5 },
+  "warnings": {
+    "fr": "À éviter en cas de dépression ; prudence avec les sédatifs.",
+    "en": "Avoid with depression; use caution alongside sedatives."
+  },
+  "emoji": "🌿",
+  "popularity": 45
+}

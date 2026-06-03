@@ -1,0 +1,24 @@
+{
+  "name": { "fr": "Verge d'or", "en": "Goldenrod" },
+  "scientific": "Solidago virgaurea",
+  "description": {
+    "fr": "Panache jaune de fin d'été, elle rince les reins en douceur et calme les nez qui coulent à la rentrée.",
+    "en": "A late-summer plume of yellow that gently flushes the kidneys and calms the runny noses of early autumn."
+  },
+  "benefits": ["detox", "immunity", "cold"],
+  "primaryBenefits": ["detox"],
+  "properties": ["diuretic", "anti-inflammatory", "antimicrobial", "astringent", "expectorant"],
+  "afflictions": ["uti", "water-retention", "seasonal-allergies", "sinus-congestion", "sore-throat"],
+  "flavor": {
+    "fr": ["herbacé", "miellé", "astringent"],
+    "en": ["herbal", "honeyed", "astringent"]
+  },
+  "part": "aerial",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Boire suffisamment d'eau ; prudence en cas d'allergie aux Astéracées.",
+    "en": "Drink plenty of water; use caution with Asteraceae allergies."
+  },
+  "emoji": "🌼",
+  "popularity": 35
+}

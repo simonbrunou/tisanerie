@@ -1,0 +1,24 @@
+{
+  "name": { "fr": "Fenugrec", "en": "Fenugreek" },
+  "scientific": "Trigonella foenum-graecum",
+  "description": {
+    "fr": "Petite graine dorée au parfum d'érable et de céleri, elle ouvre l'appétit et soutient la montée de lait.",
+    "en": "A small golden seed smelling of maple and celery that opens the appetite and supports milk supply."
+  },
+  "benefits": ["digestion", "energy"],
+  "primaryBenefits": ["digestion"],
+  "properties": ["galactagogue", "demulcent", "expectorant", "tonic", "bitter", "anti-inflammatory"],
+  "afflictions": ["loss-of-appetite", "lactation-support", "cough", "sore-throat", "high-cholesterol", "indigestion"],
+  "flavor": {
+    "fr": ["érable", "amer", "noisette"],
+    "en": ["maple", "bitter", "nutty"]
+  },
+  "part": "seeds",
+  "brewing": { "temperatureC": 100, "timeMin": 10, "gramsPerCup": 3 },
+  "warnings": {
+    "fr": "Éviter pendant la grossesse ; prudence avec les traitements du diabète.",
+    "en": "Avoid during pregnancy; use caution with diabetes medication."
+  },
+  "emoji": "🌱",
+  "popularity": 50
+}

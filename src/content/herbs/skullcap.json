@@ -1,0 +1,24 @@
+{
+  "name": { "fr": "Scutellaire", "en": "Skullcap" },
+  "scientific": "Scutellaria lateriflora",
+  "description": {
+    "fr": "Plante nervine par excellence, elle relâche les épaules nouées et borde les nuits que l'anxiété tient éveillées.",
+    "en": "A nervine par excellence, it loosens knotted shoulders and tucks in the nights that anxiety keeps awake."
+  },
+  "benefits": ["stress", "sleep", "headache"],
+  "primaryBenefits": ["stress"],
+  "properties": ["nervine", "sedative", "anxiolytic", "antispasmodic", "calmative"],
+  "afflictions": ["anxiety", "nervous-tension", "insomnia", "restlessness", "irritability", "headache"],
+  "flavor": {
+    "fr": ["herbacé", "amer", "vert"],
+    "en": ["herbal", "bitter", "green"]
+  },
+  "part": "aerial",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Éviter pendant la grossesse ; prudence avec les sédatifs.",
+    "en": "Avoid during pregnancy; use caution alongside sedatives."
+  },
+  "emoji": "🌿",
+  "popularity": 35
+}
