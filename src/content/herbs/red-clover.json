@@ -1,0 +1,24 @@
+{
+  "name": { "fr": "Trèfle rouge", "en": "Red clover" },
+  "scientific": "Trifolium pratense",
+  "description": {
+    "fr": "Fleur des prés au goût de foin sucré, elle accompagne les cures dépuratives et adoucit les peaux contrariées.",
+    "en": "A meadow flower tasting of sweet hay that supports cleansing cures and softens troubled skin."
+  },
+  "benefits": ["detox", "immunity"],
+  "primaryBenefits": ["detox"],
+  "properties": ["depurative", "expectorant", "antispasmodic", "antioxidant"],
+  "afflictions": ["eczema", "acne", "cough", "menopausal-symptoms", "detox-needs"],
+  "flavor": {
+    "fr": ["foin", "sucré", "floral"],
+    "en": ["hay", "sweet", "floral"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Prudence avec les anticoagulants et les traitements hormonaux.",
+    "en": "Use caution with blood thinners and hormone therapies."
+  },
+  "emoji": "🌸",
+  "popularity": 40
+}

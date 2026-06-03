@@ -1,0 +1,24 @@
+{
+  "name": { "fr": "Prêle des champs", "en": "Horsetail" },
+  "scientific": "Equisetum arvense",
+  "description": {
+    "fr": "Tige antique riche en silice, elle draine l'eau retenue et reminéralise les articulations fatiguées.",
+    "en": "An ancient silica-rich stem that drains held water and remineralises tired joints."
+  },
+  "benefits": ["detox"],
+  "primaryBenefits": ["detox"],
+  "properties": ["diuretic", "astringent", "vulnerary", "antioxidant"],
+  "afflictions": ["water-retention", "uti", "minor-wounds", "joint-pain", "arthritis"],
+  "flavor": {
+    "fr": ["minéral", "terreux", "vert"],
+    "en": ["mineral", "earthy", "green"]
+  },
+  "part": "aerial",
+  "brewing": { "temperatureC": 100, "timeMin": 10, "gramsPerCup": 2 },
+  "warnings": {
+    "fr": "Éviter un usage prolongé et pendant la grossesse.",
+    "en": "Avoid prolonged use and during pregnancy."
+  },
+  "emoji": "🌿",
+  "popularity": 35
+}

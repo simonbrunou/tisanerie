@@ -1,0 +1,24 @@
+{
+  "name": { "fr": "Safran", "en": "Saffron" },
+  "scientific": "Crocus sativus",
+  "description": {
+    "fr": "Quelques stigmates écarlates suffisent à dorer l'infusion et à réchauffer doucement l'humeur des jours gris.",
+    "en": "A few scarlet threads are enough to gild the infusion and gently lift the mood on grey days."
+  },
+  "benefits": ["mood"],
+  "primaryBenefits": ["mood"],
+  "properties": ["nervine", "antioxidant", "anti-inflammatory", "emmenagogue", "antispasmodic"],
+  "afflictions": ["mild-depression", "anxiety", "pms", "menstrual-cramps"],
+  "flavor": {
+    "fr": ["floral", "miellé", "foin"],
+    "en": ["floral", "honeyed", "hay"]
+  },
+  "part": "flowers",
+  "brewing": { "temperatureC": 90, "timeMin": 8, "gramsPerCup": 0.5 },
+  "warnings": {
+    "fr": "Éviter les fortes doses pendant la grossesse.",
+    "en": "Avoid high doses during pregnancy."
+  },
+  "emoji": "🌺",
+  "popularity": 40
+}

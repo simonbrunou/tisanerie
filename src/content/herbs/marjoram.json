@@ -1,0 +1,20 @@
+{
+  "name": { "fr": "Marjolaine", "en": "Marjoram" },
+  "scientific": "Origanum majorana",
+  "description": {
+    "fr": "Sœur douce de l'origan, elle dénoue les estomacs tendus et adoucit la fin de journée d'un parfum chaud et sucré.",
+    "en": "The gentle sister of oregano, it unties tense stomachs and softens the day's end with a warm, sweet scent."
+  },
+  "benefits": ["digestion", "sleep", "cold"],
+  "primaryBenefits": ["digestion"],
+  "properties": ["carminative", "antispasmodic", "antimicrobial", "nervine", "expectorant", "calmative", "aromatic"],
+  "afflictions": ["indigestion", "flatulence", "insomnia", "headache", "cough", "menstrual-cramps"],
+  "flavor": {
+    "fr": ["chaud", "sucré", "herbacé"],
+    "en": ["warm", "sweet", "herbal"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 95, "timeMin": 6, "gramsPerCup": 1.5 },
+  "emoji": "🌿",
+  "popularity": 40
+}

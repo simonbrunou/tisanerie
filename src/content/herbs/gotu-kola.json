@@ -1,0 +1,24 @@
+{
+  "name": { "fr": "Gotu kola", "en": "Gotu kola" },
+  "scientific": "Centella asiatica",
+  "description": {
+    "fr": "Petite feuille en éventail vénérée en Asie pour la clarté de l'esprit ; elle nourrit la concentration et apaise les nerfs fatigués.",
+    "en": "A small fan-shaped leaf prized across Asia for mental clarity; it feeds focus and soothes frayed nerves."
+  },
+  "benefits": ["focus", "mood", "stress"],
+  "primaryBenefits": ["focus"],
+  "properties": ["nervine", "adaptogen", "tonic", "vulnerary", "anti-inflammatory", "antioxidant", "calmative"],
+  "afflictions": ["poor-focus", "memory-loss", "mental-exhaustion", "anxiety", "nervous-tension", "minor-wounds", "eczema"],
+  "flavor": {
+    "fr": ["végétal", "amer", "frais"],
+    "en": ["vegetal", "bitter", "fresh"]
+  },
+  "part": "leaves",
+  "brewing": { "temperatureC": 95, "timeMin": 8, "gramsPerCup": 1.5 },
+  "warnings": {
+    "fr": "Éviter pendant la grossesse et en cas de troubles hépatiques.",
+    "en": "Avoid during pregnancy and with liver conditions."
+  },
+  "emoji": "🌿",
+  "popularity": 40
+}
