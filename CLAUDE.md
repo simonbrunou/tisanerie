@@ -20,7 +20,7 @@ CI (`.github/workflows/ci.yml`) runs `npm ci` → typecheck → test → build o
 
 ## Architecture
 
-### Astro 5 static site + React islands
+### Astro 6 static site + React islands
 Pages are `.astro`; interactive components (`NeedPicker.tsx`, `SearchBox.tsx` / `SearchResults.tsx`, `BrewingTimer.tsx`, `ThemeToggle.tsx`) are React, hydrated with `client:load`. Output is fully static — no SSR.
 
 ### Bilingual routing (FR default, EN second)
@@ -35,7 +35,7 @@ Pages are `.astro`; interactive components (`NeedPicker.tsx`, `SearchBox.tsx` / 
 Each user-facing page exists as two thin route files (`src/pages/fr/<segment>/[slug].astro` and `src/pages/en/<segment>/[slug].astro`) that both delegate to a shared body component in `src/components/pages/*Page.astro` (`HerbPage`, `NeedPage`, `TaxonPage`, `DiscoverPage`, `SearchPage`, `AboutPage`). The route files typically contain nothing more than `getStaticPaths` and `<SharedPage lang="fr|en" … />`. `src/pages/index.astro` is a meta-refresh + `navigator.language` redirect that picks FR/EN; it carries its own OG/Twitter tags so crawlers that don't follow the redirect still get a rich preview.
 
 ### Content collections are the data model
-`src/content/config.ts` defines two Zod-validated collections:
+`src/content.config.ts` defines two Zod-validated collections:
 
 - **`herbs`** — one JSON per plant in `src/content/herbs/*.json`. Bilingual fields `{ fr, en }`, brewing params, plus three taxonomy arrays:
   - `benefits` — needs it helps (required, non-empty)
@@ -44,7 +44,7 @@ Each user-facing page exists as two thin route files (`src/pages/fr/<segment>/[s
   - `afflictions` — symptoms (`insomnia`, `bloating`, …)
 - **`needs`** — one JSON per need in `src/content/needs/*.json`. Each has exactly one `benefit` key plus optional `blends`.
 
-The allowed keys for `benefits`, `properties`, and `afflictions` are enumerated as Zod enums in `config.ts`. **Adding a new key requires two things:** update the enum in `config.ts`, and add matching translations in `src/i18n/fr.json` and `src/i18n/en.json` under the `property.<key>` or `affliction.<key>` namespace — `searchItems.ts` and `HerbPage.astro` look them up via `` t(lang, `property.${key}`) ``.
+The allowed keys for `benefits`, `properties`, and `afflictions` are enumerated as Zod enums in `src/content.config.ts`. **Adding a new key requires:** update the enum in `src/content.config.ts` **and** its duplicated copy in `src/content/content.test.ts` (the test recreates the enum to avoid importing `astro:content`, and nothing guards the drift — the config copy gates `npm run build`, the test copy gates `npm run test`), plus matching translations in `src/i18n/fr.json` and `src/i18n/en.json` under the `property.<key>` or `affliction.<key>` namespace — `searchItems.ts` and `HerbPage.astro` look them up via `` t(lang, `property.${key}`) ``. (The `scaffold-herb` skill automates this.)
 
 Adding a herb or need is just dropping a JSON file; the build regenerates all pages. The build fails if the schema doesn't match.
 
