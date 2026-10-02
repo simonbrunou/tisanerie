@@ -16,7 +16,7 @@ Node version is pinned in `.nvmrc` (24, current LTS). Astro 6 requires Node ≥ 
 - Run a single test file: `npx vitest run src/lib/matcher.test.ts`
 - Run tests by name: `npx vitest run -t "scoreHerb"`
 
-CI (`.github/workflows/ci.yml`) runs `npm ci` → typecheck → test → build on every push / PR. Production deploys happen on Coolify (self-hosted) via its GitHub integration on push to `main`; Coolify rebuilds the multi-stage `Dockerfile` (Node 24 → Caddy 2) and serves the static output through Caddy using `Caddyfile`. Public traffic reaches the container through a Cloudflare Tunnel (`cloudflared`) pointed at the service on the Docker network — TLS terminates at Cloudflare's edge, the origin speaks plain HTTP on port 80, and no public port is exposed on the host. There is no local deploy command — `docker build -t tisanerie .` reproduces the production image locally.
+CI (`.forgejo/workflows/ci.yml`) runs `npm ci` → typecheck → test → build on every push / PR, on the self-hosted Forgejo (`git.sbrn.eu`), the source of truth; the GitHub repository is a push mirror. Production deploys happen on Coolify (self-hosted): a Forgejo webhook on push to `main` makes Coolify rebuild the multi-stage `Dockerfile` (Node 24 → Caddy 2) and serve the static output through Caddy using `Caddyfile`. Public traffic reaches the container through a Cloudflare Tunnel (`cloudflared`) pointed at the service on the Docker network — TLS terminates at Cloudflare's edge, the origin speaks plain HTTP on port 80, and no public port is exposed on the host. There is no local deploy command — `docker build -t tisanerie .` reproduces the production image locally.
 
 ## Architecture
 
