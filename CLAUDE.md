@@ -73,3 +73,17 @@ All UI strings live in `src/i18n/fr.json` and `src/i18n/en.json`. Access them wi
 ## Content conventions
 
 The site is informational, not medical advice (see `README.md`). `src/components/SafetyNote.astro` renders herb warnings — don't strip them from pages.
+
+## Agent skills
+
+### Issue tracker
+
+Forgejo issues on `git.sbrn.eu` via the `fj` CLI (`-R origin` for issues, `-H git.sbrn.eu` for PRs and labels), with the REST API for JSON reads and blocking links. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one root `GLOSSARY.md` plus `docs/adr/`. See `docs/agents/domain.md`.
