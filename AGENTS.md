@@ -100,6 +100,6 @@ When the branch is behind `main` but has no conflict, merge it as it is. The acc
 
 On a conflict, merge `origin/main` into the branch, resolve it, run `npm ci && npm run typecheck && npm run test && npm run build`, push, wait for CI on the new head, and check all three conditions again.
 
-The user accepts the production deploy that the merge triggers. The site is static and stores no data on the server: the theme preference lives in the visitor's browser (`localStorage`), so a deploy cannot lose it.
+The user accepts the production deploy that the merge triggers. The site is static and stores no data on the server: the theme preference lives in the visitor's browser (`localStorage`), which replacing the server's files does not clear.
 
 After the merge, check the deploy: `~/Projects/homelab-stacks/scripts/coolify-deploy-status.sh vdvbuytzied4n6g7hzqej65y <merge sha>` exits 0 (exit 3 means still deploying: run it again a few minutes later), then `curl -s -o /dev/null -w '%{http_code} %{content_type}\n' https://tisanerie.app/` prints `200 text/html`.
