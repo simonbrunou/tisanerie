@@ -131,6 +131,20 @@ describe('check-node-pins.sh passes', () => {
     passesWith('5 pins read Node 24');
   });
 
+  it.each([
+    ['RUN <<EOF\nFROM node:26\nEOF', 'a heredoc'],
+    ['RUN <<-"EOT" bash\n\tFROM node:26\n\tEOT', 'a <<- heredoc with a quoted word and a tab before its end'],
+    ["COPY <<EOF1 <<'EOF2' /app/\nFROM node:26\nEOF1\nFROM node:26\nEOF2", 'two heredocs of one COPY'],
+  ])('on FROM node:26 in the body of %j (%s)', (text) => {
+    setDockerLine(3, text);
+    passesWith('5 pins read Node 24');
+  });
+
+  it('on a <<< here-string, which opens no heredoc', () => {
+    setDockerLine(3, 'RUN cat <<<EOF');
+    passesWith('5 pins read Node 24');
+  });
+
   it('on a FROM continued over lines that hold a comment and a blank line', () => {
     setDockerLine(4, 'FROM --platform=linux/amd64 \\\n  # the deps stage\n\n  docker.io/library/node:24.12.0-bookworm-slim \\\n  AS deps');
     passesWith('5 pins read Node 24');
@@ -168,6 +182,11 @@ describe('check-node-pins.sh fails when a pin differs, listing every pin', () =>
   it('a node image on the continued line of a FROM', () => {
     setDockerLine(6, 'FROM \\\n  node:26-alpine AS runtime');
     failsWith('the Node majors differ', 'Dockerfile:6  26 (node:26-alpine)');
+  });
+
+  it('a FROM after a comment line that ends in a backslash', () => {
+    setDockerLine(3, '# a comment \\\nFROM node:26');
+    failsWith('the Node majors differ', 'Dockerfile:4  26 (node:26)');
   });
 
   it('package.json @types/node', () => {
@@ -209,6 +228,11 @@ describe('check-node-pins.sh fails when it cannot read a pin', () => {
       failsWith('Dockerfile:7 FROM takes its image from a build arg');
     },
   );
+
+  it('a heredoc that never ends', () => {
+    setDockerLine(7, 'RUN <<EOF\nFROM node:26');
+    failsWith('Dockerfile:7 heredoc <<EOF never ends');
+  });
 
   it('a Dockerfile with no node stage', () => {
     for (const at of [2, 4, 6]) setDockerLine(at, 'FROM debian:bookworm-slim');
