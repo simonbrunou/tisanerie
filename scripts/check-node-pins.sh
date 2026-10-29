@@ -11,9 +11,10 @@
 #     must be a version (24, v24, 24.12.0), not an alias such as lts/*.
 #   Dockerfile  the major of the tag of every `FROM [<registry>/]node:<tag>`
 #     (24 out of 24-alpine or 24.12.0-alpine@sha256:...), the Node that
-#     Coolify builds production on. A FROM continued over several lines is
-#     read whole. Where this script could read a Dockerfile otherwise than
-#     Docker does, it fails rather than skip a line: a heredoc body (RUN
+#     Coolify builds production on. It reads lines, continuations and
+#     comments as BuildKit's parser does (see read_dockerfile). Where this
+#     script could read a Dockerfile otherwise than Docker does, it fails
+#     rather than skip a line: a heredoc body (RUN
 #     <<EOF) reads like any other line, so a body line FROM node:<tag>
 #     counts as a stage, and so does a line that starts with FROM inside a
 #     continued instruction, read with the lines that continue it; FROM
@@ -151,35 +152,69 @@ read_dockerfile() {
     while [[ "${words[i]:-}" == --* ]]; do i=$((i + 1)); done
     read_from "$n" "${words[i]:-}"
   done < <(
-    # One `<line>:<instruction>` per instruction, its continued lines
-    # (ending in a backslash) joined, so `FROM \` does not hide the image on
-    # the next line. Comment lines, and blank lines inside an instruction,
-    # drop out as Docker drops them, so a comment that ends in a backslash
-    # continues nothing. A line that starts with FROM inside a continued
-    # instruction also prints, with the lines that continue it: Docker may
-    # end the instruction before it (a heredoc end word that ends in a
-    # backslash), so it reads as a stage either way. It reads bytes
-    # (LC_ALL=C), drops a UTF-8 byte order mark as Docker does, and prints
-    # `<line>:#escape` for an escape directive other than a backslash
-    # (escape=` makes a backslash literal).
+    # One `<line>:FROM ...` per FROM instruction, read line by line as
+    # BuildKit's parser (frontend/dockerfile/parser/parser.go, Parse) reads
+    # a Dockerfile: trailing CRs and, on line 1, a UTF-8 byte order mark
+    # dropped; leading Unicode spaces trimmed from an instruction's first
+    # line; comment lines, and blank lines inside an instruction, skipped; a
+    # line that ends in one backslash (not two) continued into the next
+    # with no separator; words split on tabs, vertical tabs, form feeds, CRs
+    # and spaces. Two rules read more than Docker, failing closed: a line
+    # that starts with FROM inside a continued instruction also prints, with
+    # the lines that continue it, since Docker may end the instruction
+    # before it (a heredoc end word that ends in a backslash); and any escape
+    # directive other than a backslash prints `<line>:#escape`, since
+    # escape=` makes a backslash literal and this parser does not follow it.
     LC_ALL=C awk '
-      # The instruction, then each FROM inside it: the rest of buf from the
-      # column at[k] where line inner[k] starts.
-      function emit(k) {
-        print start ":" buf
-        for (k = 1; k <= froms; k++) print inner[k] ":" substr(buf, at[k])
+      # bytes.TrimLeftFunc(s, unicode.IsSpace), on UTF-8 bytes.
+      function ltrim(s) {
+        while (match(s, /^([\t\n\v\f\r ]|\302[\205\240]|\341\232\200|\342\200[\200-\212\250\251\257]|\342\201\237|\343\200\200)/))
+          s = substr(s, RLENGTH + 1)
+        return s
       }
-      { sub(/\r$/, "") }
+      # The column of s where a FROM instruction word starts, or 0.
+      function from_at(s, t) {
+        t = ltrim(s)
+        if (tolower(t) !~ /^from([\t\v\f\r ]|$)/) return 0
+        return length(s) - length(t) + 1
+      }
+      function out(n, s) {
+        gsub(/[\t\v\f\r]/, " ", s)
+        print n ":" s
+      }
+      # The instruction if it is a FROM, then each FROM line inside it: the
+      # rest of buf from the column at[k] where line inner[k] starts.
+      function emit(k, c) {
+        if ((c = from_at(buf))) out(start, substr(buf, c))
+        for (k = 1; k <= froms; k++) if (inner[k] != start) out(inner[k], substr(buf, at[k]))
+      }
+      { sub(/\r+$/, "") }
       NR == 1 { sub(/^\357\273\277/, "") }
-      tolower($0) ~ /^[ \t]*#[ \t]*escape[ \t]*=/ && $0 !~ /=[ \t]*\\[ \t]*$/ { print NR ":#escape" }
-      /^[ \t]*#/ { next }
-      cont && /^[ \t]*$/ { next }
-      cont && tolower($0) ~ /^[ \t]*from([ \t]|\\|$)/ { froms++; inner[froms] = NR; at[froms] = length(buf) + 2 }
-      { if (cont) buf = buf " " $0; else { buf = $0; start = NR; froms = 0 } }
-      /\\[ \t]*$/ { sub(/\\[ \t]*$/, "", buf); cont = 1; next }
-      { cont = 0; emit() }
+      {
+        t = ltrim($0)
+        if (t ~ /^#/) {
+          d = ltrim(substr(t, 2))
+          if (tolower(d) ~ /^escape[\t\n\v\f\r ]*=/ && d !~ /=[\t\n\v\f\r ]*\\[\t\n\v\f\r ]*$/) print NR ":#escape"
+          next
+        }
+        if (t == "") next
+        line = cont ? $0 : t
+        if (!cont) {
+          buf = ""
+          start = NR
+          froms = 0
+        } else if ((c = from_at(line))) {
+          froms++
+          inner[froms] = NR
+          at[froms] = length(buf) + c
+        }
+        cont = line ~ /(^|[^\\])\\[ \t]*$/
+        if (cont) sub(/\\[ \t]*$/, "", line)
+        buf = buf line
+        if (!cont) emit()
+      }
       END { if (cont) emit() }
-    ' "$file" | grep -iE '^[0-9]+:([[:space:]]*FROM([[:space:]]|$)|#escape$)'
+    ' "$file" | grep -iE '^[0-9]+:(FROM|#escape$)'
   )
   if [ "$found_node" -eq 0 ]; then
     fail "$DOCKERFILE has no FROM node line"

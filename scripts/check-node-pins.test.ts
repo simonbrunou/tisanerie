@@ -201,6 +201,18 @@ describe('check-node-pins.sh fails when a pin differs, listing every pin', () =>
     failsWith('the Node majors differ', 'Dockerfile:6  26 (node:26)');
   });
 
+  // Lines BuildKit's parser reads as a FROM node:26 stage.
+  it.each([
+    ['a continuation that splits the image mid-word', 6, 'FROM no\\\nde:26', 6],
+    ['a no-break space before FROM', 6, ' FROM node:26', 6],
+    ['a vertical tab after FROM', 6, 'FROM\vnode:26', 6],
+    ['a continuation line that ends in two CRs', 6, 'FROM \\\r\r\nnode:26', 6],
+    ['a FROM after a line that ends in an escaped backslash', 3, 'RUN echo \\\\\nFROM node:26', 4],
+  ])('%s', (_name, at, text, from) => {
+    setDockerLine(at, text);
+    failsWith('the Node majors differ', `Dockerfile:${from}  26 (node:26)`);
+  });
+
   it('a FROM on the first line, after a UTF-8 byte order mark', () => {
     setDockerLine(1, '\uFEFFFROM node:26-alpine AS first');
     failsWith('the Node majors differ', 'Dockerfile:1  26 (node:26-alpine)');
@@ -261,6 +273,7 @@ describe('check-node-pins.sh fails when it cannot read a pin', () => {
   it.each([
     ['# escape=`\nFROM node:24\nRUN echo ok\\\nFROM node:26', 1],
     ['# syntax=docker/dockerfile:1.28\n#  ESCAPE = `', 2],
+    [' # escape=`', 1],
   ])('a Dockerfile whose escape directive makes a backslash literal: %j', (text, at) => {
     write('Dockerfile', `${text}\n`);
     failsWith(`Dockerfile:${at} sets an escape character other than a backslash`);
