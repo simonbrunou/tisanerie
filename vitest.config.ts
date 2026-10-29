@@ -10,7 +10,7 @@ export default defineConfig({
       // Pure logic + Astro lib code (no DOM) — the existing suite.
       {
         resolve: { alias },
-        test: { name: 'node', environment: 'node', include: ['src/**/*.test.ts'] },
+        test: { name: 'node', environment: 'node', include: ['src/**/*.test.ts', 'scripts/**/*.test.ts'] },
       },
       // React islands — jsdom so component .test.tsx can render. esbuild handles the
       // automatic JSX runtime (avoids @vitejs/plugin-react, which conflicts with Astro's Vite).
