@@ -120,9 +120,8 @@ describe('check-node-pins.sh passes', () => {
     passesWith('5 pins read Node 24');
   });
 
-  it('on a FROM that builds on an earlier stage named node', () => {
-    setDockerLine(2, 'FROM node:24-alpine AS node');
-    setDockerLine(5, 'FROM node AS test');
+  it('on an escape directive that keeps the backslash', () => {
+    setDockerLine(1, '# escape=\\');
     passesWith('5 pins read Node 24');
   });
 
@@ -187,6 +186,16 @@ describe('check-node-pins.sh fails when a pin differs, listing every pin', () =>
     failsWith('the Node majors differ', 'Dockerfile:4  26 (node:26)');
   });
 
+  it('a FROM after a heredoc body that reads like a stage name', () => {
+    setDockerLine(3, 'RUN <<EOF\nFROM alpine AS node:26\nEOF\nFROM node:26');
+    failsWith('the Node majors differ', 'Dockerfile:6  26 (node:26)');
+  });
+
+  it('a FROM on the first line, after a UTF-8 byte order mark', () => {
+    setDockerLine(1, '\uFEFFFROM node:26-alpine AS first');
+    failsWith('the Node majors differ', 'Dockerfile:1  26 (node:26-alpine)');
+  });
+
   it('package.json @types/node', () => {
     writeTypesNode('^26.0.0');
     failsWith('the Node majors differ', 'package.json @types/node  26 (^26.0.0)', '.nvmrc  24 (24)');
@@ -226,6 +235,21 @@ describe('check-node-pins.sh fails when it cannot read a pin', () => {
       failsWith('Dockerfile:7 FROM takes its image from a build arg');
     },
   );
+
+  // Known limit, failing closed (see the script header).
+  it('a FROM node that names an earlier stage called node, read as an untagged image', () => {
+    setDockerLine(2, 'FROM node:24-alpine AS node');
+    setDockerLine(5, 'FROM node AS test');
+    failsWith('Dockerfile:5 node has no tag');
+  });
+
+  it.each([
+    ['# escape=`\nFROM node:24\nRUN echo ok\\\nFROM node:26', 1],
+    ['# syntax=docker/dockerfile:1.28\n#  ESCAPE = `', 2],
+  ])('a Dockerfile whose escape directive makes a backslash literal: %j', (text, at) => {
+    write('Dockerfile', `${text}\n`);
+    failsWith(`Dockerfile:${at} sets an escape character other than a backslash`);
+  });
 
   it('a Dockerfile with no node stage', () => {
     for (const at of [2, 4, 6]) setDockerLine(at, 'FROM debian:bookworm-slim');

@@ -12,11 +12,14 @@
 #   Dockerfile  the major of the tag of every `FROM [<registry>/]node:<tag>`
 #     (24 out of 24-alpine or 24.12.0-alpine@sha256:...), the Node that
 #     Coolify builds production on. A FROM continued over several lines is
-#     read whole, and a FROM that names an earlier stage is skipped. The
-#     body of a heredoc (RUN <<EOF) is read like any other line, so a body
-#     line that starts with FROM node:<tag> counts as a stage: skipping
-#     bodies would take BuildKit's shell tokenizer, and any way this script
-#     read a heredoc differently would let a real stage go unread.
+#     read whole. Where this script could read a Dockerfile otherwise than
+#     Docker does, it fails rather than skip a line: a heredoc body (RUN
+#     <<EOF) reads like any other line, so a body line FROM node:<tag>
+#     counts as a stage; FROM node reads as an untagged image even when it
+#     names an earlier stage called node; an escape directive other than a
+#     backslash fails. Skipping heredoc bodies or stage names would take
+#     BuildKit's parser, and any way this script read one differently could
+#     let a real stage go unread.
 #   package.json  the major of the `@types/node` range (24 out of ^24.12.4),
 #     in devDependencies or dependencies.
 # The Node.js group in renovate.json moves the three together. The dev
@@ -85,24 +88,18 @@ read_nvmrc() {
   pin "$NVMRC" "${BASH_REMATCH[1]}" "$value"
 }
 
-# Names of the Dockerfile stages read so far, and whether one was a node
-# image.
-stages=()
+# Whether a FROM line named a node image.
 found_node=0
 
 # Read one FROM: its line number and image.
 read_from() {
-  local n="$1" image="$2" ref name last tag s
+  local n="$1" image="$2" ref name last tag
   # An image named by a build arg (FROM ${IMAGE}) hides its tag from this
   # check, so it fails instead of passing that stage unread.
   if [[ "$image" == *'$'* ]]; then
     fail "$DOCKERFILE:$n FROM takes its image from a build arg, which this check cannot read"
     return
   fi
-  # FROM <earlier stage> builds on that stage, not on an image.
-  for s in "${stages[@]}"; do
-    if [ "${s,,}" = "${image,,}" ]; then return; fi
-  done
   ref=${image%%@*}
   # The tag follows the last colon after the last slash, so a registry port
   # (localhost:5000/node) is not read as a tag.
@@ -136,30 +133,34 @@ read_dockerfile() {
   while IFS= read -r entry; do
     n=${entry%%:*}
     entry=${entry#*:}
+    if [ "$entry" = '#escape' ]; then
+      fail "$DOCKERFILE:$n sets an escape character other than a backslash, which this check does not read"
+      continue
+    fi
     read -ra words <<<"$entry"
     # Skip the flags (--platform=...) between FROM and the image.
     i=1
     while [[ "${words[i]:-}" == --* ]]; do i=$((i + 1)); done
     read_from "$n" "${words[i]:-}"
-    # FROM <image> AS <name> names a stage that a later FROM may build on.
-    if [[ "${words[i + 1]:-}" =~ ^[Aa][Ss]$ ]] && [ -n "${words[i + 2]:-}" ]; then
-      stages+=("${words[i + 2]}")
-    fi
   done < <(
     # One `<line>:<instruction>` per instruction, its continued lines
     # (ending in a backslash) joined, so `FROM \` does not hide the image on
     # the next line. Comment lines, and blank lines inside an instruction,
     # drop out as Docker drops them, so a comment that ends in a backslash
-    # continues nothing.
-    awk '
+    # continues nothing. It reads bytes (LC_ALL=C), drops a UTF-8 byte order
+    # mark as Docker does, and prints `<line>:#escape` for an escape
+    # directive other than a backslash (escape=` makes a backslash literal).
+    LC_ALL=C awk '
       { sub(/\r$/, "") }
+      NR == 1 { sub(/^\357\273\277/, "") }
+      tolower($0) ~ /^[ \t]*#[ \t]*escape[ \t]*=/ && $0 !~ /=[ \t]*\\[ \t]*$/ { print NR ":#escape" }
       /^[ \t]*#/ { next }
       cont && /^[ \t]*$/ { next }
       { if (cont) buf = buf " " $0; else { buf = $0; start = NR } }
       /\\[ \t]*$/ { sub(/\\[ \t]*$/, "", buf); cont = 1; next }
       { cont = 0; print start ":" buf }
       END { if (cont) print start ":" buf }
-    ' "$file" | grep -iE '^[0-9]+:[[:space:]]*FROM([[:space:]]|$)'
+    ' "$file" | grep -iE '^[0-9]+:([[:space:]]*FROM([[:space:]]|$)|#escape$)'
   )
   if [ "$found_node" -eq 0 ]; then
     fail "$DOCKERFILE has no FROM node line"
