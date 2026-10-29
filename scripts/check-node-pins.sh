@@ -16,11 +16,12 @@
 #     Docker does, it fails rather than skip a line: a heredoc body (RUN
 #     <<EOF) reads like any other line, so a body line FROM node:<tag>
 #     counts as a stage, and so does a line that starts with FROM inside a
-#     continued instruction; FROM node reads as an untagged image even when
-#     it names an earlier stage called node; an escape directive other than
-#     a backslash fails. Skipping heredoc bodies or stage names would take
-#     BuildKit's parser, and any way this script read one differently could
-#     let a real stage go unread.
+#     continued instruction, read with the lines that continue it; FROM
+#     node reads as an untagged image even when it names an earlier stage
+#     called node; an escape directive other than a backslash fails.
+#     Skipping heredoc bodies or stage names would take BuildKit's parser,
+#     and any way this script read one differently could let a real stage
+#     go unread.
 #   package.json  the major of the `@types/node` range (24 out of ^24.12.4),
 #     in devDependencies or dependencies, not both.
 # The Node.js group in renovate.json moves the three together. The dev
@@ -155,22 +156,29 @@ read_dockerfile() {
     # the next line. Comment lines, and blank lines inside an instruction,
     # drop out as Docker drops them, so a comment that ends in a backslash
     # continues nothing. A line that starts with FROM inside a continued
-    # instruction also prints on its own: Docker may end the instruction
-    # before it (a heredoc end word that ends in a backslash), so it reads as
-    # a stage either way. It reads bytes (LC_ALL=C), drops a UTF-8 byte
-    # order mark as Docker does, and prints `<line>:#escape` for an escape
-    # directive other than a backslash (escape=` makes a backslash literal).
+    # instruction also prints, with the lines that continue it: Docker may
+    # end the instruction before it (a heredoc end word that ends in a
+    # backslash), so it reads as a stage either way. It reads bytes
+    # (LC_ALL=C), drops a UTF-8 byte order mark as Docker does, and prints
+    # `<line>:#escape` for an escape directive other than a backslash
+    # (escape=` makes a backslash literal).
     LC_ALL=C awk '
+      # The instruction, then each FROM inside it: the rest of buf from the
+      # column at[k] where line inner[k] starts.
+      function emit(k) {
+        print start ":" buf
+        for (k = 1; k <= froms; k++) print inner[k] ":" substr(buf, at[k])
+      }
       { sub(/\r$/, "") }
       NR == 1 { sub(/^\357\273\277/, "") }
       tolower($0) ~ /^[ \t]*#[ \t]*escape[ \t]*=/ && $0 !~ /=[ \t]*\\[ \t]*$/ { print NR ":#escape" }
       /^[ \t]*#/ { next }
       cont && /^[ \t]*$/ { next }
-      cont && tolower($0) ~ /^[ \t]*from[ \t]/ { line = $0; sub(/\\[ \t]*$/, "", line); print NR ":" line }
-      { if (cont) buf = buf " " $0; else { buf = $0; start = NR } }
+      cont && tolower($0) ~ /^[ \t]*from([ \t]|\\|$)/ { froms++; inner[froms] = NR; at[froms] = length(buf) + 2 }
+      { if (cont) buf = buf " " $0; else { buf = $0; start = NR; froms = 0 } }
       /\\[ \t]*$/ { sub(/\\[ \t]*$/, "", buf); cont = 1; next }
-      { cont = 0; print start ":" buf }
-      END { if (cont) print start ":" buf }
+      { cont = 0; emit() }
+      END { if (cont) emit() }
     ' "$file" | grep -iE '^[0-9]+:([[:space:]]*FROM([[:space:]]|$)|#escape$)'
   )
   if [ "$found_node" -eq 0 ]; then

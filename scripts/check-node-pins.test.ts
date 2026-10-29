@@ -196,6 +196,11 @@ describe('check-node-pins.sh fails when a pin differs, listing every pin', () =>
     failsWith('the Node majors differ', 'Dockerfile:6  26 (node:26)');
   });
 
+  it('a FROM split over two lines after a heredoc end word that ends in a backslash', () => {
+    setDockerLine(3, "RUN <<'EOF\\'\necho ok\nEOF\\\nFROM \\\nnode:26");
+    failsWith('the Node majors differ', 'Dockerfile:6  26 (node:26)');
+  });
+
   it('a FROM on the first line, after a UTF-8 byte order mark', () => {
     setDockerLine(1, '\uFEFFFROM node:26-alpine AS first');
     failsWith('the Node majors differ', 'Dockerfile:1  26 (node:26-alpine)');
