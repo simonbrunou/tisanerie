@@ -7,7 +7,7 @@
 #
 # It reads each pin from the file that sets it:
 #   .nvmrc  the Node CI runs: actions/setup-node reads it through
-#     `node-version-file`. Its first line that is neither blank nor a comment
+#     `node-version-file`. Its one line that is neither blank nor a comment
 #     must be a version (24, v24, 24.12.0), not an alias such as lts/*.
 #   Dockerfile  the major of the tag of every `FROM [<registry>/]node:<tag>`
 #     (24 out of 24-alpine or 24.12.0-alpine@sha256:...), the Node that
@@ -15,13 +15,14 @@
 #     read whole. Where this script could read a Dockerfile otherwise than
 #     Docker does, it fails rather than skip a line: a heredoc body (RUN
 #     <<EOF) reads like any other line, so a body line FROM node:<tag>
-#     counts as a stage; FROM node reads as an untagged image even when it
-#     names an earlier stage called node; an escape directive other than a
-#     backslash fails. Skipping heredoc bodies or stage names would take
+#     counts as a stage, and so does a line that starts with FROM inside a
+#     continued instruction; FROM node reads as an untagged image even when
+#     it names an earlier stage called node; an escape directive other than
+#     a backslash fails. Skipping heredoc bodies or stage names would take
 #     BuildKit's parser, and any way this script read one differently could
 #     let a real stage go unread.
 #   package.json  the major of the `@types/node` range (24 out of ^24.12.4),
-#     in devDependencies or dependencies.
+#     in devDependencies or dependencies, not both.
 # The Node.js group in renovate.json moves the three together. The dev
 # shell's Node comes from flake.nix, which Renovate does not update, so a
 # `node --version` with another major prints a warning only.
@@ -76,9 +77,15 @@ read_nvmrc() {
     return
   fi
   value=$(sed -e 's/\r$//' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' "$file" |
-    grep -v -e '^$' -e '^#' | head -n 1)
+    grep -v -e '^$' -e '^#')
   if [ -z "$value" ]; then
     fail "$NVMRC is empty"
+    return
+  fi
+  # setup-node takes the first line that reads as a version, which need not
+  # be the line this check reads, so a second line fails.
+  if [[ "$value" == *$'\n'* ]]; then
+    fail "$NVMRC has more than one line that is neither blank nor a comment"
     return
   fi
   if [[ ! "$value" =~ ^v?([0-9]+)(\.[0-9]+){0,2}$ ]]; then
@@ -147,8 +154,11 @@ read_dockerfile() {
     # (ending in a backslash) joined, so `FROM \` does not hide the image on
     # the next line. Comment lines, and blank lines inside an instruction,
     # drop out as Docker drops them, so a comment that ends in a backslash
-    # continues nothing. It reads bytes (LC_ALL=C), drops a UTF-8 byte order
-    # mark as Docker does, and prints `<line>:#escape` for an escape
+    # continues nothing. A line that starts with FROM inside a continued
+    # instruction also prints on its own: Docker may end the instruction
+    # before it (a heredoc end word that ends in a backslash), so it reads as
+    # a stage either way. It reads bytes (LC_ALL=C), drops a UTF-8 byte
+    # order mark as Docker does, and prints `<line>:#escape` for an escape
     # directive other than a backslash (escape=` makes a backslash literal).
     LC_ALL=C awk '
       { sub(/\r$/, "") }
@@ -156,6 +166,7 @@ read_dockerfile() {
       tolower($0) ~ /^[ \t]*#[ \t]*escape[ \t]*=/ && $0 !~ /=[ \t]*\\[ \t]*$/ { print NR ":#escape" }
       /^[ \t]*#/ { next }
       cont && /^[ \t]*$/ { next }
+      cont && tolower($0) ~ /^[ \t]*from[ \t]/ { line = $0; sub(/\\[ \t]*$/, "", line); print NR ":" line }
       { if (cont) buf = buf " " $0; else { buf = $0; start = NR } }
       /\\[ \t]*$/ { sub(/\\[ \t]*$/, "", buf); cont = 1; next }
       { cont = 0; print start ":" buf }
@@ -173,6 +184,8 @@ read_package() {
     fail "$PACKAGE not found"
     return
   fi
+  # Exit 1: not JSON. Exit 3: @types/node in both fields, which leaves the
+  # installed one to npm.
   value=$(PIN_FILE="$file" node -e '
     let pkg;
     try {
@@ -180,12 +193,23 @@ read_package() {
     } catch {
       process.exit(1);
     }
-    const v = pkg?.devDependencies?.["@types/node"] ?? pkg?.dependencies?.["@types/node"];
+    const dev = pkg?.devDependencies?.["@types/node"];
+    const dep = pkg?.dependencies?.["@types/node"];
+    if (dev !== undefined && dep !== undefined) process.exit(3);
+    const v = dev ?? dep;
     if (typeof v === "string") console.log(v);
-  ') || {
-    fail "$PACKAGE is not valid JSON"
-    return
-  }
+  ')
+  case $? in
+    0) ;;
+    3)
+      fail "$PACKAGE lists @types/node in both devDependencies and dependencies"
+      return
+      ;;
+    *)
+      fail "$PACKAGE is not valid JSON"
+      return
+      ;;
+  esac
   if [ -z "$value" ]; then
     fail "$PACKAGE has no @types/node in devDependencies or dependencies"
     return

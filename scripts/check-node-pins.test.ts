@@ -191,6 +191,11 @@ describe('check-node-pins.sh fails when a pin differs, listing every pin', () =>
     failsWith('the Node majors differ', 'Dockerfile:6  26 (node:26)');
   });
 
+  it('a FROM after a heredoc end word that ends in a backslash', () => {
+    setDockerLine(3, "RUN <<'EOF\\'\necho ok\nEOF\\\nFROM node:26");
+    failsWith('the Node majors differ', 'Dockerfile:6  26 (node:26)');
+  });
+
   it('a FROM on the first line, after a UTF-8 byte order mark', () => {
     setDockerLine(1, '\uFEFFFROM node:26-alpine AS first');
     failsWith('the Node majors differ', 'Dockerfile:1  26 (node:26-alpine)');
@@ -211,6 +216,11 @@ describe('check-node-pins.sh fails when it cannot read a pin', () => {
   it.each(['', '\n# only a comment\n'])('an .nvmrc of %j', (text) => {
     write('.nvmrc', text);
     failsWith('.nvmrc is empty');
+  });
+
+  it('an .nvmrc with a second version line, which setup-node may read instead', () => {
+    write('.nvmrc', ' 24\n26\n');
+    failsWith('.nvmrc has more than one line that is neither blank nor a comment');
   });
 
   it.each(['lts/*', 'lts/krypton', 'node', '24.12.0.1', '24a12'])('an .nvmrc that names %s', (text) => {
@@ -267,6 +277,11 @@ describe('check-node-pins.sh fails when it cannot read a pin', () => {
   ])('a package.json with %s', (_name, text) => {
     write('package.json', text);
     expect(failsWith('package.json has no @types/node')).not.toContain('TypeError');
+  });
+
+  it('a package.json with @types/node in both devDependencies and dependencies', () => {
+    write('package.json', JSON.stringify({ devDependencies: { '@types/node': '^24.0.0' }, dependencies: { '@types/node': '^24.0.0' } }));
+    failsWith('package.json lists @types/node in both devDependencies and dependencies');
   });
 
   it.each(['>=24', '^24 || ^26', '*', 'latest'])('@types/node %s, which pins no one major', (range) => {
