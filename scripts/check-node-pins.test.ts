@@ -130,6 +130,11 @@ describe('check-node-pins.sh passes', () => {
     setDockerLine(6, 'FROM localhost:5000/node:24-alpine');
     passesWith('5 pins read Node 24');
   });
+
+  it('on a FROM continued over lines that hold a comment and a blank line', () => {
+    setDockerLine(4, 'FROM --platform=linux/amd64 \\\n  # the deps stage\n\n  docker.io/library/node:24.12.0-bookworm-slim \\\n  AS deps');
+    passesWith('5 pins read Node 24');
+  });
 });
 
 describe('check-node-pins.sh warns, and still passes', () => {
@@ -158,6 +163,11 @@ describe('check-node-pins.sh fails when a pin differs, listing every pin', () =>
   it.each([2, 4, 6])('the Dockerfile stage on line %d', (at) => {
     setDockerMajor('26', [at]);
     failsWith('the Node majors differ', `Dockerfile:${at}  26 (`, '.nvmrc  24 (24)');
+  });
+
+  it('a node image on the continued line of a FROM', () => {
+    setDockerLine(6, 'FROM \\\n  node:26-alpine AS runtime');
+    failsWith('the Node majors differ', 'Dockerfile:6  26 (node:26-alpine)');
   });
 
   it('package.json @types/node', () => {

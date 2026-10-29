@@ -11,8 +11,8 @@
 #     must be a version (24, v24, 24.12.0), not an alias such as lts/*.
 #   Dockerfile  the major of the tag of every `FROM [<registry>/]node:<tag>`
 #     (24 out of 24-alpine or 24.12.0-alpine@sha256:...), the Node that
-#     Coolify builds production on. A FROM that names an earlier stage is
-#     skipped.
+#     Coolify builds production on. A FROM continued over several lines is
+#     read whole, and a FROM that names an earlier stage is skipped.
 #   package.json  the major of the `@types/node` range (24 out of ^24.12.4),
 #     in devDependencies or dependencies.
 # The Node.js group in renovate.json moves the three together. The dev
@@ -132,7 +132,7 @@ read_dockerfile() {
   while IFS= read -r entry; do
     n=${entry%%:*}
     entry=${entry#*:}
-    read -ra words <<<"${entry%$'\r'}"
+    read -ra words <<<"$entry"
     # Skip the flags (--platform=...) between FROM and the image.
     i=1
     while [[ "${words[i]:-}" == --* ]]; do i=$((i + 1)); done
@@ -141,7 +141,20 @@ read_dockerfile() {
     if [[ "${words[i + 1]:-}" =~ ^[Aa][Ss]$ ]] && [ -n "${words[i + 2]:-}" ]; then
       stages+=("${words[i + 2]}")
     fi
-  done < <(grep -niE '^[[:space:]]*FROM[[:space:]]' "$file")
+  done < <(
+    # One `<line>:<instruction>` per instruction, its continued lines
+    # (ending in a backslash) joined, so `FROM \` does not hide the image on
+    # the next line. Comment and blank lines inside an instruction drop out,
+    # as Docker drops them.
+    awk '
+      { sub(/\r$/, "") }
+      cont && /^[ \t]*(#|$)/ { next }
+      { if (cont) buf = buf " " $0; else { buf = $0; start = NR } }
+      /\\[ \t]*$/ { sub(/\\[ \t]*$/, "", buf); cont = 1; next }
+      { cont = 0; print start ":" buf }
+      END { if (cont) print start ":" buf }
+    ' "$file" | grep -iE '^[0-9]+:[[:space:]]*FROM([[:space:]]|$)'
+  )
   if [ "$found_node" -eq 0 ]; then
     fail "$DOCKERFILE has no FROM node line"
   fi
