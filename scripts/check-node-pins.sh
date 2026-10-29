@@ -12,8 +12,11 @@
 #   Dockerfile  the major of the tag of every `FROM [<registry>/]node:<tag>`
 #     (24 out of 24-alpine or 24.12.0-alpine@sha256:...), the Node that
 #     Coolify builds production on. A FROM continued over several lines is
-#     read whole; a FROM that names an earlier stage, and the body of a
-#     heredoc (RUN <<EOF), are skipped.
+#     read whole, and a FROM that names an earlier stage is skipped. The
+#     body of a heredoc (RUN <<EOF) is read like any other line, so a body
+#     line that starts with FROM node:<tag> counts as a stage: skipping
+#     bodies would take BuildKit's shell tokenizer, and any way this script
+#     read a heredoc differently would let a real stage go unread.
 #   package.json  the major of the `@types/node` range (24 out of ^24.12.4),
 #     in devDependencies or dependencies.
 # The Node.js group in renovate.json moves the three together. The dev
@@ -133,10 +136,6 @@ read_dockerfile() {
   while IFS= read -r entry; do
     n=${entry%%:*}
     entry=${entry#*:}
-    if [[ "$entry" == '<<'* ]]; then
-      fail "$DOCKERFILE:$n heredoc $entry never ends, so the lines after it went unread"
-      continue
-    fi
     read -ra words <<<"$entry"
     # Skip the flags (--platform=...) between FROM and the image.
     i=1
@@ -150,47 +149,17 @@ read_dockerfile() {
     # One `<line>:<instruction>` per instruction, its continued lines
     # (ending in a backslash) joined, so `FROM \` does not hide the image on
     # the next line. Comment lines, and blank lines inside an instruction,
-    # drop out as Docker drops them. The body of a RUN, COPY or ADD heredoc
-    # (RUN <<EOF ... EOF) is not an instruction, so it drops out too; one
-    # that never ends prints `<line>:<<<word>` and fails the check, since
-    # the lines after it went unread.
-    awk -v q="'" '
-      BEGIN { heredoc = "<<-?[ \t]*[\"" q "]?[A-Za-z_][A-Za-z0-9_]*[\"" q "]?" }
+    # drop out as Docker drops them, so a comment that ends in a backslash
+    # continues nothing.
+    awk '
       { sub(/\r$/, "") }
-      docs {
-        line = $0
-        if (strip[doc]) sub(/^\t+/, "", line)
-        if (line == word[doc] && ++doc > docs) docs = 0
-        next
-      }
       /^[ \t]*#/ { next }
       cont && /^[ \t]*$/ { next }
       { if (cont) buf = buf " " $0; else { buf = $0; start = NR } }
       /\\[ \t]*$/ { sub(/\\[ \t]*$/, "", buf); cont = 1; next }
-      {
-        cont = 0
-        print start ":" buf
-        if (toupper(buf) !~ /^[ \t]*(RUN|COPY|ADD)[ \t]/) next
-        # A <<< here-string opens no heredoc.
-        rest = buf
-        gsub(/<<</, "", rest)
-        doc = 1
-        doc_start = start
-        while (match(rest, heredoc)) {
-          w = substr(rest, RSTART + 2, RLENGTH - 2)
-          docs++
-          strip[docs] = (w ~ /^-/)
-          gsub(/[- \t"]/, "", w)
-          gsub(q, "", w)
-          word[docs] = w
-          rest = substr(rest, RSTART + RLENGTH)
-        }
-      }
-      END {
-        if (cont) print start ":" buf
-        if (docs) print doc_start ":<<" word[doc]
-      }
-    ' "$file" | grep -iE '^[0-9]+:([[:space:]]*FROM([[:space:]]|$)|<<)'
+      { cont = 0; print start ":" buf }
+      END { if (cont) print start ":" buf }
+    ' "$file" | grep -iE '^[0-9]+:[[:space:]]*FROM([[:space:]]|$)'
   )
   if [ "$found_node" -eq 0 ]; then
     fail "$DOCKERFILE has no FROM node line"
