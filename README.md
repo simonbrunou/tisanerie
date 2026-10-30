@@ -8,7 +8,7 @@ Live at **https://tisanerie.app**.
 
 ## Stack
 
-- [Astro 5](https://astro.build) — static site generator
+- [Astro 7](https://astro.build) — static site generator
 - React 18 islands for the interactive bits (need picker, fuzzy search,
   brewing timer, theme toggle)
 - Tailwind CSS for styling with a sage / cream / amber palette
