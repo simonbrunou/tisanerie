@@ -4,7 +4,7 @@ This file provides guidance to coding agents (Claude Code, Codex) when working w
 
 ## Commands
 
-One Node major is pinned in three files: `.nvmrc` (the Node CI runs), every `FROM node:` line of the `Dockerfile` (the Node production builds on) and `@types/node` in `package.json`. `scripts/check-node-pins.sh` fails CI when their majors differ, and the `Node.js` group in `renovate.json` moves the three in one PR. The dev shell's Node comes from `flake.nix` (`nodejs_<major>`), which Renovate does not update: change it by hand after a Node major lands, while the check prints a warning that the shell runs another major. Astro 7 requires Node ≥ 22.12.
+One Node major is pinned in three files: `.nvmrc` (the Node CI runs), every `FROM node:` line of the `Dockerfile` (the Node production builds on) and `@types/node` in `package.json`. `scripts/check-node-pins.sh` fails CI when their majors differ, and the `Node.js` group in `renovate.json` moves the three in one PR. The dev shell's Node comes from `flake.nix` (`nodejs_<major>`), which Renovate does not update: change it by hand after a Node major lands, while the check prints a warning that the shell runs another major. Astro 7 requires Node ≥ 22.23.4 (since 7.4.2), which every Node 24 release meets.
 
 - `npm install` — install dependencies
 - `scripts/check-node-pins.sh` — check that the Node pins name one major (runs in CI)
@@ -21,7 +21,7 @@ CI (`.forgejo/workflows/ci.yml`) runs the Node pin check → `npm ci` → typech
 
 ## Architecture
 
-### Astro 6 static site + React islands
+### Astro 7 static site + React islands
 Pages are `.astro`; interactive components (`NeedPicker.tsx`, `SearchBox.tsx` / `SearchResults.tsx`, `BrewingTimer.tsx`, `ThemeToggle.tsx`) are React, hydrated with `client:load`. Output is fully static — no SSR.
 
 ### Bilingual routing (FR default, EN second)

@@ -6,7 +6,7 @@ model: sonnet
 ---
 
 You guard tisanerie's React islands — the one repeatedly-regressing surface. The site is
-static Astro 6 with islands hydrated `client:load`; `npm run test` is `environment:'node'`
+static Astro 7 with islands hydrated `client:load`; `npm run test` is `environment:'node'`
 and only matches `*.test.ts`, so islands have effectively zero automated coverage. Catch
 what the suite cannot.
 
