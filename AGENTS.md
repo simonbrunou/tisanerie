@@ -4,7 +4,7 @@ This file provides guidance to coding agents (Claude Code, Codex) when working w
 
 ## Commands
 
-One Node major is pinned in three files: `.nvmrc` (the Node CI runs), every `FROM node:` line of the `Dockerfile` (the Node production builds on) and `@types/node` in `package.json`. `scripts/check-node-pins.sh` fails CI when their majors differ, and the `Node.js` group in `renovate.json` moves the three in one PR. The dev shell's Node comes from `flake.nix` (`nodejs_<major>`), which Renovate does not update: change it by hand after a Node major lands, while the check prints a warning that the shell runs another major. Astro 7 requires Node ≥ 22.23.4 (since 7.4.2), which every Node 24 release meets.
+One Node major is pinned in three files: `.nvmrc` (the Node CI runs), every `FROM node:` line of the `Dockerfile` (the Node production builds on) and `@types/node` in `package.json`. `scripts/check-node-pins.sh` fails CI when their majors differ, and the `Node.js` group in `renovate.json` moves the three in one PR. The dev shell's Node comes from `flake.nix` (`nodejs_<major>`), which Renovate does not update: change it by hand after a Node major lands, while the check prints a warning that the shell runs another major. Astro 7 requires Node ≥ 22.23.4 (since 7.4.2); `node_modules/astro/bin/astro.mjs` refuses to start on an older one.
 
 - `npm install` — install dependencies
 - `scripts/check-node-pins.sh` — check that the Node pins name one major (runs in CI)
