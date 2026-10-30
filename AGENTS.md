@@ -4,7 +4,7 @@ This file provides guidance to coding agents (Claude Code, Codex) when working w
 
 ## Commands
 
-One Node major is pinned in three files: `.nvmrc` (the Node CI runs), every `FROM node:` line of the `Dockerfile` (the Node production builds on) and `@types/node` in `package.json`. `scripts/check-node-pins.sh` fails CI when their majors differ, and the `Node.js` group in `renovate.json` moves the three in one PR. The dev shell's Node comes from `flake.nix` (`nodejs_<major>`), which Renovate does not update: change it by hand after a Node major lands, while the check prints a warning that the shell runs another major. Astro 7 requires Node ≥ 22.23.4 (since 7.4.2); `node_modules/astro/bin/astro.mjs` refuses to start on an older one.
+One Node major is pinned in three files: `.nvmrc` (the Node CI runs), every `FROM node:` line of the `Dockerfile` (the Node production builds on) and `@types/node` in `package.json`. `scripts/check-node-pins.sh` fails CI when their majors differ, and the `Node.js` group in `renovate.json` moves the three in one PR. The dev shell needs no edit: `flake.nix` reads the major from `.nvmrc` and runs `nodejs_<major>` from the locked nixpkgs, and `.envrc` watches `.nvmrc`, so direnv rebuilds the shell on the next entry. A check warning that the shell runs another major means the shell has not reloaded: run `direnv reload` or start a new `nix develop`. When the shell fails to build naming a missing `nodejs_<major>`, the locked nixpkgs lacks that major: run `nix flake update`. Astro 7 requires Node ≥ 22.23.4 (since 7.4.2); `node_modules/astro/bin/astro.mjs` refuses to start on an older one.
 
 - `npm install` — install dependencies
 - `scripts/check-node-pins.sh` — check that the Node pins name one major (runs in CI)
