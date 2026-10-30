@@ -293,6 +293,6 @@ running=$(node --version)
 running=${running#v}
 if [ "${running%%.*}" != "$expected" ]; then
   echo "check-node-pins: warning: this shell runs Node $running, not $expected." \
-    "The dev shell reads its Node major from .nvmrc: run direnv reload or a new nix develop," \
-    "and nix flake update if the locked nixpkgs has no nodejs_$expected." >&2
+    "The dev shell reads its Node major from .nvmrc: run direnv reload or a new nix develop." \
+    "If that fails naming nodejs_$expected, the locked nixpkgs lacks it: run nix flake update." >&2
 fi
