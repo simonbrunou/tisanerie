@@ -30,7 +30,7 @@ npm run preview
 
 ### Coolify (self-hosted)
 
-The repository ships a multi-stage `Dockerfile` (Node 24 builder → Caddy 2
+The repository ships a multi-stage `Dockerfile` (Node builder → Caddy 2
 runner) and a `Caddyfile` that encodes the locale-prefix redirects, security
 headers, and long-cache rules for hashed assets.
 

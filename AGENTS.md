@@ -4,9 +4,10 @@ This file provides guidance to coding agents (Claude Code, Codex) when working w
 
 ## Commands
 
-Node version is pinned in `.nvmrc` (24, current LTS). Astro 6 requires Node ≥ 22.12.
+One Node major is pinned in three files: `.nvmrc` (the Node CI runs), every `FROM node:` line of the `Dockerfile` (the Node production builds on) and `@types/node` in `package.json`. `scripts/check-node-pins.sh` fails CI when their majors differ, and the `Node.js` group in `renovate.json` moves the three in one PR. The dev shell's Node comes from `flake.nix` (`nodejs_<major>`), which Renovate does not update: change it by hand after a Node major lands, while the check prints a warning that the shell runs another major. Astro 7 requires Node ≥ 22.12.
 
 - `npm install` — install dependencies
+- `scripts/check-node-pins.sh` — check that the Node pins name one major (runs in CI)
 - `npm run dev` — Astro dev server at `http://localhost:4321/fr/`
 - `npm run build` — static build to `dist/`
 - `npm run preview` — serve the built site
@@ -16,7 +17,7 @@ Node version is pinned in `.nvmrc` (24, current LTS). Astro 6 requires Node ≥ 
 - Run a single test file: `npx vitest run src/lib/matcher.test.ts`
 - Run tests by name: `npx vitest run -t "scoreHerb"`
 
-CI (`.forgejo/workflows/ci.yml`) runs `npm ci` → typecheck → test → build on every push / PR, on the self-hosted Forgejo (`git.sbrn.eu`), the source of truth; the GitHub repository is a push mirror. Production deploys happen on Coolify (self-hosted): a Forgejo webhook on push to `main` makes Coolify rebuild the multi-stage `Dockerfile` (Node 24 → Caddy 2) and serve the static output through Caddy using `Caddyfile`. Public traffic reaches the container through a Cloudflare Tunnel (`cloudflared`) pointed at the service on the Docker network — TLS terminates at Cloudflare's edge, the origin speaks plain HTTP on port 80, and no public port is exposed on the host. There is no local deploy command — `docker build -t tisanerie .` reproduces the production image locally.
+CI (`.forgejo/workflows/ci.yml`) runs the Node pin check → `npm ci` → typecheck → test → build on every push / PR, on the self-hosted Forgejo (`git.sbrn.eu`), the source of truth; the GitHub repository is a push mirror. Production deploys happen on Coolify (self-hosted): a Forgejo webhook on push to `main` makes Coolify rebuild the multi-stage `Dockerfile` (Node → Caddy 2) and serve the static output through Caddy using `Caddyfile`. Public traffic reaches the container through a Cloudflare Tunnel (`cloudflared`) pointed at the service on the Docker network — TLS terminates at Cloudflare's edge, the origin speaks plain HTTP on port 80, and no public port is exposed on the host. There is no local deploy command — `docker build -t tisanerie .` reproduces the production image locally.
 
 ## Architecture
 
@@ -65,7 +66,7 @@ Adding a herb or need is just dropping a JSON file; the build regenerates all pa
 
 ### Path alias & tests
 - `~/` resolves to `src/` in both Astro (`tsconfig.json` `paths`) and Vitest (`vitest.config.ts`). Prefer `~/lib/…` over relative imports.
-- Tests live alongside source as `*.test.ts` under `src/`, Node environment (no DOM).
+- Tests live alongside source as `*.test.ts` under `src/`, Node environment (no DOM). The repo scripts' tests sit next to them as `scripts/*.test.ts`, in the same Vitest project.
 
 ### i18n copy
 All UI strings live in `src/i18n/fr.json` and `src/i18n/en.json`. Access them with `t(lang, key, params?)` from `src/i18n/utils.ts`; missing keys fall back to English, then to the key itself.
