@@ -26,8 +26,9 @@
 #   package.json  the major of the `@types/node` range (24 out of ^24.12.4),
 #     in devDependencies or dependencies, not both.
 # The Node.js group in renovate.json moves the three together. The dev
-# shell's Node comes from flake.nix, which Renovate does not update, so a
-# `node --version` with another major prints a warning only.
+# shell (flake.nix) reads its Node major from .nvmrc, so a `node --version`
+# with another major means a shell that has not reloaded since .nvmrc
+# changed, and prints a warning only.
 # Exit 0: every pin reads the same major. Exit 1: the pins differ or one
 # cannot be read, and the output names each file, line and value. Exit 2: a
 # wrong call, a <repo dir> that does not exist, or no node on PATH.
@@ -292,5 +293,6 @@ running=$(node --version)
 running=${running#v}
 if [ "${running%%.*}" != "$expected" ]; then
   echo "check-node-pins: warning: this shell runs Node $running, not $expected." \
-    "The dev shell's Node comes from flake.nix, which Renovate does not update." >&2
+    "The dev shell reads its Node major from .nvmrc: run direnv reload or a new nix develop." \
+    "If that fails naming nodejs_$expected, the locked nixpkgs lacks it: run nix flake update." >&2
 fi
