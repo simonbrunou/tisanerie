@@ -8,6 +8,7 @@ One Node major is pinned in three files: `.nvmrc` (the Node CI runs), every `FRO
 
 - `npm install` — install dependencies
 - `scripts/check-node-pins.sh` — check that the Node pins name one major (runs in CI)
+- `scripts/check-renovate-config.sh` — validate `renovate.json` with Renovate's validator in the image renovate/renovate-config runs, through Docker; its `RENOVATE_IMAGE` must match that image (runs in CI when `renovate.json` changes). Its tests run only with `RENOVATE_CONFIG_TESTS=1 npx vitest run scripts/check-renovate-config.test.ts`
 - `npm run dev` — Astro dev server at `http://localhost:4321/fr/`
 - `npm run build` — static build to `dist/`
 - `npm run preview` — serve the built site
@@ -17,7 +18,7 @@ One Node major is pinned in three files: `.nvmrc` (the Node CI runs), every `FRO
 - Run a single test file: `npx vitest run src/lib/matcher.test.ts`
 - Run tests by name: `npx vitest run -t "scoreHerb"`
 
-CI (`.forgejo/workflows/ci.yml`) runs the Node pin check → `npm ci` → typecheck → test → build on every push / PR, on the self-hosted Forgejo (`git.sbrn.eu`), the source of truth; the GitHub repository is a push mirror. `.forgejo/workflows/renovate-config.yml` runs Renovate's `renovate-config-validator` on a push or PR that changes `renovate.json`; its Renovate version must match the image renovate/renovate-config runs. Production deploys happen on Coolify (self-hosted): a Forgejo webhook on push to `main` makes Coolify rebuild the multi-stage `Dockerfile` (Node → Caddy 2) and serve the static output through Caddy using `Caddyfile`. Public traffic reaches the container through a Cloudflare Tunnel (`cloudflared`) pointed at the service on the Docker network — TLS terminates at Cloudflare's edge, the origin speaks plain HTTP on port 80, and no public port is exposed on the host. There is no local deploy command — `docker build -t tisanerie .` reproduces the production image locally.
+CI (`.forgejo/workflows/ci.yml`) runs the Node pin check → `npm ci` → typecheck → test → build on every push / PR, on the self-hosted Forgejo (`git.sbrn.eu`), the source of truth; the GitHub repository is a push mirror. `.forgejo/workflows/renovate-config.yml` runs `scripts/check-renovate-config.sh` and its tests on a push or PR that changes `renovate.json`, the script, its test or the workflow. Production deploys happen on Coolify (self-hosted): a Forgejo webhook on push to `main` makes Coolify rebuild the multi-stage `Dockerfile` (Node → Caddy 2) and serve the static output through Caddy using `Caddyfile`. Public traffic reaches the container through a Cloudflare Tunnel (`cloudflared`) pointed at the service on the Docker network — TLS terminates at Cloudflare's edge, the origin speaks plain HTTP on port 80, and no public port is exposed on the host. There is no local deploy command — `docker build -t tisanerie .` reproduces the production image locally.
 
 ## Architecture
 

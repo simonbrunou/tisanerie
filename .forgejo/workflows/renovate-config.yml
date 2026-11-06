@@ -4,10 +4,12 @@ on:
   push:
     paths:
       - renovate.json
+      - scripts/check-renovate-config.*
       - .forgejo/workflows/renovate-config.yml
   pull_request:
     paths:
       - renovate.json
+      - scripts/check-renovate-config.*
       - .forgejo/workflows/renovate-config.yml
 
 jobs:
@@ -18,8 +20,10 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
-      # Keep the version equal to the ghcr.io/renovatebot/renovate tag in
-      # renovate/renovate-config's .forgejo/workflows/renovate.yml, the
-      # Renovate the bot runs. Run it without a file argument: given a path,
-      # this version validates the file as global config, not as repo config.
-      - run: npx --yes --package renovate@44.132.2 -- renovate-config-validator --strict
+          cache: npm
+      - run: npm ci
+      # The script's tests first, so a broken check fails here, by name.
+      - run: npx vitest run scripts/check-renovate-config.test.ts
+        env:
+          RENOVATE_CONFIG_TESTS: '1'
+      - run: scripts/check-renovate-config.sh
