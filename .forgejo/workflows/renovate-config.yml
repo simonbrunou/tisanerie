@@ -26,8 +26,8 @@ jobs:
       # skip without RENOVATE_CONFIG_TESTS=1, so the step also fails when any
       # test skipped or none passed.
       - run: |
-          npx vitest run scripts/check-renovate-config.test.ts --reporter=default --reporter=json --outputFile.json=renovate-config-tests.json
-          node -e 'const r = require("./renovate-config-tests.json"); if (r.numPendingTests || !r.numPassedTests) { console.error(`${r.numPassedTests} passed, ${r.numPendingTests} skipped`); process.exit(1); }'
+          npx vitest run scripts/check-renovate-config.test.ts --reporter=default --reporter=json --outputFile.json=/tmp/renovate-config-tests.json
+          node -e 'const r = require("/tmp/renovate-config-tests.json"); console.log(`renovate config tests: ${r.numPassedTests} passed, ${r.numPendingTests} skipped`); if (r.numPendingTests || !r.numPassedTests) process.exit(1);'
         env:
           RENOVATE_CONFIG_TESTS: '1'
       - run: scripts/check-renovate-config.sh

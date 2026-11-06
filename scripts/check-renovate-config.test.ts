@@ -37,8 +37,8 @@ const checkRepoConfigWith = (changes: Record<string, unknown>) =>
   check(`${JSON.stringify({ ...repoConfig, ...changes }, null, 2)}\n`);
 
 describe.runIf(process.env.RENOVATE_CONFIG_TESTS === '1')('check-renovate-config.sh', { timeout: 60_000 }, () => {
-  // One run before the tests pulls the image (about 1 GB) where it is missing,
-  // under a timeout of its own, so no test's timeout covers the pull.
+  // One run before the tests pulls the image (about 2 GB on disk) where it is
+  // missing, under a timeout of its own, so no test's timeout covers the pull.
   beforeAll(() => {
     check(repoConfigText);
   }, 900_000);
