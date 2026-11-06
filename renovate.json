@@ -18,6 +18,11 @@
       "description": "One Node major for CI, production and the types (#96): .nvmrc (the Node CI runs), the Dockerfile's node image (the Node production builds on) and @types/node move in one PR, so scripts/check-node-pins.sh stays green. config:recommended's group:nodeJs preset sets only a commit message topic, no group name, and does not match the npm package @types/node.",
       "matchPackageNames": ["node", "@types/node"],
       "groupName": "Node.js"
+    },
+    {
+      "description": "Hold TypeScript below 7 (#105): typescript 7.0 ships no stable JavaScript API (its main export is lib/version.cjs), npm ci refuses typescript 7 against the ^5 || ^6 typescript peer of @astrojs/check, and astro check (npm run typecheck) refuses every TypeScript major from 7 up, a check in the astro package itself. Lift this rule once npm install -D typescript@latest, then npm ci and npm run typecheck, all exit 0 in a scratch copy: either astro and @astrojs/check accept TypeScript 7, or typescript latest is 7.1.0 or later and typecheck has moved to tsc --noEmit --runExternalCode with @astrojs/ts-content-mapper.",
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<7"
     }
   ]
 }
