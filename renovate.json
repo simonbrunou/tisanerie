@@ -2,6 +2,11 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "platformAutomerge": true,
+  "lockFileMaintenance": {
+    "description": "Refresh package-lock.json once a week (#102): Renovate opened no PR for undici 8.12.1, a transitive package inside its parents' ranges, though OSV alerts are on and eight advisories covered it. A lock refresh moves such a package within those ranges. Same window as diversif. The auto-merge rule below lists lockFileMaintenance.",
+    "enabled": true,
+    "schedule": ["* 0-3 * * 1"]
+  },
   "packageRules": [
     {
       "description": "Auto-merge low-risk updates once CI passes",
