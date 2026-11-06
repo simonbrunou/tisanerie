@@ -8,7 +8,7 @@ One Node major is pinned in three files: `.nvmrc` (the Node CI runs), every `FRO
 
 - `npm install` — install dependencies
 - `scripts/check-node-pins.sh` — check that the Node pins name one major (runs in CI)
-- `scripts/check-renovate-config.sh` — validate `renovate.json` with Renovate's validator in the image renovate/renovate-config runs, through Docker; its `RENOVATE_IMAGE` must match that image (runs in CI when `renovate.json` changes). Its tests run only with `RENOVATE_CONFIG_TESTS=1 npx vitest run scripts/check-renovate-config.test.ts`
+- `scripts/check-renovate-config.sh` — validate `renovate.json` with Renovate's validator in the image renovate/renovate-config runs, through Docker; its `RENOVATE_IMAGE` must match that image (runs in CI through `.forgejo/workflows/renovate-config.yml`). Its tests run only with `RENOVATE_CONFIG_TESTS=1 npx vitest run scripts/check-renovate-config.test.ts`
 - `npm run dev` — Astro dev server at `http://localhost:4321/fr/`
 - `npm run build` — static build to `dist/`
 - `npm run preview` — serve the built site

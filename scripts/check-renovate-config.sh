@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Validates the Renovate repo config, renovate.json, in a directory (the repo
 # root by default) with the Renovate the bot runs. CI runs it, and its tests in
-# check-renovate-config.test.ts, when renovate.json, this script or its test
-# changes (.forgejo/workflows/renovate-config.yml).
+# check-renovate-config.test.ts, when renovate.json, this script, its test or
+# that workflow changes (.forgejo/workflows/renovate-config.yml).
 #
 # The validator runs inside the bot's image, so the Renovate version, its Node
 # and its dependencies are the bot's. RENOVATE_IMAGE must equal the image in

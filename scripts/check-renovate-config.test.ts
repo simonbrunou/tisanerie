@@ -1,15 +1,15 @@
 // scripts/check-renovate-config.sh (#102 retro) against one renovate.json per
-// test, written to its own temp directory. Each test starts from the repo's
-// renovate.json, breaks it in one way the validator must refuse, and asserts
-// the exit code and the message. The script runs Renovate's Docker image, so
-// these tests need Docker and run only with RENOVATE_CONFIG_TESTS=1, which
-// .forgejo/workflows/renovate-config.yml sets.
+// test, written to its own temp directory: the repo's renovate.json, the repo's
+// renovate.json broken in one way the validator must refuse, a file that is not
+// JSON, or none. Each test asserts the exit code and the message. The script
+// runs Renovate's Docker image, so these tests need Docker and run only with
+// RENOVATE_CONFIG_TESTS=1, which .forgejo/workflows/renovate-config.yml sets.
 import { spawnSync } from 'node:child_process';
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { afterAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 const repo = fileURLToPath(new URL('..', import.meta.url));
 const scriptPath = path.join(repo, 'scripts', 'check-renovate-config.sh');
@@ -36,8 +36,13 @@ function check(content: string | undefined) {
 const checkRepoConfigWith = (changes: Record<string, unknown>) =>
   check(`${JSON.stringify({ ...repoConfig, ...changes }, null, 2)}\n`);
 
-// The first test may pull the image (about 1 GB) where it is missing.
-describe.runIf(process.env.RENOVATE_CONFIG_TESTS === '1')('check-renovate-config.sh', { timeout: 300_000 }, () => {
+describe.runIf(process.env.RENOVATE_CONFIG_TESTS === '1')('check-renovate-config.sh', { timeout: 60_000 }, () => {
+  // One run before the tests pulls the image (about 1 GB) where it is missing,
+  // under a timeout of its own, so no test's timeout covers the pull.
+  beforeAll(() => {
+    check(repoConfigText);
+  }, 900_000);
+
   it("accepts the repo's renovate.json", () => {
     const result = check(repoConfigText);
     expect(result.output).toContain('Config validated successfully');
