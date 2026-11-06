@@ -1,0 +1,33 @@
+name: Renovate config
+
+on:
+  push:
+    paths:
+      - renovate.json
+      - scripts/check-renovate-config.*
+      - .forgejo/workflows/renovate-config.yml
+  pull_request:
+    paths:
+      - renovate.json
+      - scripts/check-renovate-config.*
+      - .forgejo/workflows/renovate-config.yml
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      # The script's tests first, so a broken check fails here, by name. They
+      # skip without RENOVATE_CONFIG_TESTS=1, so the step also fails when any
+      # test skipped or none passed.
+      - run: |
+          npx vitest run scripts/check-renovate-config.test.ts --reporter=default --reporter=json --outputFile.json=/tmp/renovate-config-tests.json
+          node -e 'const r = require("/tmp/renovate-config-tests.json"); console.log(`renovate config tests: ${r.numPassedTests} passed, ${r.numPendingTests} skipped`); if (r.numPendingTests || !r.numPassedTests) process.exit(1);'
+        env:
+          RENOVATE_CONFIG_TESTS: '1'
+      - run: scripts/check-renovate-config.sh
