@@ -23,8 +23,9 @@
 # bot resolves on git.sbrn.eu, fails here.
 #
 # Exit 0: valid. 2: no renovate.json. 1: the validator or the local run
-# refused the config, or no docker daemon answered. 125: docker could not pull
-# or start the image.
+# refused the config, the local run failed or wrote a log the script cannot
+# read, or no docker daemon answered. 125: docker could not pull or start the
+# image.
 set -euo pipefail
 
 RENOVATE_IMAGE=ghcr.io/renovatebot/renovate:44.132.2
