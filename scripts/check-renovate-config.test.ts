@@ -1,6 +1,6 @@
 // scripts/check-renovate-config.sh (#102 retro) against one renovate.json per
 // test, written to its own temp directory: the repo's renovate.json, the repo's
-// renovate.json broken in one way the validator must refuse, a file that is not
+// renovate.json broken in one way the script must refuse, a file that is not
 // JSON, or none. Each test asserts the exit code and the message. The script
 // runs Renovate's Docker image, so these tests need Docker and run only with
 // RENOVATE_CONFIG_TESTS=1, which .forgejo/workflows/renovate-config.yml sets.
@@ -46,6 +46,7 @@ describe.runIf(process.env.RENOVATE_CONFIG_TESTS === '1')('check-renovate-config
   it("accepts the repo's renovate.json", () => {
     const result = check(repoConfigText);
     expect(result.output).toContain('Config validated successfully');
+    expect(result.output).toContain('check-renovate-config: presets resolved');
     expect(result.status).toBe(0);
   });
 
@@ -74,6 +75,14 @@ describe.runIf(process.env.RENOVATE_CONFIG_TESTS === '1')('check-renovate-config
   it('refuses a config that needs migration', () => {
     const result = checkRepoConfigWith({ extends: ['config:base'] });
     expect(result.output).toContain('Config migration necessary');
+    expect(result.status).toBe(1);
+  });
+
+  // The validator does not resolve presets and accepts this name (#114): the
+  // script's local Renovate run must refuse it.
+  it('refuses a preset Renovate does not know', () => {
+    const result = checkRepoConfigWith({ extends: ['config:recommended', 'helpers:pinGitHubActionDigestsNOPE'] });
+    expect(result.output).toContain("Cannot find preset's package (helpers:pinGitHubActionDigestsNOPE)");
     expect(result.status).toBe(1);
   });
 
