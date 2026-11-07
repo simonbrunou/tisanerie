@@ -17,7 +17,10 @@
 # The validator does not resolve presets, so it accepts a misspelled name in
 # extends (#114). A local Renovate run on the same file then resolves them: it
 # logs an unknown preset as a warning and still exits 0, so the script fails on
-# any record at warn level (40) or above in its JSON log.
+# any record at warn level (40) or above in its JSON log, and on a log without
+# the "Repository finished" record, so a log it cannot read fails too. The
+# local run has no platform and no token: a local> or private preset, which the
+# bot resolves on git.sbrn.eu, fails here.
 #
 # Exit 0: valid. 2: no renovate.json. 1: the validator or the local run
 # refused the config, or no docker daemon answered. 125: docker could not pull
@@ -46,6 +49,7 @@ exec node -e '
     try { return [JSON.parse(line)]; } catch { return []; }
   });
   const problems = records.filter((r) => r.level >= 40).map((r) => [r.msg, r.err?.validationError].filter(Boolean).join(": "));
+  if (!records.some((r) => r.msg === "Repository finished")) problems.push("no \"Repository finished\" record in its JSON log");
   if (problems.length) {
     console.error(`check-renovate-config: the local Renovate run refused the config:\n${problems.join("\n")}`);
     process.exit(1);

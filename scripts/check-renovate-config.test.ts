@@ -4,6 +4,7 @@
 // JSON, or none. Each test asserts the exit code and the message. The script
 // runs Renovate's Docker image, so these tests need Docker and run only with
 // RENOVATE_CONFIG_TESTS=1, which .forgejo/workflows/renovate-config.yml sets.
+// The tests under "with a fake image" need no Docker and always run.
 import { spawnSync } from 'node:child_process';
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -24,12 +25,13 @@ afterAll(() => {
 });
 
 // Runs the script on a directory that holds `content` as renovate.json, or no
-// renovate.json when `content` is undefined.
-function check(content: string | undefined) {
+// renovate.json when `content` is undefined, with `env` added to its
+// environment.
+function check(content: string | undefined, env: Record<string, string> = {}) {
   const dir = path.join(base, String(++testNumber));
   mkdirSync(dir);
   if (content !== undefined) writeFileSync(path.join(dir, 'renovate.json'), content);
-  const result = spawnSync(scriptPath, [dir], { encoding: 'utf8' });
+  const result = spawnSync(scriptPath, [dir], { encoding: 'utf8', env: { ...process.env, ...env } });
   return { status: result.status, output: `${result.stdout}${result.stderr}` };
 }
 
@@ -96,5 +98,49 @@ describe.runIf(process.env.RENOVATE_CONFIG_TESTS === '1')('check-renovate-config
     const result = check(undefined);
     expect(result.output).toContain('no renovate.json in');
     expect(result.status).toBe(2);
+  });
+});
+
+// Failures of the local Renovate run that no renovate.json causes. A fake
+// docker runs the script's in-image commands on this machine, where a fake
+// renovate-config-validator passes and a fake renovate prints FAKE_RENOVATE_LOG
+// and exits with FAKE_RENOVATE_EXIT.
+describe('check-renovate-config.sh with a fake image', () => {
+  const bin = path.join(base, 'fake-bin');
+  const finished = JSON.stringify({ level: 30, msg: 'Repository finished' });
+
+  beforeAll(() => {
+    mkdirSync(bin);
+    const fake = (name: string, body: string) => writeFileSync(path.join(bin, name), `#!/bin/sh\n${body}\n`, { mode: 0o755 });
+    // The script calls docker run ... -c "<in-image commands>": run the last argument.
+    fake('docker', 'for last; do :; done\nexec sh -c "$last"');
+    fake('renovate-config-validator', 'echo " INFO: Config validated successfully"');
+    fake('renovate', 'printf "%s\\n" "$FAKE_RENOVATE_LOG"\nexit "$FAKE_RENOVATE_EXIT"');
+  });
+
+  const checkWithFakeRenovate = (log: string, exit: number) =>
+    check(repoConfigText, {
+      PATH: `${bin}${path.delimiter}${process.env.PATH}`,
+      TMPDIR: base,
+      FAKE_RENOVATE_LOG: log,
+      FAKE_RENOVATE_EXIT: String(exit),
+    });
+
+  it('accepts a run that logs "Repository finished" and no warning', () => {
+    const result = checkWithFakeRenovate(finished, 0);
+    expect(result.output).toContain('check-renovate-config: presets resolved');
+    expect(result.status).toBe(0);
+  });
+
+  it('fails when the local Renovate run exits non-zero', () => {
+    const result = checkWithFakeRenovate(finished, 1);
+    expect(result.output).toContain('check-renovate-config: the local Renovate run failed');
+    expect(result.status).toBe(1);
+  });
+
+  it('fails when the log holds no JSON "Repository finished" record', () => {
+    const result = checkWithFakeRenovate(' INFO: Repository finished (repository=local)', 0);
+    expect(result.output).toContain('no "Repository finished" record in its JSON log');
+    expect(result.status).toBe(1);
   });
 });
