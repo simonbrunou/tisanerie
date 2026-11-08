@@ -12,11 +12,12 @@ export default defineConfig({
         resolve: { alias },
         test: { name: 'node', environment: 'node', include: ['src/**/*.test.ts', 'scripts/**/*.test.ts'] },
       },
-      // React islands — jsdom so component .test.tsx can render. esbuild handles the
-      // automatic JSX runtime (avoids @vitejs/plugin-react, which conflicts with Astro's Vite).
+      // React islands — jsdom so component .test.tsx can render. Vite's oxc transform
+      // compiles the JSX with React's automatic runtime (avoids @vitejs/plugin-react,
+      // which conflicts with Astro's Vite).
       {
         resolve: { alias },
-        esbuild: { jsx: 'automatic', jsxImportSource: 'react' },
+        oxc: { jsx: { runtime: 'automatic', importSource: 'react' } },
         test: { name: 'islands', environment: 'jsdom', include: ['src/**/*.test.tsx'] },
       },
     ],

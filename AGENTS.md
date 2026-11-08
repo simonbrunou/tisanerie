@@ -67,7 +67,7 @@ Adding a herb or need is just dropping a JSON file; the build regenerates all pa
 
 ### Path alias & tests
 - `~/` resolves to `src/` in both Astro (`tsconfig.json` `paths`) and Vitest (`vitest.config.ts`). Prefer `~/lib/…` over relative imports.
-- Tests live alongside source as `*.test.ts` under `src/`, Node environment (no DOM). The repo scripts' tests sit next to them as `scripts/*.test.ts`, in the same Vitest project.
+- Tests live alongside source. `vitest.config.ts` has two projects. The `node` project runs `src/**/*.test.ts` and the repo scripts' `scripts/**/*.test.ts` in a Node environment (no DOM). The `islands` project runs React island tests, `src/**/*.test.tsx`, in jsdom; Vite's oxc transform compiles their JSX with React's automatic runtime, set under `oxc` in that project (not `esbuild`, which Vitest 5 ignores). Run one project with `npx vitest run --project islands`.
 
 ### i18n copy
 All UI strings live in `src/i18n/fr.json` and `src/i18n/en.json`. Access them with `t(lang, key, params?)` from `src/i18n/utils.ts`; missing keys fall back to English, then to the key itself.
