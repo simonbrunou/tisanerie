@@ -8,6 +8,6 @@
       "~/*": ["src/*"]
     }
   },
-  "include": ["src/**/*", "scripts/**/*", ".astro/types.d.ts"],
+  "include": ["src/**/*", "scripts/**/*", "vitest.config.ts", ".astro/types.d.ts"],
   "exclude": ["dist"]
 }
