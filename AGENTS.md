@@ -98,7 +98,9 @@ Agents may merge their own PR without asking once all three hold:
 - CI is green on the pushed SHA;
 - the pushed SHA has no conflict with `origin/main`. Run `git fetch origin` right before merging, then check that `git merge-tree --write-tree origin/main <pushed SHA>` exits 0.
 
-When the branch is behind `main` but has no conflict, merge it as it is. The accepted risk is that two PRs that pass on their own can break `main` together. The CI run on the newest `main` commit shows such a break, so check it after the merge and fix a red one in a new PR.
+When the branch is behind `main` but has no conflict, merge it as it is. The accepted risk is that two PRs that pass on their own can break `main` together. The CI run on the newest `main` commit shows such a break.
+
+After every merge, check whether the CI run on `main` tests anything new. `fj pr -R origin merge` prints no merge sha; `python3 -I ~/.agents/skills/forgejo-issues/scripts/forgejo.py get tisanerie#<n>` prints it as `merge_commit_sha`. Run `git fetch origin`, then `git rev-parse <merge sha>^{tree} <pushed SHA>^{tree}`. Two different hashes mean the merge commit holds files CI has not tested together: wait for the run on `main` (`python3 -I ~/.agents/skills/forgejo-issues/scripts/forgejo.py ci tisanerie --follow main`) and fix a red one in a new PR. The same hash twice means the merge commit holds the files CI passed on the pushed SHA, so skip the wait. The skip relies on the PR run checking out the pushed SHA itself, and on the `push` run on `main` repeating the PR run's jobs and steps. Before skipping, read `.forgejo/workflows/` at the pushed SHA (`git show <pushed SHA>:.forgejo/workflows/<file>`). When a job, step or trigger filter there differs between `push` and `pull_request`, an `if:` that reads `github.event_name` or `github.ref` included, wait for the run on `main` even though the hashes match.
 
 On a conflict, merge `origin/main` into the branch, resolve it, run `npm ci && npm run typecheck && npm run test && npm run build`, push, wait for CI on the new head, and check all three conditions again.
 
