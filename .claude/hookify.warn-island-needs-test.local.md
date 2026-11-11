@@ -12,9 +12,9 @@ conditions:
 🧪 **React island edited — islands regress silently here.**
 
 This is the documented #1 regression source. `npm run test` runs two Vitest projects:
-`node` runs `*.test.ts` without a DOM, and `islands` renders `src/**/*.test.tsx` in jsdom
-with `@testing-library/react`. `npx vitest run --project islands` runs the island tests
-alone. An island change with no test in either project ships untested.
+`node` runs `*.test.ts` without a DOM, and `islands` runs `src/**/*.test.tsx` in jsdom,
+where `@testing-library/react` renders the island. `npx vitest run --project islands`
+runs the island tests alone.
 
 Before finishing:
 1. Extract pure logic into a tested function — e.g. the `need` URL building in
