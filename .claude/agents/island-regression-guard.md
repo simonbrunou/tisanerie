@@ -37,6 +37,6 @@ fix. If the diff changes what an island renders or does with no accompanying tes
 name both tests it needs: the pure function to extract and test in a `*.test.ts`, and the
 render test to add in `<Island>.test.tsx` beside the island, following
 `src/components/BrewingTimer.test.tsx`. Also look for those tests in
-`git status --short -- src`, since `git diff` omits a new untracked file. Be
-terse; report only real regressions, not style.
+`git status --short -uall -- src`, since `git diff` omits a new untracked file. Be terse;
+report only real regressions, not style.
 Read-only — do not modify files.
