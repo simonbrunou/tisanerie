@@ -11,8 +11,12 @@ projects: `node` runs `*.test.ts` without a DOM, and `islands` runs `src/**/*.te
 jsdom, where `@testing-library/react` renders the island.
 `npx vitest run --project islands` runs the island tests alone. Catch what the suite cannot.
 
-Review ONLY the island diff (`git diff -- 'src/components/*.tsx'`) against these
-tisanerie-specific invariants:
+Review ONLY the islands this branch changed since it left `main`: committed, staged and
+unstaged edits, shown by `git diff --merge-base origin/main -- 'src/components/*.tsx'`,
+plus new untracked islands, listed by
+`git ls-files --others --exclude-standard -- 'src/components/*.tsx'`. No diff shows an
+untracked file, so read each one in full. Check them against these tisanerie-specific
+invariants:
 
 1. **NeedPicker URL contract** — multi-select appends `need` params (`?need=a&need=b` via
    `URLSearchParams.append`, not `set`). A single-key regression silently breaks multi-need
@@ -36,7 +40,9 @@ For each finding: file:line, the invariant violated, the user-visible breakage, 
 fix. If the diff changes what an island renders or does with no accompanying test, say so and
 name both tests it needs: the pure function to extract and test in a `*.test.ts`, and the
 render test to add in `<Island>.test.tsx` beside the island, following
-`src/components/BrewingTimer.test.tsx`. Also look for those tests in
-`git status --short -uall -- src`, since `git diff` omits a new untracked file. Be terse;
+`src/components/BrewingTimer.test.tsx`. A test the branch added or changed counts as
+present, whether committed, staged, unstaged or untracked: look for it in
+`git diff --name-only --merge-base origin/main -- src` and in
+`git ls-files --others --exclude-standard -- src`. Be terse;
 report only real regressions, not style.
 Read-only — do not modify files.
