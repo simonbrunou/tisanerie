@@ -9,8 +9,14 @@
   },
   "packageRules": [
     {
-      "description": "Auto-merge low-risk updates once CI passes",
-      "matchUpdateTypes": ["patch", "pin", "digest", "lockFileMaintenance"],
+      "description": "Auto-merge low-risk updates once CI passes. pinDigest (#118): only workflow actions get digest pins (helpers:pinGitHubActionDigests), and such a PR swaps a bare tag for the commit that tag already points at, so it runs no new code.",
+      "matchUpdateTypes": [
+        "patch",
+        "pin",
+        "pinDigest",
+        "digest",
+        "lockFileMaintenance"
+      ],
       "automerge": true
     },
     {
