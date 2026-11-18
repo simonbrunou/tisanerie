@@ -104,8 +104,10 @@ describe.runIf(process.env.RENOVATE_CONFIG_TESTS === '1')('check-renovate-config
 // Failures of the local Renovate run that no renovate.json causes. A fake
 // docker runs the script's in-image commands on this machine, where a fake
 // renovate-config-validator passes and a fake renovate prints FAKE_RENOVATE_LOG
-// and exits with FAKE_RENOVATE_EXIT.
-describe('check-renovate-config.sh with a fake image', () => {
+// and exits with FAKE_RENOVATE_EXIT. Each test starts several processes; one
+// test took over 5 s on a loaded CI runner (#136), hence a timeout above
+// Vitest's default.
+describe('check-renovate-config.sh with a fake image', { timeout: 60_000 }, () => {
   const bin = path.join(base, 'fake-bin');
   const finished = JSON.stringify({ level: 30, msg: 'Repository finished' });
 
