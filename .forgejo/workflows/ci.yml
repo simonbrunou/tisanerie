@@ -2,7 +2,9 @@ name: CI
 
 on:
   push:
+    branches: [main]
   pull_request:
+    branches: [main]
 
 # Follow-up: add Lighthouse CI (treosh/lighthouse-ci-action) and axe-core
 # via Playwright once the test suite has browser coverage.

@@ -2,11 +2,13 @@ name: Renovate config
 
 on:
   push:
+    branches: [main]
     paths:
       - renovate.json
       - scripts/check-renovate-config.*
       - .forgejo/workflows/renovate-config.yml
   pull_request:
+    branches: [main]
     paths:
       - renovate.json
       - scripts/check-renovate-config.*
