@@ -29,10 +29,12 @@ EOF
 RUN go mod init caddy \
   && go mod edit -require=github.com/caddyserver/caddy/v2@${CADDY_VERSION} -require=golang.org/x/net@v0.62.0 \
   && go mod tidy \
-  && CGO_ENABLED=0 go build -trimpath -ldflags '-w -s' -o /caddy .
+  && CGO_ENABLED=0 go build -trimpath -ldflags '-w -s' -tags nobadger,nomysql,nopgx -o /caddy . \
+  && setcap cap_net_bind_service=+p /caddy
 
 FROM caddy:2-alpine AS runner
 COPY --from=caddy-builder /caddy /usr/bin/caddy
+RUN test "$(caddy version | cut -d" " -f1)" = "$CADDY_VERSION"
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY --from=builder /app/dist /srv
 
