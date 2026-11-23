@@ -10,9 +10,10 @@ COPY . .
 RUN npm run build
 
 # Caddy 2.11.9 links golang.org/x/net v0.60.0 (CVE-2026-78661). This stage builds
-# the base image's Caddy version with x/net v0.62.0 or newer. Remove it, and the
-# COPY of /caddy below, once `docker run --rm caddy:2-alpine caddy build-info`
-# lists x/net v0.62.0 or newer.
+# the builder image's Caddy version with x/net v0.62.0 or newer, and the runner
+# stage checks that it matches the base image's. Remove this stage, and the COPY
+# of /caddy and the `RUN test` below, once
+# `docker run --rm caddy:2-alpine caddy build-info` lists x/net v0.62.0 or newer.
 FROM caddy:2-builder-alpine AS caddy-builder
 WORKDIR /src
 COPY <<'EOF' main.go
