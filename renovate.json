@@ -2,6 +2,11 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
   "platformAutomerge": true,
+  "rebaseWhen": "conflicted",
+  "pin": {
+    "description": "Rebase an open PR only when it conflicts with main (#149, homelab-stacks#228): after each merge, the default, auto, rebases every open auto-merge PR that is behind main and whose branch only Renovate has committed to, and each rebase runs a full CI on the shared runner. This block repeats the top-level rebaseWhen because Renovate's built-in pin config sets behind-base-branch, which would override it for pin updates.",
+    "rebaseWhen": "conflicted"
+  },
   "lockFileMaintenance": {
     "description": "Refresh package-lock.json once a week (#102): Renovate opened no PR for undici 8.12.1, a transitive package inside its parents' ranges, though OSV alerts are on and eight advisories covered it. A lock refresh moves such a package within those ranges. Same window as diversif. The auto-merge rule below lists lockFileMaintenance.",
     "enabled": true,
